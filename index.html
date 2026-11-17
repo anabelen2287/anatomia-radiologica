@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomía Imagenológica I (MIP03BFT01) | UCE - Portal Estudiantil</title>
+    <style>
+        :root {
+            --bg-dark: #0b1120;
+            --bg-card: #131c31;
+            --bg-card-hover: #1a2642;
+            --primary: #38bdf8;
+            --primary-dark: #0284c7;
+            --accent: #2dd4bf;
+            --warning: #fbbf24;
+            --success: #34d399;
+            --danger: #f87171;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 2.2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1220px;
+            margin: 0 auto;
+        }
+
+        .badge-inst {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 0.3rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.7rem;
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            color: #cbd5e1;
+            font-size: 1rem;
+            max-width: 850px;
+            margin-bottom: 1.3rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.9rem;
+            background: rgba(11, 17, 32, 0.65);
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item span {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-item strong {
+            font-size: 0.92rem;
+            color: var(--primary);
+        }
+
+        nav {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 1.5rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.7rem 0;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.6rem 1.15rem;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-dark);
+            color: #ffffff;
+        }
+
+        main {
+            padding: 2rem 1.5rem;
+        }
+
+        .section-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .controls-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg-card);
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .search-input {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            min-width: 260px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .weeks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .week-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .week-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .week-badge {
+            background: var(--primary-dark);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 6px;
+        }
+
+        .unit-tag {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .week-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #fff;
+        }
+
+        .pae-name {
+            color: var(--primary);
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .student-task-box {
+            background: rgba(11, 17, 32, 0.65);
+            border-left: 3px solid var(--accent);
+            padding: 0.75rem 0.9rem;
+            border-radius: 0 8px 8px 0;
+            margin: 0.6rem 0;
+            font-size: 0.88rem;
+        }
+
+        .student-task-box strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-detail {
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            margin-bottom: 0.45rem;
+        }
+
+        .card-detail strong {
+            color: var(--text-main);
+        }
+
+        .card-footer {
+            margin-top: 1rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-action {
+            padding: 0.42rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-rubric {
+            background: rgba(45, 212, 191, 0.15);
+            color: var(--accent);
+            border-color: rgba(45, 212, 191, 0.4);
+        }
+
+        .btn-rubric:hover {
+            background: var(--accent);
+            color: #0b1120;
+        }
+
+        .btn-study {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--primary);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-study:hover {
+            background: var(--primary);
+            color: #0b1120;
+        }
+
+        .study-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 850px) {
+            .study-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .week-selector-list {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            max-height: 75vh;
+            overflow-y: auto;
+        }
+
+        .week-selector-item {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            padding: 0.65rem 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 0.35rem;
+            cursor: pointer;
+            font-size: 0.86rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+        }
+
+        .week-selector-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-main);
+        }
+
+        .week-selector-item.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--primary);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .badge-done {
+            background: var(--success);
+            color: #064e3b;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.1rem 0.45rem;
+            border-radius: 999px;
+        }
+
+        .study-workspace {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .panel-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .panel-box h3 {
+            color: var(--primary);
+            margin-bottom: 0.9rem;
+            font-size: 1.15rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .summary-points {
+            list-style: none;
+            display: grid;
+            gap: 0.65rem;
+        }
+
+        .summary-points li {
+            background: rgba(11, 17, 32, 0.55);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+            font-size: 0.92rem;
+        }
+
+        .flashcard-container {
+            perspective: 1000px;
+            height: 210px;
+            cursor: pointer;
+            margin: 1rem 0;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.55s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard-container.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--primary-dark);
+        }
+
+        .flashcard-front {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .flashcard-back {
+            background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
+            border-color: var(--accent);
+            transform: rotateY(180deg);
+        }
+
+        .fc-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+        }
+
+        .fc-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .fc-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.6rem;
+            cursor: pointer;
+            font-size: 0.92rem;
+            transition: 0.2s;
+        }
+
+        .quiz-option:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: rgba(52, 211, 153, 0.18);
+            color: #fff;
+        }
+
+        .quiz-option.wrong {
+            border-color: var(--danger);
+            background: rgba(248, 113, 113, 0.18);
+            color: #fff;
+        }
+
+        .quiz-feedback {
+            margin-top: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            display: none;
+        }
+
+        .atlas-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .atlas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .svg-stage {
+            background: #050811;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .svg-hotspot {
+            cursor: pointer;
+            transition: opacity 0.2s, stroke-width 0.2s;
+        }
+
+        .svg-hotspot:hover {
+            opacity: 0.85;
+            stroke: #fbbf24;
+            stroke-width: 3;
+        }
+
+        .inspector-card {
+            background: var(--bg-card);
+            border: 1px solid var(--primary-dark);
+            border-radius: 12px;
+            padding: 1.4rem;
+        }
+
+        .eval-table, .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .eval-table th, .eval-table td,
+        .rubric-table th, .rubric-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .eval-table th, .rubric-table th {
+            color: var(--primary);
+            background: rgba(11, 17, 32, 0.5);
+        }
+
+        .calc-box {
+            background: linear-gradient(135deg, #131c31 0%, #1e293b 100%);
+            border: 1px solid var(--primary-dark);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .calc-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .calc-input {
+            background: var(--bg-dark);
+            border: 1px solid var(--primary);
+            color: #fff;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 140px;
+        }
+
+        .calc-result {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--primary);
+            border-radius: 14px;
+            max-width: 920px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 1.8rem;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .bib-list {
+            list-style: none;
+        }
+
+        .bib-list li {
+            padding: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .bib-list a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <span class="badge-inst">Universidad Central del Ecuador • Facultad de Ciencias Médicas</span>
+        <h1>Anatomía Imagenológica I</h1>
+        <p class="subtitle">Carrera de Imagenología y Radiología | Guía Estudiantil de Actividades PAE (Canva Pro), Repaso Interactivo y Simulación Anatómica</p>
+        
+        <div class="meta-grid">
+            <div class="meta-item">
+                <span>Asignatura</span>
+                <strong>MIP03BFT01 • 3.er Semestre</strong>
+            </div>
+            <div class="meta-item">
+                <span>Período Académico</span>
+                <strong>2026 - 2027 (16 Semanas)</strong>
+            </div>
+            <div class="meta-item">
+                <span>Tutoría PAE</span>
+                <strong>Viernes • 07:00 a 08:00</strong>
+            </div>
+            <div class="meta-item">
+                <span>Herramientas Estudiante</span>
+                <strong>Atlas EVA + Canva Pro</strong>
+            </div>
+            <div class="meta-item">
+                <span>Tu Progreso de Repaso</span>
+                <strong id="globalProgressBadge">0 / 16 Semanas Dominadas</strong>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="container nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('actividades', this)">1. Actividades PAE en Canva (16 Semanas)</button>
+        <button class="tab-btn" onclick="switchTab('entrenamiento', this)">2. Resúmenes, Flashcards y Quiz</button>
+        <button class="tab-btn" onclick="switchTab('simuladores', this)">3. Simuladores SVG y Visor Clínico</button>
+        <button class="tab-btn" onclick="switchTab('evaluacion', this)">4. Evaluación, Calculadora y Bibliografía</button>
+    </div>
+</nav>
+
+<main class="container">
+
+    <section id="actividades" class="section-panel active">
+        <div class="controls-bar">
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="filterWeeks('all', this)">Todas las semanas (16)</button>
+                <button class="filter-btn" onclick="filterWeeks('1', this)">Unidad 1: Cabeza y Cuello (Sem 1-8)</button>
+                <button class="filter-btn" onclick="filterWeeks('2', this)">Unidad 2: Osteomuscular (Sem 9-16)</button>
+            </div>
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar actividad, estructura o evidencia..." onkeyup="searchWeeks()">
+        </div>
+
+        <div id="weeksContainer" class="weeks-grid"></div>
+    </section>
+
+    <section id="entrenamiento" class="section-panel">
+        <div class="study-layout">
+            <aside class="week-selector-list" id="studyWeekList"></aside>
+
+            <div class="study-workspace">
+                <div class="panel-box">
+                    <span class="unit-tag" id="studyUnitLabel">UNIDAD 1</span>
+                    <h3 id="studyWeekTitle" style="margin-top: 0.3rem;">Semana 1: Topografía radiológica y escala de grises</h3>
+                    <p class="card-detail" style="margin-bottom: 0.8rem;"><strong>Puntos clave para dominar antes de tu actividad en Canva:</strong></p>
+                    <ul class="summary-points" id="studySummaryList"></ul>
+                </div>
+
+                <div class="panel-box">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="border: none; margin: 0; padding: 0;">Flashcards de Repaso Rápido</h3>
+                        <span class="unit-tag" id="fcCounter">Tarjeta 1 de 3</span>
+                    </div>
+                    <p class="card-detail">Haz clic sobre la tarjeta para girarla y comprobar la respuesta técnica.</p>
+                    
+                    <div class="flashcard-container" id="flashcardBox" onclick="flipCard()">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <span class="fc-label">PREGUNTA / ESTRUCTURA</span>
+                                <div class="fc-text" id="fcFrontText">Cargando...</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <span class="fc-label">CORRELACIÓN IMAGENOLÓGICA</span>
+                                <div class="fc-text" id="fcBackText">Cargando...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fc-controls">
+                        <button class="filter-btn" onclick="prevCard()">&larr; Anterior</button>
+                        <button class="btn-action btn-study" onclick="flipCard()">Girar Tarjeta</button>
+                        <button class="filter-btn" onclick="nextCard()">Siguiente &rarr;</button>
+                    </div>
+                </div>
+
+                <div class="panel-box">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                        <h3 style="border: none; margin: 0; padding: 0;">Reto Rápido de Autoevaluación</h3>
+                        <span class="week-badge" id="quizScoreBadge">Aciertos: 0 / 2</span>
+                    </div>
+                    <div id="quizContainer"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="simuladores" class="section-panel">
+        <div class="controls-bar">
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="loadSimulator('densidades', this)">Simulador 1: Escala de Densidades y HU (Sem 1)</button>
+                <button class="filter-btn" onclick="loadSimulator('snc', this)">Simulador 2: Corte Axial Encéfalo / Ventrículos (Sem 8)</button>
+                <button class="filter-btn" onclick="loadSimulator('cervical', this)">Simulador 3: Atlas C1 vs. Axis C2 (Sem 9)</button>
+                <button class="filter-btn" onclick="loadSimulator('visor_real', this)">Visor de Radiografías / TC Reales (JPG/PNG)</button>
+            </div>
+        </div>
+
+        <div class="atlas-grid" id="simulatorWorkspace">
+            <div class="svg-stage" id="svgStage"></div>
+            <div class="inspector-card" id="inspectorPanel">
+                <span class="unit-tag">INSPECTOR ANATÓMICO</span>
+                <h3 style="color: #fff; margin: 0.4rem 0 0.8rem 0;" id="inspTitle">Selecciona una estructura</h3>
+                <p class="card-detail" id="inspDesc">Haz clic sobre cualquier región del esquema vectorial para visualizar su densidad radiográfica, características técnicas y referencias anatómicas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="evaluacion" class="section-panel">
+        <div class="panel-box" style="margin-bottom: 1.5rem;">
+            <h3>Ponderación de la Asignatura (Sobre 20 puntos)</h3>
+            <table class="eval-table">
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Instrumentos</th>
+                        <th>Porcentaje</th>
+                        <th>Nota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Evaluación Formativa Individual</strong></td>
+                        <td>Lecciones orales en imagen (2 pts) + Portafolio (2 pts) + <strong>Actividades PAE en Canva (1 pt)</strong> + Actuación (2 pts)</td>
+                        <td>35%</td>
+                        <td><strong>7.0 pts</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Evaluación Formativa Grupal</strong></td>
+                        <td>Exposición grupal (2 pts) + Informe y diapositivas (2 pts) + Cuestionario (1 pt)</td>
+                        <td>25%</td>
+                        <td><strong>5.0 pts</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Evaluación Sumativa 1</strong></td>
+                        <td>Examen teórico parcial (Unidades 1 y 2)</td>
+                        <td>10%</td>
+                        <td><strong>2.0 pts</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Evaluación Sumativa 2</strong></td>
+                        <td>Examen teórico final del semestre</td>
+                        <td>30%</td>
+                        <td><strong>6.0 pts</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="calc-box">
+                <h4>Calculadora de Nota PAE (16 Semanas)</h4>
+                <p class="card-detail">Cada entrega en Canva se califica sobre <strong>10 puntos</strong> (máximo 160 puntos en el semestre = <strong>1.00 punto</strong> en tu nota formativa individual).</p>
+                <div class="calc-controls">
+                    <label for="paeScore">Tu puntaje acumulado (0 - 160):</label>
+                    <input type="number" id="paeScore" class="calc-input" min="0" max="160" value="160" oninput="calculatePAE()">
+                    <div class="calc-result" id="paeResult">Equivalente: 1.00 / 1.00 punto</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-box">
+            <h3>Bibliografía Base de Consulta</h3>
+            <ul class="bib-list">
+                <li><strong>Potau Ginés, J. M., & Merí Vived, À. (2024).</strong> <em>EVA anatomía: Atlas. La nueva era de la anatomía.</em> Editorial Médica Panamericana.</li>
+                <li><strong>Ryan, S., McNicholas, M., & Eustace, S. (2013).</strong> <em>Radiología anatómica.</em> Editorial Marbán.</li>
+                <li><strong>Haaga, J. R., et al. (2011).</strong> <em>TC y RM: Diagnóstico por imagen del cuerpo humano</em> (5.ª ed.). Elsevier.</li>
+                <li><strong>Rumack, C. M., et al. (2014).</strong> <em>Diagnóstico por ecografía</em> (4.ª ed.). Editorial Marbán.</li>
+                <li><strong>Del Cura, J. L., Pedraza, S., & Gayete, À. (SERAM). (2010).</strong> <em>Radiología Esencial</em> (1.ª ed.). Editorial Médica Panamericana.</li>
+                <li><strong>IMAIOS. (2018).</strong> <em>e-Anatomy.</em> <a href="https://doi.org/10.37019/e-anatomy" target="_blank" rel="noopener">https://doi.org/10.37019/e-anatomy</a></li>
+            </ul>
+        </div>
+    </section>
+
+</main>
+
+<div id="rubricModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <span class="unit-tag" id="modalWeekTag">Semana X</span>
+        <h2 id="modalTitle" style="margin: 0.3rem 0; color: #fff;">Rúbrica de Evaluación</h2>
+        <p id="modalSubtitle" class="card-detail" style="margin-bottom: 1rem;"></p>
+        
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th>Criterio (2.5 pts c/u)</th>
+                    <th>Destacado (2.5 pts)</th>
+                    <th>Satisfactorio (2.0 pts)</th>
+                    <th>En proceso (1.5 pts)</th>
+                    <th>Inicial (0.5 pts)</th>
+                </tr>
+            </thead>
+            <tbody id="modalRubricBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>Universidad Central del Ecuador • Facultad de Ciencias Médicas • Carrera de Imagenología y Radiología</p>
+        <p>Anatomía Imagenológica I (MIP03BFT01) • Período 2026–2027</p>
+    </div>
+</footer>
+
+<script>
+    const courseData = [
+        {
+            sem: 1, unidad: "1",
+            tema: "Topografía radiológica y escala de grises de tejidos",
+            eva: "Anatomía general: posición, planos, términos de relación, anatomía seccional e imágenes con diferentes densidades.",
+            actividad: "Detectives de planos y densidades",
+            tareaCanva: "Diseñar en Canva Pro una ficha visual clasificatoria identificando modalidad (Rx, TC, RM), plano anatómico, orientación y las 5 densidades radiográficas básicas con su justificación técnica.",
+            evidencia: "Ficha visual con clasificación y justificación.",
+            criterios: ["Plano y orientación", "Clasificación de densidades", "Terminología imagenológica", "Presentación y cumplimiento"],
+            resumen: [
+                "Las 5 densidades radiográficas básicas de menor a mayor atenuación son: Aire (radiolúcido/negro), Grasa (gris oscuro), Agua/Tejidos blandos (gris intermedio), Calcio/Hueso (radiopaco/blanco) y Metal (blanco absoluto).",
+                "En Tomografía Computarizada (TC) se emplean las Unidades Hounsfield (UH): Agua = 0 UH, Aire = -1000 UH, Grasa = -50 a -100 UH, Hueso cortical = +400 a +1000 UH.",
+                "Convención de visualización en cortes axiales (TC/RM): se observan desde los pies del paciente; la derecha del paciente queda a la izquierda del observador."
+            ],
+            flashcards: [
+                { q: "¿Qué densidad radiográfica presenta el tejido adiposo y cuál es su rango aproximado en UH?", a: "Densidad Grasa (gris más oscuro que el músculo en Rx). En TC oscila entre -50 y -100 Unidades Hounsfield." },
+                { q: "¿Cómo se denomina en Resonancia Magnética a una estructura que brilla (se ve blanca)?", a: "Hiperintensa (ej. líquido cefalorraquídeo en secuencia T2 o grasa en secuencia T1)." },
+                { q: "En un corte axial estándar de TC abdominal, ¿dónde se ubica el hígado en la pantalla?", a: "En el lado izquierdo de la pantalla del observador (que corresponde al hipocondrio derecho del paciente)." }
+            ],
+            quiz: [
+                {
+                    q: "¿Cuál es el valor de referencia calibrado para el agua destilada en la escala Hounsfield de Tomografía Computarizada?",
+                    opts: ["-1000 UH", "0 UH", "+100 UH", "+400 UH"],
+                    ans: 1,
+                    exp: "El agua pura tiene por definición un valor de 0 UH, sirviendo de punto medio entre el aire (-1000 UH) y el hueso compacto (+1000 UH)."
+                },
+                {
+                    q: "En radiología convencional, ¿qué término describe una estructura que permite el paso casi total de los rayos X y se observa negra?",
+                    opts: ["Radiopaca", "Hiperintensa", "Radiolúcida", "Hiperecogénica"],
+                    ans: 2,
+                    exp: "Radiolúcido (como el aire pulmonar) indica baja atenuación del haz de rayos X, ennegreciendo el receptor."
+                }
+            ]
+        },
+        {
+            sem: 2, unidad: "1",
+            tema: "Huesos del cráneo y cara",
+            eva: "Huesos del cráneo, pp. 350-376: vista externa, cavidad craneal, neurocráneo, viscerocráneo y anatomía radiológica.",
+            actividad: "Rompecabezas radiológico del cráneo",
+            tareaCanva: "Elaborar en Canva Pro una lámina anatómico-radiológica etiquetada comparando las estructuras del neurocráneo y viscerocráneo entre el atlas EVA y proyecciones radiográficas/TC.",
+            evidencia: "Lámina anatómico-radiológica etiquetada.",
+            criterios: ["Neurocráneo", "Viscerocráneo", "Correlación radiológica", "Terminología y presentación"],
+            resumen: [
+                "El neurocráneo consta de 8 huesos (frontal, 2 parietales, 2 temporales, occipital, esfenoides y etmoides) y el viscerocráneo de 14 huesos.",
+                "En proyección radiográfica de Waters (occipitomentoniana) se despejan los peñascos hacia abajo para evaluar senos maxilares, arcos cigomáticos y rebordes orbitarios.",
+                "En proyección de Caldwell (occipitofrontal) se evalúan óptimamente los senos frontales, celdillas etmoidales y la fisura orbitaria superior."
+            ],
+            flashcards: [
+                { q: "¿Qué proyección radiográfica de cráneo es de elección para valorar los senos maxilares libres de superposición de los peñascos?", a: "Proyección de Waters (occipitomentoniana), proyectando los peñascos por debajo del piso de los senos maxilares." },
+                { q: "¿Qué estructuras anatómicas delimitan la silla turca en una radiografía lateral de cráneo?", a: "Anteriormente el tubérculo de la silla y apófisis clinoides anteriores; posteriormente el dorso de la silla y apófisis clinoides posteriores." },
+                { q: "¿Qué foramen de la base del cráneo transmite el nervio mandibular (V3)?", a: "El foramen oval, ubicado en el ala mayor del hueso esfenoides." }
+            ],
+            quiz: [
+                {
+                    q: "¿Qué proyección radiográfica proyecta los peñascos temporales en el tercio inferior de las órbitas para evaluar senos frontales y etmoidales?",
+                    opts: ["Proyección de Towne", "Proyección de Caldwell", "Proyección de Hirtz", "Proyección de Schüller"],
+                    ans: 1,
+                    exp: "La proyección PA de Caldwell (con angulación caudal de 15°) sitúa los peñascos en el tercio inferior orbitario."
+                },
+                {
+                    q: "¿Cuál de los siguientes huesos pertenece exclusivamente al viscerocráneo?",
+                    opts: ["Etmoides", "Esfenoides", "Vómer", "Temporal"],
+                    ans: 2,
+                    exp: "El vómer forma la porción posteroinferior del tabique nasal y pertenece al viscerocráneo (macizo facial)."
+                }
+            ]
+        },
+        {
+            sem: 3, unidad: "1",
+            tema: "Cavidad bucal y glándulas salivales",
+            eva: "Cavidad bucal, pp. 426-434: boca, dientes, lengua, vasos, nervios y glándulas.",
+            actividad: "La ruta de la cavidad bucal",
+            tareaCanva: "Crear en Canva Pro una infografía o lámina resuelta señalizando el piso de la boca, piezas dentales y las tres glándulas salivales mayores con sus conductos excretores.",
+            evidencia: "Infografía o lámina resuelta.",
+            criterios: ["Identificación anatómica", "Glándulas salivales", "Relaciones espaciales", "Terminología y presentación"],
+            resumen: [
+                "Glándulas salivales mayores: Parótida (conducto de Stenon desemboca frente al 2.º molar superior), Submandibular (conducto de Wharton en carúncula sublingual) y Sublingual.",
+                "El músculo milohioideo forma el diafragma muscular del piso de la boca, dividiendo el espacio sublingual (superior) del espacio submandibular (inferior).",
+                "En TC y RM, la glándula parótida presenta mayor contenido graso que la submandibular, mostrándose más hipodensa en TC e hiperintensa en RM T1."
+            ],
+            flashcards: [
+                { q: "¿Qué estructura vascular y nerviosa atraviesa el espesor de la glándula parótida dividiéndola funcionalmente en lóbulo superficial y profundo?", a: "El nervio facial (VII par craneal) como plano quirúrgico/radiológico, junto con la vena retromandibular y arteria carótida externa." },
+                { q: "¿Dónde desemboca el conducto excretor de la glándula submandibular (conducto de Wharton)?", a: "En las carúnculas sublinguales, a ambos lados del frenillo lingual en el piso anterior de la boca." },
+                { q: "¿Por qué la glándula parótida se observa más hipodensa en TC en comparación con los músculos maseteros?", a: "Por su abundante infiltración de tejido adiposo intraglandular normal." }
+            ],
+            quiz: [
+                {
+                    q: "¿Qué músculo constituye el límite anatómico que separa el espacio sublingual del espacio submandibular en cortes coronales?",
+                    opts: ["Músculo geniohioideo", "Músculo milohioideo", "Músculo digástrico", "Músculo hiogloso"],
+                    ans: 1,
+                    exp: "El músculo milohioideo actúa como cabestrillo anatómico del piso bucal separando ambos espacios."
+                },
+                {
+                    q: "El conducto parotídeo (de Stenon) perfora ¿qué músculo antes de abrirse en el vestíbulo bucal?",
+                    opts: ["Masetero", "Pterigoideo medial", "Buccinador", "Temporal"],
+                    ans: 2,
+                    exp: "El conducto de Stenon discurre superficial al masetero y perfora el músculo buccinador a la altura del segundo molar superior."
+                }
+            ]
+        },
+        {
+            sem: 4, unidad: "1",
+            tema: "Estructuras orbitarias",
+            eva: "Ojo y anexos, pp. 388-401: órbita, globo ocular, estructuras accesorias, nervios y vasos.",
+            actividad: "Misión órbita",
+            tareaCanva: "Construir en Canva Pro una lámina con cortes axiales y coronales numerados de la órbita, identificando paredes óseas, músculos extraoculares, nervio óptico y compartimentos intra/extraconal.",
+            evidencia: "Imagen numerada y descripción breve.",
+            criterios: ["Paredes y componentes", "Globo y anexos", "Nervios y vasos", "Orientación y presentación"],
+            resumen: [
+                "Los 4 músculos rectos (superior, inferior, medial y lateral) y sus fascias intermusculares forman el cono muscular, dividiendo la órbita en espacio intraconal (nervio óptico, arteria oftálmica) y extraconal.",
+                "La pared medial (lámina papirácea del etmoides) y el piso orbitario (maxilar) son las paredes más delgadas y frecuentes en fracturas por estallido (blow-out).",
+                "En cortes coronales de TC/RM se aprecia con claridad la disposición en reloj de los músculos extraoculares y los oblicuos superior e inferior."
+            ],
+            flashcards: [
+                { q: "¿Qué estructuras principales discurren dentro del espacio intraconal de la órbita?", a: "El nervio óptico (II par) con su vaina meníngea, la arteria oftálmica, venas oftálmicas y grasa intraconal." },
+                { q: "¿Qué comunica el conducto óptico y qué estructuras lo atraviesan?", a: "Comunica la fosa craneal media con el vértice orbitario; transmite el nervio óptico (II) y la arteria oftálmica." },
+                { q: "¿Cuál es la pared orbitaria más delgada?", a: "La pared medial, formada principalmente por la lámina papirácea del hueso etmoides." }
+            ],
+            quiz: [
+                {
+                    q: "¿En qué plano de corte tomográfico se evalúa de forma simultánea el trayecto longitudinal del nervio óptico y los músculos rectos medial y lateral?",
+                    opts: ["Sagital estricto", "Axial", "Coronal", "Oblicuo anterior"],
+                    ans: 1,
+                    exp: "El corte axial muestra en un mismo plano el globo ocular, nervio óptico, rectos medial/lateral y vértice orbitario."
+                },
+                {
+                    q: "¿Qué estructura pasa a través de la fisura orbitaria superior por fuera del anillo tendinoso común (de Zinn)?",
+                    opts: ["Nervio óptico (II)", "Nervio troclear (IV) y nervio lagrimal", "Arteria oftálmica", "Nervio abducens (VI)"],
+                    ans: 1,
+                    exp: "Los nervios troclear (IV), frontal y lagrimal (ramas de V1) entran por la fisura orbitaria superior fuera del anillo de Zinn."
+                }
+            ]
+        },
+        {
+            sem: 5, unidad: "1",
+            tema: "Estructuras del oído",
+            eva: "Oído, pp. 404-412: oído externo, medio e interno y vasos.",
+            actividad: "Del oído externo al interno",
+            tareaCanva: "Diseñar en Canva Pro un recorrido visual interactivo sobre TC de peñasco de alta resolución diferenciando oído externo, caja timpánica/cadena osicular y laberinto óseo.",
+            evidencia: "Recorrido visual o ficha interactiva.",
+            criterios: ["Diferenciación regional", "Identificación de estructuras", "Secuencia anatómica", "Terminología y presentación"],
+            resumen: [
+                "Oído medio: cavidad timpánica subdividida en epitímpano (ático, contiene cabeza del martillo y cuerpo del yunque), mesotímpano e hipotímpano.",
+                "Signo del «cono de helado» en TC axial de peñasco: la cabeza del martillo forma la bola del helado y el cuerpo/rama corta del yunque forma el cono en el epitímpano.",
+                "Oído interno: cóclea (anterior), vestíbulo (central) y tres conductos semicirculares (superior, posterior y lateral), además del conducto auditivo interno (VII y VIII pares)."
+            ],
+            flashcards: [
+                { q: "En un corte axial de TC de oído medio (epitímpano), ¿qué estructuras forman el signo clásico del «cono de helado»?", a: "La cabeza del martillo (bola anterior) articulada con el cuerpo y apófisis corta del yunque (cono posterior)." },
+                { q: "¿Qué estructura ósea separa el epitímpano de las celdillas mastoideas posteriormente?", a: "El aditus ad antrum (entrada al antro mastoideo)." },
+                { q: "¿Qué nervios discurren por el conducto auditivo interno (CAI)?", a: "El nervio facial (VII) y el nervio vestibulococlear (VIII)." }
+            ],
+            quiz: [
+                {
+                    q: "¿Qué huesecillo del oído medio se articula directamente con la ventana oval del vestíbulo?",
+                    opts: ["Manubrio del martillo", "Cuerpo del yunque", "Platina del estribo", "Apófisis lenticular"],
+                    ans: 2,
+                    exp: "La base o platina del estribo cierra la ventana oval transmitiendo las vibraciones hacia la perilinfa del oído interno."
+                },
+                {
+                    q: "¿Cuál es la modalidad de imagen de elección para estudiar con detalle la cadena osicular y las paredes óseas del oído medio?",
+                    opts: ["Radiografía panorámica", "Tomografía Computarizada de alta resolución (TCAR) de peñascos", "Ecografía Doppler", "Angiografía cerebral"],
+                    ans: 1,
+                    exp: "La TCAR con cortes submilimétricos y algoritmo óseo es el estándar para evaluar estructuras óseas milimétricas del temporal."
+                }
+            ]
+        },
+        {
+            sem: 6, unidad: "1",
+            tema: "Faringe, nasofaringe y espacios adyacentes",
+            eva: "Faringe, fascias y anatomía seccional del cuello; nariz y cavidad nasal como contexto.",
+            actividad: "Mapa de los espacios cervicales",
+            tareaCanva: "Etiquetar en Canva Pro un corte axial cervical suprahioideo señalando nasofaringe, fositas de Rosenmüller, espacio parafaringeo, masticador, carotídeo y retrofaríngeo.",
+            evidencia: "Corte cervical etiquetado.",
+            criterios: ["Faringe y nasofaringe", "Espacios adyacentes", "Relaciones espaciales", "Orientación y presentación"],
+            resumen: [
+                "La faringe se divide en tres porciones: nasofaringe (detrás de coanas hasta paladar blando), orofaringe (paladar blando hasta hueso hioides) e hipofaringe (hioides hasta cartílago cricoides).",
+                "En la pared posterolateral de la nasofaringe se ubican el rodete tubárico (torus tubarius), el orificio de la trompa de Eustaquio y el receso faríngeo (fosita de Rosenmüller).",
+                "El espacio parafaríngeo tiene forma triangular con abundante grasa; su desplazamiento orienta el origen de lesiones vecinas (masticador, parotídeo, mucoso o carotídeo)."
+            ],
+            flashcards: [
+                { q: "¿Qué contenido predomina en el espacio parafaríngeo normal en TC y RM?", a: "Tejido adiposo (grasa), lo que lo hace fácilmente identificable como un triángulo hipodenso en TC e hiperintenso en RM T1." },
+                { q: "¿Qué estructuras anatómicas se identifican en la pared lateral de la nasofaringe?", a: "El orificio faríngeo de la trompa auditiva, el torus tubarius (rodete tubárico) y posterior a este, la fosita de Rosenmüller." },
+                { q: "¿Cuál es el límite inferior anatómico de la hipofaringe?", a: "El borde inferior del cartílago cricoides (a nivel de C6), donde continúa con el esófago cervical." }
+            ],
+            quiz: [
+                {
+                    q: "¿Qué espacio cervical profundo se sitúa inmediatamente por detrás de la pared posterior de la faringe y por delante del espacio prevertebral?",
+                    opts: ["Espacio masticador", "Espacio retrofaríngeo", "Espacio sublingual", "Espacio visceral anterior"],
+                    ans: 1,
+                    exp: "El espacio retrofaríngeo es un compartimento virtual entre la fascia bucofaríngea y la fascia alar."
+                },
+                {
+                    q: "¿A qué nivel vertebral se ubica aproximadamente el límite entre la orofaringe y la hipofaringe?",
+                    opts: ["Base del cráneo", "Arco anterior de C1", "Cuerpo del hueso hioides (C3)", "Cartílago cricoides (C6)"],
+                    ans: 2,
+                    exp: "El plano horizontal que pasa por el hueso hioides y los pliegues faringoepiglóticos marca la transición entre orofaringe e hipofaringe."
+                }
+            ]
+        },
+        {
+            sem: 7, unidad: "1",
+            tema: "Vasos cervicales",
+            eva: "Arterias, venas y vasos linfáticos de la sección Cuello.",
+            actividad: "Sigue el trayecto vascular",
+            tareaCanva: "Trazar en Canva Pro un esquema vascular sobre imagen axial/coronal contrastada diferenciando carótida común, bifurcación carotídea, carótidas interna y externa, vena yugular interna y arterias vertebrales.",
+            evidencia: "Esquema vascular sobre imagen.",
+            criterios: ["Diferenciación vascular", "Identificación de vasos", "Trayecto y relaciones", "Claridad y presentación"],
+            resumen: [
+                "La arteria carótida común se bifurca habitualmente a nivel de C3-C4 (borde superior del cartílago tiroides) en carótida interna (posterolateral, sin ramas en el cuello) y carótida externa (anteromedial, emite ramas cervicales).",
+                "Contenido de la vaina carotídea: arteria carótida (medial), vena yugular interna (lateral y de mayor calibre) y nervio vago (posterior en el ángulo diedro).",
+                "Las arterias vertebrales ascienden por los agujeros transversos desde C6 hasta C1, formando luego la arteria basilar."
+            ],
+            flashcards: [
+                { q: "¿Cómo se diferencia en imagen la arteria carótida interna de la externa a nivel cervical?", a: "La carótida interna es posterolateral y NO emite ramas en el cuello; la carótida externa es anteromedial y da múltiples ramas (tiroidea superior, lingual, facial, etc.)." },
+                { q: "¿Por qué agujeros vertebrales ascienden habitualmente las arterias vertebrales?", a: "Por los agujeros transversos desde C6 hasta C1 (habitualmente no pasan por el foramen transverso de C7)." },
+                { q: "¿Cuál es la relación espacial entre la vena yugular interna y la arteria carótida en la vaina carotídea?", a: "La vena yugular interna se ubica lateral y ligeramente anterior respecto a la arteria carótida." }
+            ],
+            quiz: [
+                {
+                    q: "¿A qué nivel anatómico ocurre con mayor frecuencia la bifurcación de la arteria carótida común?",
+                    opts: ["A nivel de C1-C2", "Borde superior del cartílago tiroides (C3-C4)", "Nivel de la horquilla esternal", "Nivel de C7-T1"],
+                    ans: 1,
+                    exp: "La bifurcación carotídea se sitúa típicamente a la altura del borde superior del cartílago tiroides (C3-C4)."
+                },
+                {
+                    q: "¿Qué par craneal discurre dentro de la vaina carotídea entre la arteria carótida y la vena yugular interna?",
+                    opts: ["Nervio hipogloso (XII)", "Nervio accesorio (XI)", "Nervio vago (X)", "Nervio frénico"],
+                    ans: 2,
+                    exp: "El nervio vago (X) desciende en el ángulo posterior entre la carótida (medial) y la yugular interna (lateral)."
+                }
+            ]
+        },
+        {
+            sem: 8, unidad: "1",
+            tema: "Anatomía del sistema nervioso central",
+            eva: "Encéfalo, pp. 438-490: prosencéfalo, núcleos basales, tálamo, tronco, cerebelo, ventrículos, meninges y vasos.",
+            actividad: "Neuroimagen sin miedo",
+            tareaCanva: "Numerar en Canva Pro cortes axiales de TC o RM cerebral señalando lóbulos, núcleos basales (caudado, lenticular), tálamo, cápsula interna, sistema ventricular y estructuras de línea media.",
+            evidencia: "TC o RM numerada y descripción imagenológica.",
+            criterios: ["Orientación y modalidad", "Estructuras encefálicas", "Línea media y ventrículos", "Descripción y presentación"],
+            resumen: [
+                "Ganglios basales y tálamo: a nivel de los agujeros de Monro se identifican cabeza del núcleo caudado (medial al asta frontal), núcleo lenticular (putamen + globo pálido) y tálamo (lateral al tercer ventrículo), separados por la cápsula interna.",
+                "Sistema ventricular: ventrículos laterales → agujeros interventriculares (de Monro) → tercer ventrículo → acueducto cerebral (de Silvio) → cuarto ventrículo.",
+                "En RM T1 la sustancia blanca es más hiperintensa que la sustancia gris (por la mielina) y el LCR es hipointenso; en T2 se invierte (LCR brillante/hiperintenso)."
+            ],
+            flashcards: [
+                { q: "¿Qué estructuras anatómicas delimitan los brazos anterior, rodilla y brazo posterior de la cápsula interna?", a: "Medialmente la cabeza del núcleo caudado y el tálamo; lateralmente el núcleo lenticular (putamen y globo pálido)." },
+                { q: "¿Qué conducto comunica el tercer ventrículo con el cuarto ventrículo a nivel del mesencéfalo?", a: "El acueducto cerebral (o acueducto mesencefálico de Silvio)." },
+                { q: "¿Cómo se diferencia rápidamente una RM cerebral ponderada en T1 de una T2 observando los ventrículos?", a: "En T1 el líquido cefalorraquídeo (LCR) se ve negro (hipointenso); en T2 el LCR se ve blanco brillante (hiperintenso)." }
+            ],
+            quiz: [
+                {
+                    q: "¿Qué estructura de sustancia blanca separa el tálamo medialmente del núcleo lenticular lateralmente?",
+                    opts: ["Cuerpo calloso", "Brazo posterior de la cápsula interna", "Fórnix", "Cápsula externa"],
+                    ans: 1,
+                    exp: "El brazo posterior de la cápsula interna discurre entre el tálamo y el núcleo lenticular transportando vías motoras y sensitivas."
+                },
+                {
+                    q: "¿Qué cisterna basal rodea el mesencéfalo y tiene importancia crítica para evaluar herniación transtentorial en TC?",
+                    opts: ["Cisterna magna", "Cisterna ambiens / cuadrigémina", "Cisterna lumbar", "Cisterna pericallosa"],
+                    ans: 1,
+                    exp: "Las cisternas perimesencefálicas (crural, ambiens y cuadrigémina) rodean el mesencéfalo y deben verse permeables."
+                }
+            ]
+        },
+        {
+            sem: 9, unidad: "2",
+            tema: "Columna vertebral cervical",
+            eva: "Huesos y articulaciones del cuello: atlas, axis, vértebras típicas y anatomía radiológica cervical.",
+            actividad: "¿Qué vértebra cervical soy?",
+            tareaCanva: "Diseñar en Canva Pro una lámina comparativa confrontando el Atlas (C1), el Axis (C2) y una vértebra cervical típica (C3-C6) junto a sus proyecciones radiográficas AP, lateral y transoral.",
+            evidencia: "Lámina comparativa.",
+            criterios: ["Atlas y axis", "Vértebra típica", "Correlación radiológica", "Comparación y presentación"],
+            resumen: [
+                "Atlas (C1): carece de cuerpo vertebral y apófisis espinosa; consta de arco anterior, arco posterior y dos masas laterales.",
+                "Axis (C2): se distingue por la apófisis odontoides (diente del axis) que articula con el arco anterior de C1 (espacio atlantoodontoideo < 3 mm en adultos).",
+                "En radiografía lateral cervical se evalúan 4 líneas curvas continuas: línea vertebral anterior, línea vertebral posterior, línea espinolaminar y línea de puntas espinosas."
+            ],
+            flashcards: [
+                { q: "¿Qué proyección radiográfica permite evaluar simétricamente las masas laterales de C1 y la apófisis odontoides de C2?", a: "La proyección AP transoral (con boca abierta)." },
+                { q: "¿Cuál es el límite superior normal del intervalo atlantoodontoideo anterior (ADI) en un adulto?", a: "Menor o igual a 3 mm (en niños puede alcanzar hasta 4.5 - 5 mm)." },
+                { q: "¿Qué característica morfológica distingue las apófisis espinosas de C3 a C6?", a: "Son cortas y habitualmente bífidas, mientras que C7 (vértebra prominente) tiene una espinosa larga y no bífida." }
+            ],
+            quiz: [
+                {
+                    q: "¿Cuál de las siguientes vértebras carece por completo de cuerpo vertebral y disco intervertebral superior?",
+                    opts: ["Axis (C2)", "Atlas (C1)", "Vértebra prominente (C7)", "Tercera cervical (C3)"],
+                    ans: 1,
+                    exp: "El Atlas (C1) está formado por un anillo óseo con masas laterales, arco anterior y arco posterior sin cuerpo vertebral."
+                },
+                {
+                    q: "¿Qué proyección complementaria se utiliza en radiología cervical para visualizar específicamente los agujeros de conjunción (intervertebrales)?",
+                    opts: ["AP axial", "Oblicuas anteriores/posteriores a 45°", "Transoral", "Nadador"],
+                    ans: 1,
+                    exp: "Las proyecciones oblicuas cervicales a 45° despliegan los agujeros de conjunción y los pedículos."
+                }
+            ]
+        },
+        {
+            sem: 10, unidad: "2",
+            tema: "Columna vertebral dorsal",
+            eva: "Huesos del tronco, vértebras torácicas y articulaciones con las costillas.",
+            actividad: "Conecta la vértebra con la costilla",
+            tareaCanva: "Crear en Canva Pro un mapa anatómico-radiológico señalizando el cuerpo vertebral torácico, pedículos, láminas, fositas costales y las articulaciones costovertebrales y costotransversas.",
+            evidencia: "Mapa anatómico-radiológico.",
+            criterios: ["Elementos vertebrales", "Carillas costales", "Relación vértebra-costilla", "Correlación y presentación"],
+            resumen: [
+                "Las vértebras torácicas (T1-T12) presentan cuerpos en forma de corazón, apófisis espinosas largas inclinadas hacia abajo y fositas costales en cuerpos y apófisis transversas.",
+                "Cada costilla típica articula en dos puntos: articulación costovertebral (cabeza costal con hemicarillas de dos cuerpos vertebrales adyacentes) y costotransversa (tubérculo costal con apófisis transversa).",
+                "En radiografía AP torácica, los pedículos se visualizan como dos óvalos simétricos dentro de los márgenes laterales del cuerpo vertebral."
+            ],
+            flashcards: [
+                { q: "¿Qué dos articulaciones sinoviales unen una costilla típica con la columna dorsal?", a: "La articulación de la cabeza de la costilla (costovertebral) y la articulación costotransversa." },
+                { q: "¿Qué vértebras torácicas carecen de carillas articulares en sus apófisis transversas?", a: "T11 y T12 (las costillas flotantes 11.ª y 12.ª solo articulan con el cuerpo vertebral)." },
+                { q: "¿Por qué en radiografía lateral dorsal la región cervicotorácica (C7-T3) suele verse superpuesta?", a: "Por la superposición de ambas cinturas escapulares (hombros), requiriendo a veces la proyección del nadador." }
+            ],
+            quiz: [
+                {
+                    q: "¿Dónde se localizan las fositas costales transversas en las vértebras dorsales típicas?",
+                    opts: ["En la cara anterior de las apófisis transversas", "En el vértice de la apófisis espinosa", "En la cara inferior del pedículo", "En el borde anterior del cuerpo"],
+                    ans: 0,
+                    exp: "Las fositas costales transversas se encuentran en la cara anterior de las apófisis transversas de T1 a T10 para recibir el tubérculo costal."
+                },
+                {
+                    q: "¿Qué curvatura fisiológica presenta la columna vertebral dorsal en el plano sagital?",
+                    opts: ["Lordosis", "Cifosis", "Escoliosis", "Rectificación"],
+                    ans: 1,
+                    exp: "La columna torácica presenta una cifosis primaria (concavidad anterior) con un ángulo normal de Cobb entre 20° y 40°."
+                }
+            ]
+        },
+        {
+            sem: 11, unidad: "2",
+            tema: "Columna vertebral lumbosacra",
+            eva: "Vértebras lumbares, sacro, discos, canal vertebral y articulaciones lumbosacras.",
+            actividad: "Reconstruye la región lumbosacra",
+            tareaCanva: "Ordenar en Canva Pro una secuencia anatómica comentada de imágenes (Rx AP, lateral, oblicua y RM sagital) identificando cuerpos lumbares, discos, cono medular, cola de caballo y el «perrito escocés».",
+            evidencia: "Secuencia anatómica comentada.",
+            criterios: ["Lumbar y sacro", "Disco, canal y articulaciones", "Diferenciación regional", "Secuencia y presentación"],
+            resumen: [
+                "Signo del «perrito escocés» (Lachapelle) en proyección oblicua lumbar: hocico = apófisis transversa, ojo = pedículo, oreja = apófisis articular superior, pata delantera = apófisis articular inferior, cuello = pars interarticularis.",
+                "El cono medular termina habitualmente a nivel de L1-L2 en adultos, continuándose hacia abajo por las raíces de la cauda equina (cola de caballo) dentro del saco tecal.",
+                "El disco intervertebral normal en RM T2 muestra un núcleo pulposo central hiperintenso (rico en agua) rodeado por un anillo fibroso periférico hipointenso."
+            ],
+            flashcards: [
+                { q: "¿Qué estructura anatómica representa el «cuello» del perrito escocés en una radiografía oblicua de columna lumbar?", a: "La pars interarticularis (porción interarticular entre las facetas superior e inferior)." },
+                { q: "¿A qué nivel vertebral finaliza habitualmente el cono medular en un adulto?", a: "Entre el borde inferior de L1 y el borde superior de L2." },
+                { q: "¿Cómo se observa un disco intervertebral lumbar hidratado y sano en RM ponderada en T2?", a: "Con un centro hiperintenso (núcleo pulposo) y un borde periférico hipointenso (anillo fibroso)." }
+            ],
+            quiz: [
+                {
+                    q: "En la imagen del «perrito escocés» de la columna lumbar oblicua, ¿qué estructura corresponde al «ojo» del perrito?",
+                    opts: ["Pedículo", "Apófisis transversa", "Apófisis articular superior", "Lámina"],
+                    ans: 0,
+                    exp: "El pedículo visto de frente forma el «ojo» del perrito escocés en la proyección oblicua."
+                },
+                {
+                    q: "¿Qué espacio epidural anterior al sacro y posterior al recto se evalúa en cortes sagitales de la región lumbosacra?",
+                    opts: ["Espacio presacro", "Espacio subaracnoideo", "Foramen obturador", "Canal inguinal"],
+                    ans: 0,
+                    exp: "El espacio presacro separa la cara anterior del sacro de la pared posterior del recto."
+                }
+            ]
+        },
+        {
+            sem: 12, unidad: "2",
+            tema: "Caja torácica",
+            eva: "Costillas, esternón, vértebras torácicas, clavículas y articulaciones torácicas.",
+            actividad: "Radiografía misteriosa",
+            tareaCanva: "Señalizar en Canva Pro una radiografía de tórax PA y lateral identificando arcos costales anteriores y posteriores, clavículas, escápulas, esternón (manubrio, cuerpo, xifoides) y cúpulas diafragmáticas.",
+            evidencia: "Radiografía señalizada.",
+            criterios: ["Componentes óseos", "Referencias radiográficas", "Orientación", "Terminología y presentación"],
+            resumen: [
+                "Diferenciación costal en Rx PA de tórax: los arcos costales posteriores son más horizontales y se articulan con la columna; los arcos anteriores son oblicuos hacia abajo y adentro y terminan en cartílagos costales (radiolúcidos).",
+                "Criterios técnicos de calidad en Rx de tórax PA: inspiración adecuada (visualizar 9-10 arcos costales posteriores o 6 anteriores sobre el diafragma) y centrado (equidistancia entre extremos mediales de clavículas y apófisis espinosa).",
+                "En proyección lateral de tórax se evalúa el espacio claro retroesternal y las tres porciones del esternón."
+            ],
+            flashcards: [
+                { q: "¿Cómo se distinguen los arcos costales posteriores de los anteriores en una radiografía PA de tórax?", a: "Los posteriores son más horizontales y nítidos en todo su trayecto; los anteriores descienden oblicuamente hacia la línea media y parecen interrumpirse al unirse al cartílago costal." },
+                { q: "¿Cuántos arcos costales posteriores deben verse por encima del hemidiafragma derecho para considerar que la radiografía está bien inspirada?", a: "Entre 9 y 10 arcos costales posteriores (o 6 arcos anteriores)." },
+                { q: "¿Cómo se verifica que una radiografía PA de tórax no está rotada?", a: "Comprobando que los extremos esternales (mediales) de ambas clavículas estén equidistantes de la línea de las apófisis espinosas." }
+            ],
+            quiz: [
+                {
+                    q: "¿Por qué los cartílagos costales anteriores no suelen visualizarse en una radiografía estándar de tórax en adultos jóvenes?",
+                    opts: ["Porque tienen densidad similar a los tejidos blandos (agua) y no están calcificados", "Porque están detrás del corazón", "Porque son de densidad aire", "Porque quedan fuera del chasis"],
+                    ans: 0,
+                    exp: "El cartílago hialino tiene densidad agua; solo se vuelve radiopaco con la edad al calcificarse."
+                },
+                {
+                    q: "¿Qué articulación une el manubrio con el cuerpo del esternón formando el ángulo de Louis (referencia de la 2.ª costilla)?",
+                    opts: ["Sínfisis manubrioesternal", "Articulación xifoesternal", "Articulación esternoclavicular", "Articulación acromioclavicular"],
+                    ans: 0,
+                    exp: "El ángulo esternal (de Louis) corresponde a la sínfisis manubrioesternal, situada a nivel de T4-T5 y del segundo cartílago costal."
+                }
+            ]
+        },
+        {
+            sem: 13, unidad: "2",
+            tema: "Pared abdominal",
+            eva: "Músculos, fascias, vaina del recto, línea alba y anatomía seccional del abdomen.",
+            actividad: "De superficial a profundo",
+            tareaCanva: "Diseñar en Canva Pro una infografía por capas ordenando la pared abdominal desde la piel hasta el peritoneo parietal y señalando los músculos anchos y rectos en un corte axial de TC.",
+            evidencia: "Infografía por capas.",
+            criterios: ["Orden de capas", "Músculos abdominales", "Fascias y referencias", "Aplicación seccional y presentación"],
+            resumen: [
+                "Orden de capas anterolaterales (superficial a profundo): piel → tejido subcutáneo (fascia de Camper y Scarpa) → oblicuo externo → oblicuo interno → transverso del abdomen → fascia transversalis → grasa extraperitoneal → peritoneo parietal.",
+                "En la línea media anterior, las aponeurosis de los músculos anchos se decusan formando la línea alba entre ambos músculos rectos del abdomen.",
+                "La línea arqueada (de Douglas) marca el punto inferior al ombligo donde todas las aponeurosis pasan por delante del músculo recto."
+            ],
+            flashcards: [
+                { q: "¿Cuál es el orden de los tres músculos planos de la pared anterolateral del abdomen desde superficial a profundo?", a: "1. Oblicuo externo, 2. Oblicuo interno y 3. Transverso del abdomen." },
+                { q: "¿Qué capa fascial se sitúa inmediatamente profunda al músculo transverso del abdomen?", a: "La fascia transversalis, seguida por la grasa extraperitoneal y el peritoneo parietal." },
+                { q: "¿Qué estructura tendinosa separa medialmente los músculos rectos del abdomen derecho e izquierdo?", a: "La línea alba." }
+            ],
+            quiz: [
+                {
+                    q: "En un corte axial de TC abdominal supraumbilical, ¿qué músculo se localiza inmediatamente lateral a la línea alba?",
+                    opts: ["Músculo recto del abdomen", "Músculo psoas mayor", "Músculo cuadrado lumbar", "Músculo piriforme"],
+                    ans: 0,
+                    exp: "Los músculos rectos del abdomen se disponen verticalmente a ambos lados de la línea alba."
+                },
+                {
+                    q: "¿Qué músculo de la pared abdominal posterior discurre lateral a los cuerpos vertebrales lumbares y es referencia clave en radiografía simple de abdomen?",
+                    opts: ["Psoas mayor", "Oblicuo externo", "Piramidal", "Serrato anterior"],
+                    ans: 0,
+                    exp: "Las líneas de los músculos psoas mayores descienden simétricamente desde T12-L1 hacia la pelvis menor."
+                }
+            ]
+        },
+        {
+            sem: 14, unidad: "2",
+            tema: "Pelvis",
+            eva: "Huesos coxales, sacro, cóccix, sínfisis púbica, articulaciones sacroilíacas y anatomía radiológica.",
+            actividad: "El mapa radiológico de la pelvis",
+            tareaCanva: "Elaborar en Canva Pro una lámina comparativa entre la ilustración del atlas EVA y una radiografía AP de pelvis, identificando ilion, isquion, pubis, acetábulo, agujeros obturadores, articulaciones sacroilíacas y líneas de Shenton.",
+            evidencia: "Lámina comparativa.",
+            criterios: ["Componentes óseos", "Articulaciones y referencias", "Correlación radiológica", "Terminología y presentación"],
+            resumen: [
+                "El anillo pélvico está formado por los dos huesos coxales (fusión de ilion, isquion y pubis en el cartílago trirradiado del acetábulo), el sacro y el cóccix.",
+                "Líneas radiográficas clave de la pelvis: línea iliopectínea (columna anterior), línea ilioisquiática (columna posterior), lágrima acetabular y arco de Shenton (continuidad entre borde inferior del cuello femoral y borde superior del agujero obturador).",
+                "Diferencias sexuales radiográficas: el ángulo subpúbico es más amplio (> 80°-90°) y el estrecho superior más redondeado en la pelvis femenina."
+            ],
+            flashcards: [
+                { q: "¿Qué estructuras forman el arco o línea de Shenton en una radiografía AP de pelvis?", a: "La curva continua formada por el borde inferior del cuello femoral y el borde superior del agujero obturador." },
+                { q: "¿Qué tres huesos embrionarios convergen para formar el acetábulo?", a: "El ilion (superior), el isquion (posteroinferior) y el pubis (anteromedial)." },
+                { q: "¿Qué representa la línea iliopectínea en una radiografía AP de pelvis?", a: "El límite medial de la columna anterior (iliopúbica) del acetábulo y el estrecho superior de la pelvis." }
+            ],
+            quiz: [
+                {
+                    q: "¿Qué articulación anterior une ambos cuerpos del pubis mediante un disco fibrocartilaginoso?",
+                    opts: ["Sínfisis del pubis", "Articulación sacroilíaca", "Articulación coxofemoral", "Sínfisis sacrococcígea"],
+                    ans: 0,
+                    exp: "La sínfisis púbica es una articulación cartilaginosa secundaria (anfiartrosis) con un ancho normal < 5 mm en adultos."
+                },
+                {
+                    q: "¿Qué proyección radiográfica de pelvis con angulación cefálica de 40° permite evaluar frontalmente el anillo pélvico anterior y los agujeros sacros?",
+                    opts: ["Proyección Inlet (entrada)", "Proyección Outlet (salida)", "Proyección axial de rana", "Proyección de Judet"],
+                    ans: 1,
+                    exp: "La proyección Outlet (angulación cefálica) despliega el sacro de frente y las ramas púbicas."
+                }
+            ]
+        },
+        {
+            sem: 15, unidad: "2",
+            tema: "Extremidad superior",
+            eva: "Huesos, articulaciones y principales grupos musculares de hombro, brazo, codo, muñeca y mano.",
+            actividad: "Circuito del miembro superior",
+            tareaCanva: "Construir en Canva Pro cuatro fichas regionales (1. Hombro/brazo, 2. Codo/antebrazo, 3. Muñeca/carpo, 4. Mano) identificando reparos óseos y espacios articulares en proyecciones radiográficas.",
+            evidencia: "Cuatro fichas regionales.",
+            criterios: ["Hombro y brazo", "Codo y antebrazo", "Muñeca y mano", "Integración y cumplimiento"],
+            resumen: [
+                "Hombro: cintura escapular (clavícula y escápula) y cabeza humeral. El espacio subacromial normal mide 7–11 mm; en proyección AP con rotación interna se observa el troquín medial y el troquíter de perfil en rotación externa.",
+                "Codo: articulación humerocubital, humerorradial y radiocubital proximal. La línea radiocapitelar debe cruzar el centro del cóndilo humeral (capitellum) en todas las proyecciones.",
+                "Carpo (8 huesos en dos filas): Proximal (lateral a medial): Escafoides, Semilunar, Piramidal, Pisiforme. Distal: Trapecio, Trapezoide, Grande, Ganchoso."
+            ],
+            flashcards: [
+                { q: "¿Cuáles son los cuatro huesos de la fila proximal del carpo nombrados de lateral (radial) a medial (cubital)?", a: "Escafoides, Semilunar, Piramidal y Pisiforme." },
+                { q: "¿Qué indica la línea radiocapitelar en una radiografía lateral de codo?", a: "Una línea trazada por el eje longitudinal del radio debe atravesar el centro del cóndilo humeral (capitellum) en cualquier proyección." },
+                { q: "¿Qué estructura de la escápula se proyecta anteriormente por debajo de la clavícula como un gancho óseo en Rx AP de hombro?", a: "La apófisis coracoides." }
+            ],
+            quiz: [
+                {
+                    q: "¿Cuál es el hueso del carpo que se fractura con mayor frecuencia y se evalúa específicamente con desviación cubital?",
+                    opts: ["Escafoides", "Pisiforme", "Trapezoide", "Ganchoso"],
+                    ans: 0,
+                    exp: "El escafoides es el hueso carpiano más grande de la fila proximal y el más propenso a fracturas tras caída sobre mano extendida."
+                },
+                {
+                    q: "En una radiografía lateral estricta de muñeca, ¿qué tres huesos deben verse alineados colinealmente en eje longitudinal?",
+                    opts: ["Radio, semilunar y hueso grande (capitato)", "Cúbito, pisiforme y ganchoso", "Radio, escafoides y trapecio", "Cúbito, piramidal y trapezoide"],
+                    ans: 0,
+                    exp: "La alineación colineal radio-semilunar-grande-3.er metacarpiano es clave para descartar inestabilidades carpianas."
+                }
+            ]
+        },
+        {
+            sem: 16, unidad: "2",
+            tema: "Extremidad inferior",
+            eva: "Huesos, articulaciones y principales grupos musculares de cadera, rodilla, tobillo y pie.",
+            actividad: "Desafío final osteomuscular",
+            tareaCanva: "Completar en Canva Pro una ficha integradora resolviendo estaciones de cadera/muslo, rodilla/pierna y tobillo/pie, junto con una autoevaluación final de competencias adquiridas.",
+            evidencia: "Ficha integradora y autoevaluación.",
+            criterios: ["Cadera y muslo", "Rodilla y pierna", "Tobillo y pie", "Integración y autoevaluación"],
+            resumen: [
+                "Rodilla: articulación femorotibial y femororrotuliana. En RM sagital, el ligamento cruzado anterior (LCA) sigue paralelo al techo de la escotadura intercondílea (línea de Blumensaat) y el LCP es más grueso e hipointenso en curva.",
+                "Tobillo (mortaja tibioperoneoastragalina): formada por maléolo medial (tibia), pilón tibial (techo) y maléolo lateral (peroné); la proyección AP con rotación interna de 15-20° (mortaja) despeja el espacio tibioastragalino.",
+                "Pie: retropié (astrágalo y calcáneo), mediopié (navicular, cuboides y 3 cuñas) y antepié (5 metatarsianos y falanges)."
+            ],
+            flashcards: [
+                { q: "¿Qué ángulo de rotación interna de la pierna se aplica en la proyección de «mortaja» del tobillo?", a: "De 15° a 20° de rotación interna para situar ambos maléolos equidistantes del receptor y despejar la mortaja tibioperoneoastragalina." },
+                { q: "¿Qué huesos conforman el retropié?", a: "El astrágalo (talus) superiormente y el calcáneo inferiormente." },
+                { q: "¿Cuál es el ángulo cervicodiafisario femoral normal en adultos?", a: "Entre 125° y 135° (ángulos mayores indican coxa valga y menores coxa vara)." }
+            ],
+            quiz: [
+                {
+                    q: "¿Qué hueso del tarso articula superiormente con la mortaja tibioperonea y anteriormente con el hueso navicular (escafoides tarsiano)?",
+                    opts: ["Astrágalo", "Calcáneo", "Cuboides", "Cuneiforme medial"],
+                    ans: 0,
+                    exp: "El astrágalo transmite el peso corporal desde la tibia hacia el calcáneo (inferior) y el navicular (anterior)."
+                },
+                {
+                    q: "¿Cómo se observa la cortical ósea y los meniscos normales en una Resonancia Magnética de rodilla en todas las secuencias?",
+                    opts: ["Hipointensos (negros)", "Hiperintensos (blancos)", "Isointensos al líquido articular", "Heterogéneos"],
+                    ans: 0,
+                    exp: "El hueso cortical compacto y el fibrocartílago meniscal tienen muy pocos protones móviles, por lo que aparecen hipointensos (negros)."
+                }
+            ]
+        }
+    ];
+
+    let currentUnit = 'all';
+    let activeStudySem = 1;
+    let activeCardIdx = 0;
+    let quizAnswersState = {};
+    let completedWeeks = JSON.parse(localStorage.getItem('uce_anat_img_completed') || '[]');
+
+    function updateGlobalProgress() {
+        document.getElementById('globalProgressBadge').textContent = `${completedWeeks.length} / 16 Semanas Dominadas`;
+    }
+
+    function renderWeeks() {
+        const container = document.getElementById('weeksContainer');
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        container.innerHTML = '';
+
+        const filtered = courseData.filter(w => {
+            const matchUnit = currentUnit === 'all' || w.unidad === currentUnit;
+            const matchText = w.tema.toLowerCase().includes(query) ||
+                              w.actividad.toLowerCase().includes(query) ||
+                              w.tareaCanva.toLowerCase().includes(query) ||
+                              w.eva.toLowerCase().includes(query);
+            return matchUnit && matchText;
+        });
+
+        filtered.forEach(w => {
+            const card = document.createElement('div');
+            card.className = 'week-card';
+            card.innerHTML = `
+                <div>
+                    <div class="card-header">
+                        <span class="week-badge">Semana ${w.sem}</span>
+                        <span class="unit-tag">Unidad ${w.unidad} • 60 min</span>
+                    </div>
+                    <h3 class="week-title">${w.tema}</h3>
+                    <div class="pae-name">Actividad PAE: ${w.actividad}</div>
+                    
+                    <div class="student-task-box">
+                        <strong>Tu misión en Canva Pro:</strong>
+                        ${w.tareaCanva}
+                    </div>
+
+                    <p class="card-detail"><strong>Consulta en Atlas EVA:</strong> ${w.eva}</p>
+                    <p class="card-detail"><strong>Evidencia a entregar:</strong> ${w.evidencia}</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-action btn-study" onclick="goToStudyWeek(${w.sem})">Repasar Tema</button>
+                    <button class="btn-action btn-rubric" onclick="openRubric(${w.sem})">Ver Rúbrica (10 pts)</button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function filterWeeks(unit, btn) {
+        currentUnit = unit;
+        document.querySelectorAll('#actividades .filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderWeeks();
+    }
+
+    function searchWeeks() {
+        renderWeeks();
+    }
+
+    function goToStudyWeek(sem) {
+        const tabBtn = document.querySelectorAll('.tab-btn')[1];
+        switchTab('entrenamiento', tabBtn);
+        selectStudyWeek(sem);
+    }
+
+    function renderStudySidebar() {
+        const list = document.getElementById('studyWeekList');
+        list.innerHTML = '<h4 style="color: var(--primary); margin-bottom: 0.7rem; font-size: 0.9rem;">Selecciona la Semana</h4>';
+        courseData.forEach(w => {
+            const isDone = completedWeeks.includes(w.sem);
+            const btn = document.createElement('button');
+            btn.className = `week-selector-item ${w.sem === activeStudySem ? 'active' : ''}`;
+            btn.onclick = () => selectStudyWeek(w.sem);
+            btn.innerHTML = `
+                <span><strong>Sem ${w.sem}:</strong> ${w.tema.substring(0, 26)}${w.tema.length > 26 ? '...' : ''}</span>
+                ${isDone ? '<span class="badge-done">✓</span>' : ''}
+            `;
+            list.appendChild(btn);
+        });
+    }
+
+    function selectStudyWeek(sem) {
+        activeStudySem = sem;
+        activeCardIdx = 0;
+        quizAnswersState = {};
+        document.getElementById('flashcardBox').classList.remove('flipped');
+        renderStudySidebar();
+        renderStudyContent();
+    }
+
+    function renderStudyContent() {
+        const w = courseData.find(item => item.sem === activeStudySem);
+        if (!w) return;
+
+        document.getElementById('studyUnitLabel').textContent = `UNIDAD ${w.unidad} • SEMANA ${w.sem}`;
+        document.getElementById('studyWeekTitle').textContent = `${w.tema}`;
+
+        const summaryList = document.getElementById('studySummaryList');
+        summaryList.innerHTML = w.resumen.map(pt => `<li>${pt}</li>`).join('');
+
+        updateFlashcardView();
+        renderQuizView(w);
+    }
+
+    function updateFlashcardView() {
+        const w = courseData.find(item => item.sem === activeStudySem);
+        const card = w.flashcards[activeCardIdx];
+        document.getElementById('fcCounter').textContent = `Tarjeta ${activeCardIdx + 1} de ${w.flashcards.length}`;
+        document.getElementById('fcFrontText').textContent = card.q;
+        document.getElementById('fcBackText').textContent = card.a;
+    }
+
+    function flipCard() {
+        document.getElementById('flashcardBox').classList.toggle('flipped');
+    }
+
+    function nextCard() {
+        const w = courseData.find(item => item.sem === activeStudySem);
+        document.getElementById('flashcardBox').classList.remove('flipped');
+        activeCardIdx = (activeCardIdx + 1) % w.flashcards.length;
+        setTimeout(updateFlashcardView, 150);
+    }
+
+    function prevCard() {
+        const w = courseData.find(item => item.sem === activeStudySem);
+        document.getElementById('flashcardBox').classList.remove('flipped');
+        activeCardIdx = (activeCardIdx - 1 + w.flashcards.length) % w.flashcards.length;
+        setTimeout(updateFlashcardView, 150);
+    }
+
+    function renderQuizView(w) {
+        const container = document.getElementById('quizContainer');
+        container.innerHTML = '';
+        updateQuizBadge(w);
+
+        w.quiz.forEach((item, qIdx) => {
+            const qBlock = document.createElement('div');
+            qBlock.style.marginBottom = '1.3rem';
+            qBlock.innerHTML = `<p style="font-weight: 600; margin-bottom: 0.6rem; color: #fff;">${qIdx + 1}. ${item.q}</p>`;
+
+            item.opts.forEach((opt, oIdx) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = opt;
+                if (quizAnswersState[qIdx] !== undefined) {
+                    btn.disabled = true;
+                    if (oIdx === item.ans) btn.classList.add('correct');
+                    else if (oIdx === quizAnswersState[qIdx]) btn.classList.add('wrong');
+                }
+                btn.onclick = () => answerQuiz(qIdx, oIdx);
+                qBlock.appendChild(btn);
+            });
+
+            const fb = document.createElement('div');
+            fb.className = 'quiz-feedback';
+            fb.id = `fb-${qIdx}`;
+            if (quizAnswersState[qIdx] !== undefined) {
+                fb.style.display = 'block';
+                fb.innerHTML = `<strong>Fundamento radiológico:</strong> ${item.exp}`;
+            }
+            qBlock.appendChild(fb);
+            container.appendChild(qBlock);
+        });
+    }
+
+    function answerQuiz(qIdx, oIdx) {
+        const w = courseData.find(item => item.sem === activeStudySem);
+        quizAnswersState[qIdx] = oIdx;
+        renderQuizView(w);
+
+        let correctCount = 0;
+        w.quiz.forEach((q, idx) => {
+            if (quizAnswersState[idx] === q.ans) correctCount++;
+        });
+        if (correctCount === w.quiz.length && !completedWeeks.includes(w.sem)) {
+            completedWeeks.push(w.sem);
+            localStorage.setItem('uce_anat_img_completed', JSON.stringify(completedWeeks));
+            updateGlobalProgress();
+            renderStudySidebar();
+        }
+    }
+
+    function updateQuizBadge(w) {
+        let correctCount = 0;
+        w.quiz.forEach((q, idx) => {
+            if (quizAnswersState[idx] === q.ans) correctCount++;
+        });
+        document.getElementById('quizScoreBadge').textContent = `Aciertos: ${correctCount} / ${w.quiz.length}`;
+    }
+
+    function loadSimulator(type, btn) {
+        if (btn) {
+            document.querySelectorAll('#simuladores .filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        const stage = document.getElementById('svgStage');
+        document.getElementById('inspTitle').textContent = "Selecciona una estructura";
+        document.getElementById('inspDesc').textContent = "Haz clic sobre cualquier región del esquema para inspeccionar su densidad y referencias.";
+
+        if (type === 'densidades') {
+            stage.innerHTML = `
+                <h4 style="color: var(--primary); margin-bottom: 1rem;">Esquema Interactivo: Las 5 Densidades Radiográficas y Escala Hounsfield</h4>
+                <svg viewBox="0 0 600 260" width="100%" style="max-width: 600px;">
+                    <rect x="20" y="30" width="100" height="170" rx="8" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
+                          onclick="inspectPart('1. Densidad Aire (-1000 UH)', 'Color: Negro (Radiolúcido). Absorbe mínima radiación. Ejemplos: pulmones, tráquea, senos paranasales y gas intestinal.')"/>
+                    <text x="70" y="120" fill="#94a3b8" font-size="13" text-anchor="middle" pointer-events="none">AIRE</text>
+                    <text x="70" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">-1000 UH</text>
+
+                    <rect x="135" y="30" width="100" height="170" rx="8" fill="#27303f" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
+                          onclick="inspectPart('2. Densidad Grasa (-50 a -100 UH)', 'Color: Gris oscuro. Permite delimitar planos musculares y órganos abdominales. Ejemplos: tejido celular subcutáneo y grasa perirrenal.')"/>
+                    <text x="185" y="120" fill="#e2e8f0" font-size="13" text-anchor="middle" pointer-events="none">GRASA</text>
+                    <text x="185" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">-70 UH</text>
+
+                    <rect x="250" y="30" width="100" height="170" rx="8" fill="#64748b" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
+                          onclick="inspectPart('3. Densidad Agua / Tejidos Blandos (0 a +60 UH)', 'Color: Gris intermedio. Incluye músculos, vísceras sólidas (hígado, bazo), vasos sanguíneos y líquido cefalorraquídeo.')"/>
+                    <text x="300" y="120" fill="#ffffff" font-size="13" text-anchor="middle" pointer-events="none">AGUA</text>
+                    <text x="300" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">0 a +50 UH</text>
+
+                    <rect x="365" y="30" width="100" height="170" rx="8" fill="#cbd5e1" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
+                          onclick="inspectPart('4. Densidad Calcio / Hueso (+400 a +1000 UH)', 'Color: Blanco (Radiopaco). Alta atenuación del haz por su contenido mineral. Ejemplos: esqueleto, calcificaciones y cartílagos calcificados.')"/>
+                    <text x="415" y="120" fill="#0f172a" font-weight="bold" font-size="13" text-anchor="middle" pointer-events="none">CALCIO</text>
+                    <text x="415" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">+700 UH</text>
+
+                    <rect x="480" y="30" width="100" height="170" rx="8" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
+                          onclick="inspectPart('5. Densidad Metal (> +2000 UH)', 'Color: Blanco brillante absoluto. Atenuación total del haz. Ejemplos: prótesis ortopédicas, material de osteosíntesis, medios de contraste yodados/baritados.')"/>
+                    <text x="530" y="120" fill="#0f172a" font-weight="bold" font-size="13" text-anchor="middle" pointer-events="none">METAL</text>
+                    <text x="530" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">> +2000 UH</text>
+                </svg>
+            `;
+        } else if (type === 'snc') {
+            stage.innerHTML = `
+                <h4 style="color: var(--primary); margin-bottom: 1rem;">Corte Axial Esquemático: Encéfalo a nivel de Ganglios Basales (Sem 8)</h4>
+                <svg viewBox="0 0 420 420" width="100%" style="max-width: 390px;">
+                    <ellipse cx="210" cy="210" rx="175" ry="195" fill="#1e293b" stroke="#f8fafc" stroke-width="8" class="svg-hotspot"
+                             onclick="inspectPart('Calota Craneal (Tabla Interna y Externa)', 'En TC se observa hiperdensa (+1000 UH). En RM cortical aparece hipointensa (negra) en todas las secuencias.')"/>
+                    <ellipse cx="210" cy="210" rx="163" ry="183" fill="#475569" class="svg-hotspot"
+                             onclick="inspectPart('Parénquima Cerebral (Sustancia Gris y Blanca)', 'La corteza cerebral (sustancia gris) es ligeramente más densa en TC que la sustancia blanca subcortical.')"/>
+                    <line x1="210" y1="28" x2="210" y2="115" stroke="#e2e8f0" stroke-width="4" class="svg-hotspot"
+                          onclick="inspectPart('Hoz del Cerebro (Línea Media)', 'Repliegue dural interhemisférico. Referencia fundamental para verificar ausencia de desviación de línea media.')"/>
+                    <line x1="210" y1="305" x2="210" y2="392" stroke="#e2e8f0" stroke-width="4"/>
+                    <path d="M 205 115 Q 175 115 168 150 Q 190 165 205 160 Z" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
+                          onclick="inspectPart('Asta Frontal del Ventrículo Lateral Derecho', 'Contiene LCR (hipodenso en TC: 0-15 UH; hipointenso en RM T1, hiperintenso en T2).')"/>
+                    <path d="M 215 115 Q 245 115 252 150 Q 230 165 215 160 Z" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
+                          onclick="inspectPart('Asta Frontal del Ventrículo Lateral Izquierdo', 'Recuerda la convención radiológica: el lado derecho de la imagen corresponde al hemisferio izquierdo del paciente.')"/>
+                    <rect x="206" y="185" width="8" height="42" rx="3" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
+                          onclick="inspectPart('Tercer Ventrículo', 'Cavidad estrecha de línea media situada entre ambos tálamos. Se comunica anteriormente con los ventrículos laterales por los agujeros de Monro.')"/>
+                    <ellipse cx="188" cy="212" rx="14" ry="24" fill="#64748b" stroke="#2dd4bf" stroke-width="1.5" class="svg-hotspot"
+                             onclick="inspectPart('Tálamo Derecho', 'Núcleo gris profundo ovalado situado inmediatamente lateral al tercer ventrículo y medial al brazo posterior de la cápsula interna.')"/>
+                    <ellipse cx="232" cy="212" rx="14" ry="24" fill="#64748b" stroke="#2dd4bf" stroke-width="1.5" class="svg-hotspot"
+                             onclick="inspectPart('Tálamo Izquierdo', 'Centro de relevo sensitivo y motor. Su relación medial con el III ventrículo es clave en neuroimagen.')"/>
+                    <polygon points="168,175 142,198 166,225" fill="#94a3b8" stroke="#fbbf24" stroke-width="1.5" class="svg-hotspot"
+                             onclick="inspectPart('Núcleo Lenticular (Putamen + Globo Pálido)', 'Estructura triangular lateral a la cápsula interna. En TC normal se distingue ligeramente más hiperdenso que la cápsula interna.')"/>
+                    <polygon points="252,175 278,198 254,225" fill="#94a3b8" stroke="#fbbf24" stroke-width="1.5" class="svg-hotspot"
+                             onclick="inspectPart('Núcleo Lenticular Izquierdo', 'Separado medialmente del caudado y del tálamo por los brazos anterior y posterior de la cápsula interna.')"/>
+                    <path d="M 192 265 L 162 315 L 182 322 Z" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
+                          onclick="inspectPart('Atrio / Asta Occipital Ventricular', 'Porción posterior de los ventrículos laterales; suele alojar los glomus coroideos (frecuentemente calcificados en adultos).')"/>
+                    <path d="M 228 265 L 258 315 L 238 322 Z" fill="#090d16" stroke="#38bdf8" stroke-width="1.5"/>
+                </svg>
+            `;
+        } else if (type === 'cervical') {
+            stage.innerHTML = `
+                <h4 style="color: var(--primary); margin-bottom: 1rem;">Comparación Vectorial: Atlas (C1) vs. Axis (C2) (Sem 9)</h4>
+                <svg viewBox="0 0 560 260" width="100%" style="max-width: 560px;">
+                    <text x="140" y="25" fill="#2dd4bf" font-weight="bold" font-size="14" text-anchor="middle">ATLAS (C1) - Vista Superior</text>
+                    <path d="M 90 95 Q 140 65 190 95 L 210 130 L 190 165 Q 140 195 90 165 L 70 130 Z" fill="none" stroke="#cbd5e1" stroke-width="12" class="svg-hotspot"
+                          onclick="inspectPart('Anillo del Atlas (Arcos Anterior y Posterior)', 'C1 carece de cuerpo vertebral y de apófisis espinosa. Su arco anterior articula con la apófisis odontoides de C2.')"/>
+                    <ellipse cx="95" cy="125" rx="18" ry="26" fill="#475569" stroke="#38bdf8" stroke-width="2" class="svg-hotspot"
+                             onclick="inspectPart('Masa Lateral Derecha del Atlas', 'Soporta el cóndilo occipital superiormente y articula con C2 inferiormente. En Rx transoral deben verse equidistantes de la odontoides.')"/>
+                    <ellipse cx="185" cy="125" rx="18" ry="26" fill="#475569" stroke="#38bdf8" stroke-width="2" class="svg-hotspot"
+                             onclick="inspectPart('Masa Lateral Izquierda del Atlas', 'La asimetría entre masas laterales y la odontoides en Rx transoral sugiere rotación o fractura de Jefferson.')"/>
+                    <text x="140" y="225" fill="#94a3b8" font-size="11" text-anchor="middle">Sin cuerpo ni apófisis espinosa</text>
+
+                    <text x="410" y="25" fill="#38bdf8" font-weight="bold" font-size="14" text-anchor="middle">AXIS (C2) - Vista Anterior</text>
+                    <rect x="396" y="55" width="28" height="45" rx="12" fill="#e2e8f0" stroke="#fbbf24" stroke-width="2" class="svg-hotspot"
+                          onclick="inspectPart('Apófisis Odontoides (Diente del Axis)', 'Proyección ósea vertical que actúa como pivote para la rotación de C1. Se evalúa en Rx transoral y cortes coronales/sagitales de TC.')"/>
+                    <rect x="372" y="100" width="76" height="52" rx="8" fill="#94a3b8" stroke="#38bdf8" stroke-width="2" class="svg-hotspot"
+                          onclick="inspectPart('Cuerpo del Axis (C2)', 'Presenta carillas articulares superiores laterales a la odontoides para articular con las masas laterales del atlas.')"/>
+                    <polygon points="372,115 330,130 372,140" fill="#64748b" stroke="#cbd5e1" stroke-width="1.5"/>
+                    <polygon points="448,115 490,130 448,140" fill="#64748b" stroke="#cbd5e1" stroke-width="1.5"/>
+                    <text x="410" y="225" fill="#94a3b8" font-size="11" text-anchor="middle">Pivote rotacional (Odontoides)</text>
+                </svg>
+            `;
+        } else if (type === 'visor_real') {
+            stage.innerHTML = `
+                <h4 style="color: var(--primary); margin-bottom: 0.6rem;">Visor Preparado para Imágenes Clínicas Reales (PNG / JPG)</h4>
+                <p class="card-detail" style="text-align: center; max-width: 520px; margin-bottom: 1rem;">
+                    Para mantener la página rápida en GitHub Pages y proteger la confidencialidad del paciente, exporta tus estudios DICOM anonimizados a <strong>PNG/JPG</strong> y colócalos en la carpeta <code>imagenes/</code>.
+                </p>
+                <div style="background: #0f172a; border: 1px dashed var(--primary); border-radius: 10px; padding: 1.5rem; text-align: center; width: 100%; max-width: 520px;">
+                    <p style="color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;">Flujo recomendado (igual que en Atlas Forense):</p>
+                    <ol style="text-align: left; font-size: 0.88rem; color: var(--text-muted); margin-left: 1.2rem;">
+                        <li>Abre tu estudio en tu visor DICOM y oculta los metadatos del paciente.</li>
+                        <li>Ajusta la ventana (ósea, partes blandas o parénquima) y guarda el corte clave como <code>caso_sem8.png</code>.</li>
+                        <li>Sube la imagen a GitHub y activa los marcadores de coordenadas sobre ella.</li>
+                    </ol>
+                </div>
+            `;
+            inspectPart('Modo Imágenes Reales (Sin DICOM pesado)', 'El navegador web no carga archivos .dcm directamente por su peso (50-300 MB) y metadatos privados. Usar cortes clave exportados a PNG/JPG garantiza carga instantánea desde cualquier celular o computadora.');
+        }
+    }
+
+    function inspectPart(title, desc) {
+        document.getElementById('inspTitle').textContent = title;
+        document.getElementById('inspDesc').textContent = desc;
+    }
+
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    function openRubric(sem) {
+        const w = courseData.find(item => item.sem === sem);
+        if (!w) return;
+
+        document.getElementById('modalWeekTag').textContent = `Semana ${w.sem} • Unidad ${w.unidad}`;
+        document.getElementById('modalTitle').textContent = `Rúbrica: ${w.actividad}`;
+        document.getElementById('modalSubtitle').textContent = `Evidencia entregable en Canva: ${w.evidencia}`;
+
+        const tbody = document.getElementById('modalRubricBody');
+        tbody.innerHTML = '';
+
+        w.criterios.forEach(c => {
+            const cLower = c.toLowerCase();
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><strong>${c}</strong></td>
+                <td>Identifica y aplica ${cLower} con precisión, sin errores relevantes y con justificación técnica.</td>
+                <td>Identifica y aplica la mayor parte de ${cLower}, con uno o dos errores menores.</td>
+                <td>Reconoce parcialmente ${cLower}, pero presenta confusiones que requieren orientación.</td>
+                <td>No logra reconocer o aplicar ${cLower}, o la evidencia es insuficiente.</td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        document.getElementById('rubricModal').classList.add('open');
+    }
+
+    function closeModal() {
+        document.getElementById('rubricModal').classList.remove('open');
+    }
+
+    function closeModalOnBackdrop(e) {
+        if (e.target.id === 'rubricModal') closeModal();
+    }
+
+    function calculatePAE() {
+        let val = parseFloat(document.getElementById('paeScore').value) || 0;
+        if (val < 0) val = 0;
+        if (val > 160) val = 160;
+        const eq = (val / 160).toFixed(2);
+        document.getElementById('paeResult').textContent = `Equivalente: ${eq} / 1.00 punto`;
+    }
+
+    updateGlobalProgress();
+    renderWeeks();
+    renderStudySidebar();
+    renderStudyContent();
+    loadSimulator('densidades');
+</script>
+</body>
+</html>
