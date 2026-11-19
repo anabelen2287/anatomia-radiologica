@@ -33,6 +33,7 @@
             line-height: 1.6;
         }
 
+        /* Header */
         header {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
             border-bottom: 1px solid var(--border);
@@ -95,6 +96,7 @@
             color: var(--primary);
         }
 
+        /* Navigation */
         nav {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border);
@@ -134,6 +136,7 @@
             color: #ffffff;
         }
 
+        /* Main */
         main {
             padding: 2rem 1.5rem;
         }
@@ -152,6 +155,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Controls Bar */
         .controls-bar {
             display: flex;
             flex-wrap: wrap;
@@ -203,6 +207,7 @@
             border-color: var(--primary);
         }
 
+        /* Cards Grid (Student PAE Activities) */
         .weeks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -330,6 +335,7 @@
             color: #0b1120;
         }
 
+        /* ZONA DE ENTRENAMIENTO (RESÚMENES, FLASHCARDS Y QUIZ) */
         .study-layout {
             display: grid;
             grid-template-columns: 280px 1fr;
@@ -424,6 +430,7 @@
             font-size: 0.92rem;
         }
 
+        /* Flashcards 3D */
         .flashcard-container {
             perspective: 1000px;
             height: 210px;
@@ -488,6 +495,7 @@
             align-items: center;
         }
 
+        /* Quiz Gamificado */
         .quiz-option {
             display: block;
             width: 100%;
@@ -530,6 +538,7 @@
             display: none;
         }
 
+        /* ATLAS INTERACTIVO SVG & VISOR CLÍNICO */
         .atlas-grid {
             display: grid;
             grid-template-columns: 1fr 340px;
@@ -564,6 +573,11 @@
             stroke-width: 3;
         }
 
+        .svg-hotspot.selected {
+            stroke: #2dd4bf;
+            stroke-width: 3.5;
+        }
+
         .inspector-card {
             background: var(--bg-card);
             border: 1px solid var(--primary-dark);
@@ -571,13 +585,15 @@
             padding: 1.4rem;
         }
 
-        .eval-table, .rubric-table {
+        /* Tables & Calc */
+        .hours-table, .eval-table, .rubric-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.5rem;
             font-size: 0.9rem;
         }
 
+        .hours-table th, .hours-table td,
         .eval-table th, .eval-table td,
         .rubric-table th, .rubric-table td {
             padding: 0.75rem;
@@ -585,7 +601,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .eval-table th, .rubric-table th {
+        .hours-table th, .eval-table th, .rubric-table th {
             color: var(--primary);
             background: rgba(11, 17, 32, 0.5);
         }
@@ -622,6 +638,7 @@
             color: var(--accent);
         }
 
+        /* Modal */
         .modal-backdrop {
             display: none;
             position: fixed;
@@ -686,9 +703,273 @@
             border-top: 1px solid var(--border);
             margin-top: 3rem;
         }
+    
+        /* Accessibility & Themes */
+        body.theme-light {
+            --bg-dark: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --accent: #0d9488;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #cbd5e1;
+        }
+        body.theme-light header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+        }
+        body.theme-light .week-title,
+        body.theme-light .inspector-card h3,
+        body.theme-light .modal-content h2,
+        body.theme-light .quiz-option.correct,
+        body.theme-light .quiz-option.wrong {
+            color: #0f172a;
+        }
+        body.theme-light .week-selector-item.active {
+            color: #0f172a;
+        }
+        body.theme-light .student-task-box,
+        body.theme-light .summary-points li {
+            background: #f1f5f9;
+        }
+        body.theme-light .calc-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f1f5f9 100%);
+        }
+        body.theme-light .calc-input {
+            color: #0f172a;
+        }
+
+        body.theme-contrast {
+            --bg-dark: #000000;
+            --bg-card: #000000;
+            --bg-card-hover: #111111;
+            --primary: #ffff00;
+            --primary-dark: #ffff00;
+            --accent: #00ffcc;
+            --text-main: #ffffff;
+            --text-muted: #e5e5e5;
+            --border: #ffffff;
+        }
+        body.theme-contrast header {
+            background: #000000;
+            border-bottom: 2px solid #ffff00;
+        }
+        body.theme-contrast .tab-btn.active,
+        body.theme-contrast .week-badge {
+            color: #000000;
+        }
+
+        body.dyslexic-font, body.dyslexic-font * {
+            font-family: 'Comic Sans MS', 'OpenDyslexic', 'Verdana', sans-serif !important;
+            letter-spacing: 0.04em;
+            word-spacing: 0.1em;
+        }
+
+        body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .a11y-wrapper {
+            position: fixed;
+            top: 1rem;
+            right: 1.2rem;
+            z-index: 1000;
+        }
+
+        .a11y-toggle-btn {
+            background: #0f172a;
+            color: #38bdf8;
+            border: 2px solid #38bdf8;
+            padding: 0.5rem 0.95rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .a11y-toggle-btn:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        .a11y-panel {
+            display: none;
+            position: absolute;
+            top: 3rem;
+            right: 0;
+            width: 295px;
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            border-radius: 14px;
+            padding: 1.1rem;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.65);
+            color: var(--text-main);
+        }
+
+        .a11y-panel.open {
+            display: block;
+        }
+
+        .a11y-panel h4 {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.4rem;
+        }
+
+        .a11y-group {
+            margin-bottom: 0.85rem;
+        }
+
+        .a11y-group label {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+        }
+
+        .a11y-btn-row {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .a11y-opt-btn {
+            flex: 1;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 0.42rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .a11y-opt-btn.active, .a11y-opt-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-dark);
+            color: #fff;
+        }
+        body.theme-contrast .a11y-opt-btn.active {
+            color: #000;
+        }
+
+    
+        /* HOTSPOTS INTERACTIVOS SOBRE IMÁGENES */
+        .image-hotspot-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 760px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--primary-dark);
+            background: #000;
+        }
+        .image-hotspot-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            user-select: none;
+        }
+        .hotspot-pin {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(2, 132, 199, 0.9);
+            color: #fff;
+            border: 2px solid #ffffff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.85);
+            transition: transform 0.2s, background 0.2s;
+            z-index: 10;
+        }
+        .hotspot-pin:hover, .hotspot-pin.active {
+            transform: translate(-50%, -50%) scale(1.22);
+            background: #2dd4bf;
+            color: #0b1120;
+            border-color: #fbbf24;
+            z-index: 20;
+        }
+        .hotspot-pin.quiz-target {
+            background: #fbbf24;
+            color: #0b1120;
+        }
+        .hotspot-pin.quiz-correct {
+            background: #34d399;
+            color: #064e3b;
+        }
+        .plate-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .mode-switch-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
     </style>
 </head>
 <body>
+
+<div class="a11y-wrapper" aria-label="Menú de accesibilidad">
+    <button class="a11y-toggle-btn" onclick="toggleA11yPanel()" aria-expanded="false" id="a11yBtn">
+        <span>♿ Accesibilidad</span>
+    </button>
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Opciones de visualización">
+        <h4>Opciones de Accesibilidad</h4>
+        
+        <div class="a11y-group">
+            <label>Modo de Color y Contraste</label>
+            <div class="a11y-btn-row">
+                <button class="a11y-opt-btn active" id="theme-dark-btn" onclick="setTheme('dark')">Oscuro</button>
+                <button class="a11y-opt-btn" id="theme-light-btn" onclick="setTheme('light')">Claro</button>
+                <button class="a11y-opt-btn" id="theme-contrast-btn" onclick="setTheme('contrast')">Alto Contraste</button>
+            </div>
+        </div>
+
+        <div class="a11y-group">
+            <label>Tamaño de Texto</label>
+            <div class="a11y-btn-row">
+                <button class="a11y-opt-btn" onclick="changeFontSize(-10)">A-</button>
+                <button class="a11y-opt-btn" onclick="resetFontSize()">100%</button>
+                <button class="a11y-opt-btn" onclick="changeFontSize(10)">A+</button>
+            </div>
+        </div>
+
+        <div class="a11y-group">
+            <label>Lectura y Movimiento</label>
+            <div class="a11y-btn-row">
+                <button class="a11y-opt-btn" id="dyslexicBtn" onclick="toggleDyslexic()">Lectura Fácil</button>
+                <button class="a11y-opt-btn" id="motionBtn" onclick="toggleMotion()">Sin Animación</button>
+            </div>
+        </div>
+
+        <button class="a11y-opt-btn" style="width: 100%; margin-top: 0.3rem;" onclick="resetAllA11y()">Restablecer valores</button>
+    </div>
+</div>
+
 
 <header>
     <div class="container">
@@ -725,13 +1006,14 @@
     <div class="container nav-tabs">
         <button class="tab-btn active" onclick="switchTab('actividades', this)">1. Actividades PAE en Canva (16 Semanas)</button>
         <button class="tab-btn" onclick="switchTab('entrenamiento', this)">2. Resúmenes, Flashcards y Quiz</button>
-        <button class="tab-btn" onclick="switchTab('simuladores', this)">3. Simuladores SVG y Visor Clínico</button>
+        <button class="tab-btn" onclick="switchTab('simuladores', this)">3. Simulador Anatómico Interactivo</button>
         <button class="tab-btn" onclick="switchTab('evaluacion', this)">4. Evaluación, Calculadora y Bibliografía</button>
     </div>
 </nav>
 
 <main class="container">
 
+    <!-- PESTAÑA 1: ACTIVIDADES PAE DEL ESTUDIANTE EN CANVA -->
     <section id="actividades" class="section-panel active">
         <div class="controls-bar">
             <div class="filter-group">
@@ -745,11 +1027,13 @@
         <div id="weeksContainer" class="weeks-grid"></div>
     </section>
 
+    <!-- PESTAÑA 2: ENTRENAMIENTO GAMIFICADO (RESUMEN + FLASHCARDS + QUIZ) -->
     <section id="entrenamiento" class="section-panel">
         <div class="study-layout">
             <aside class="week-selector-list" id="studyWeekList"></aside>
 
             <div class="study-workspace">
+                <!-- Resumen semanal -->
                 <div class="panel-box">
                     <span class="unit-tag" id="studyUnitLabel">UNIDAD 1</span>
                     <h3 id="studyWeekTitle" style="margin-top: 0.3rem;">Semana 1: Topografía radiológica y escala de grises</h3>
@@ -757,21 +1041,22 @@
                     <ul class="summary-points" id="studySummaryList"></ul>
                 </div>
 
+                <!-- Flashcards interactivas -->
                 <div class="panel-box">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <h3 style="border: none; margin: 0; padding: 0;">Flashcards de Repaso Rápido</h3>
                         <span class="unit-tag" id="fcCounter">Tarjeta 1 de 3</span>
                     </div>
-                    <p class="card-detail">Haz clic sobre la tarjeta para girarla y comprobar la respuesta técnica.</p>
+                    <p class="card-detail">Haz clic sobre la tarjeta para girar y verificar la respuesta técnica.</p>
                     
                     <div class="flashcard-container" id="flashcardBox" onclick="flipCard()">
                         <div class="flashcard-inner">
                             <div class="flashcard-front">
-                                <span class="fc-label">PREGUNTA / ESTRUCTURA</span>
+                                <span class="fc-label">PREGUNTA / CONCEPTO</span>
                                 <div class="fc-text" id="fcFrontText">Cargando...</div>
                             </div>
                             <div class="flashcard-back">
-                                <span class="fc-label">CORRELACIÓN IMAGENOLÓGICA</span>
+                                <span class="fc-label">RESPUESTA IMAGENOLÓGICA</span>
                                 <div class="fc-text" id="fcBackText">Cargando...</div>
                             </div>
                         </div>
@@ -779,11 +1064,12 @@
 
                     <div class="fc-controls">
                         <button class="filter-btn" onclick="prevCard()">&larr; Anterior</button>
-                        <button class="btn-action btn-study" onclick="flipCard()">Girar Tarjeta</button>
+                        <button class="filter-btn" onclick="flipCard()">Voltear Tarjeta</button>
                         <button class="filter-btn" onclick="nextCard()">Siguiente &rarr;</button>
                     </div>
                 </div>
 
+                <!-- Quiz de Autoevaluación -->
                 <div class="panel-box">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
                         <h3 style="border: none; margin: 0; padding: 0;">Reto Rápido de Autoevaluación</h3>
@@ -795,26 +1081,47 @@
         </div>
     </section>
 
+    <!-- PESTAÑA 3: SIMULADOR ANATÓMICO INTERACTIVO POR SEMANAS -->
     <section id="simuladores" class="section-panel">
-        <div class="controls-bar">
-            <div class="filter-group">
-                <button class="filter-btn active" onclick="loadSimulator('densidades', this)">Simulador 1: Escala de Densidades y HU (Sem 1)</button>
-                <button class="filter-btn" onclick="loadSimulator('snc', this)">Simulador 2: Corte Axial Encéfalo / Ventrículos (Sem 8)</button>
-                <button class="filter-btn" onclick="loadSimulator('cervical', this)">Simulador 3: Atlas C1 vs. Axis C2 (Sem 9)</button>
-                <button class="filter-btn" onclick="loadSimulator('visor_real', this)">Visor de Radiografías / TC Reales (JPG/PNG)</button>
-            </div>
-        </div>
+        <div class="study-layout">
+            <aside class="week-selector-list" id="atlasWeekList"></aside>
 
-        <div class="atlas-grid" id="simulatorWorkspace">
-            <div class="svg-stage" id="svgStage"></div>
-            <div class="inspector-card" id="inspectorPanel">
-                <span class="unit-tag">INSPECTOR ANATÓMICO</span>
-                <h3 style="color: #fff; margin: 0.4rem 0 0.8rem 0;" id="inspTitle">Selecciona una estructura</h3>
-                <p class="card-detail" id="inspDesc">Haz clic sobre cualquier región del esquema vectorial para visualizar su densidad radiográfica, características técnicas y referencias anatómicas.</p>
+            <div>
+                <div class="panel-box" style="margin-bottom: 1.2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.8rem;">
+                        <div>
+                            <span class="unit-tag" id="atlasUnitLabel">UNIDAD 1 • SEMANA 1</span>
+                            <h3 id="atlasTitle" style="margin-top: 0.2rem; border: none; padding: 0;">Semana 1: Topografía radiológica y escala de grises de tejidos</h3>
+                        </div>
+                        <div class="mode-switch-bar" style="margin: 0;">
+                            <button class="filter-btn active" id="modeExploreBtn" onclick="setAtlasMode('explore')">Modo Exploración</button>
+                            <button class="filter-btn" id="modeChallengeBtn" onclick="setAtlasMode('challenge')">Modo Desafío (Localizar)</button>
+                        </div>
+                    </div>
+
+                    <div class="plate-tabs" id="plateTabsContainer" style="margin-top: 0.9rem;"></div>
+
+                    <div id="challengePromptBox" style="display: none; background: rgba(251, 191, 36, 0.14); border: 1px solid #fbbf24; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
+                        <strong style="color: #fbbf24;">Desafío de identificación:</strong>
+                        <span id="challengeTargetText">Haz clic en el número que corresponde a...</span>
+                    </div>
+
+                    <div class="atlas-grid">
+                        <div class="svg-stage" id="atlasStage"></div>
+
+                        <div class="inspector-card">
+                            <span class="unit-tag" id="inspTag">ESTRUCTURA ANATÓMICA</span>
+                            <h3 style="color: #fff; margin: 0.4rem 0 0.8rem 0;" id="inspTitle">Haz clic en un marcador</h3>
+                            <p class="card-detail" id="inspDesc">Selecciona cualquiera de los puntos numerados sobre la imagen para visualizar su identificación anatómica exacta y su correlación radiológica.</p>
+                            <div id="inspListQuick" style="margin-top: 1.2rem; padding-top: 0.9rem; border-top: 1px solid var(--border); font-size: 0.83rem; color: var(--text-muted);"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- PESTAÑA 4: EVALUACIÓN, CALCULADORA Y BIBLIOGRAFÍA -->
     <section id="evaluacion" class="section-panel">
         <div class="panel-box" style="margin-bottom: 1.5rem;">
             <h3>Ponderación de la Asignatura (Sobre 20 puntos)</h3>
@@ -881,6 +1188,7 @@
 
 </main>
 
+<!-- MODAL RÚBRICA SEMANAL -->
 <div id="rubricModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event)">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -1452,6 +1760,7 @@
         document.getElementById('globalProgressBadge').textContent = `${completedWeeks.length} / 16 Semanas Dominadas`;
     }
 
+    // RENDER PESTAÑA 1: ACTIVIDADES CANVA DEL ESTUDIANTE
     function renderWeeks() {
         const container = document.getElementById('weeksContainer');
         const query = document.getElementById('searchInput').value.toLowerCase();
@@ -1512,6 +1821,7 @@
         selectStudyWeek(sem);
     }
 
+    // RENDER PESTAÑA 2: ENTRENAMIENTO, FLASHCARDS Y QUIZ
     function renderStudySidebar() {
         const list = document.getElementById('studyWeekList');
         list.innerHTML = '<h4 style="color: var(--primary); margin-bottom: 0.7rem; font-size: 0.9rem;">Selecciona la Semana</h4>';
@@ -1567,14 +1877,14 @@
         const w = courseData.find(item => item.sem === activeStudySem);
         document.getElementById('flashcardBox').classList.remove('flipped');
         activeCardIdx = (activeCardIdx + 1) % w.flashcards.length;
-        setTimeout(updateFlashcardView, 150);
+        updateFlashcardView();
     }
 
     function prevCard() {
         const w = courseData.find(item => item.sem === activeStudySem);
         document.getElementById('flashcardBox').classList.remove('flipped');
         activeCardIdx = (activeCardIdx - 1 + w.flashcards.length) % w.flashcards.length;
-        setTimeout(updateFlashcardView, 150);
+        updateFlashcardView();
     }
 
     function renderQuizView(w) {
@@ -1582,45 +1892,53 @@
         container.innerHTML = '';
         updateQuizBadge(w);
 
-        w.quiz.forEach((item, qIdx) => {
+        w.quiz.forEach((qItem, qIdx) => {
             const qBlock = document.createElement('div');
             qBlock.style.marginBottom = '1.3rem';
-            qBlock.innerHTML = `<p style="font-weight: 600; margin-bottom: 0.6rem; color: #fff;">${qIdx + 1}. ${item.q}</p>`;
+            qBlock.innerHTML = `<p style="font-weight: 600; margin-bottom: 0.6rem; color: #fff;">${qIdx + 1}. ${qItem.q}</p>`;
 
-            item.opts.forEach((opt, oIdx) => {
+            qItem.opts.forEach((optText, oIdx) => {
                 const btn = document.createElement('button');
                 btn.className = 'quiz-option';
-                btn.textContent = opt;
-                if (quizAnswersState[qIdx] !== undefined) {
-                    btn.disabled = true;
-                    if (oIdx === item.ans) btn.classList.add('correct');
-                    else if (oIdx === quizAnswersState[qIdx]) btn.classList.add('wrong');
-                }
-                btn.onclick = () => answerQuiz(qIdx, oIdx);
+                btn.textContent = optText;
+                btn.onclick = () => handleQuizAnswer(w, qIdx, oIdx, btn, qBlock);
                 qBlock.appendChild(btn);
             });
 
             const fb = document.createElement('div');
             fb.className = 'quiz-feedback';
-            fb.id = `fb-${qIdx}`;
-            if (quizAnswersState[qIdx] !== undefined) {
-                fb.style.display = 'block';
-                fb.innerHTML = `<strong>Fundamento radiológico:</strong> ${item.exp}`;
-            }
+            fb.id = `fb-${w.sem}-${qIdx}`;
+            fb.textContent = qItem.exp;
             qBlock.appendChild(fb);
+
             container.appendChild(qBlock);
         });
     }
 
-    function answerQuiz(qIdx, oIdx) {
-        const w = courseData.find(item => item.sem === activeStudySem);
-        quizAnswersState[qIdx] = oIdx;
-        renderQuizView(w);
+    function handleQuizAnswer(w, qIdx, chosenIdx, clickedBtn, qBlock) {
+        if (quizAnswersState[qIdx] !== undefined) return;
+        const qItem = w.quiz[qIdx];
+        const isCorrect = chosenIdx === qItem.ans;
+        quizAnswersState[qIdx] = isCorrect;
 
-        let correctCount = 0;
-        w.quiz.forEach((q, idx) => {
-            if (quizAnswersState[idx] === q.ans) correctCount++;
+        const allOpts = qBlock.querySelectorAll('.quiz-option');
+        allOpts.forEach((b, idx) => {
+            b.disabled = true;
+            if (idx === qItem.ans) b.classList.add('correct');
+            else if (idx === chosenIdx && !isCorrect) b.classList.add('wrong');
         });
+
+        document.getElementById(`fb-${w.sem}-${qIdx}`).style.display = 'block';
+        updateQuizBadge(w);
+    }
+
+    function updateQuizBadge(w) {
+        let correctCount = 0;
+        w.quiz.forEach((_, idx) => {
+            if (quizAnswersState[idx] === true) correctCount++;
+        });
+        document.getElementById('quizScoreBadge').textContent = `Aciertos: ${correctCount} / ${w.quiz.length}`;
+
         if (correctCount === w.quiz.length && !completedWeeks.includes(w.sem)) {
             completedWeeks.push(w.sem);
             localStorage.setItem('uce_anat_img_completed', JSON.stringify(completedWeeks));
@@ -1629,130 +1947,848 @@
         }
     }
 
-    function updateQuizBadge(w) {
-        let correctCount = 0;
-        w.quiz.forEach((q, idx) => {
-            if (quizAnswersState[idx] === q.ans) correctCount++;
+    // RENDER PESTAÑA 3: SIMULADOR ANATÓMICO INTERACTIVO (16 SEMANAS CALIBRADAS)
+    const atlasPlates = {
+        1: [
+            {
+                id: "sem1_2",
+                titulo: "Lámina 1: Planos Anatómicos Seccionales en 3D",
+                src: "imagenes/sem1_2.png",
+                desc: "Orientación espacial de los tres planos ortogonales fundamentales empleados en radiología, TC y RM.",
+                hotspots: [
+                    { num: 1, x: 52, y: 12, nombre: "Plano Sagital Medio (Azul Cian)", detalle: "Plano vertical anteroposterior que divide el cuerpo humano en dos mitades simétricas: derecha e izquierda. Los planos paralelos a este se denominan parasagitales." },
+                    { num: 2, x: 61, y: 27, nombre: "Plano Coronal o Frontal (Verde Esmeralda)", detalle: "Plano vertical perpendicular al sagital que divide el cuerpo en una porción anterior (ventral) y una porción posterior (dorsal)." },
+                    { num: 3, x: 31, y: 44, nombre: "Plano Axial o Transversal (Ámbar Dorado)", detalle: "Plano horizontal perpendicular al eje longitudinal del cuerpo que lo divide en una mitad superior (cefálica/craneal) y una inferior (caudal). Es el plano base de adquisición en TC." },
+                    { num: 4, x: 47, y: 38, nombre: "Posición Anatómica Estándar y Convención Radiológica", detalle: "Sujeto en bipedestación mirando al frente con palmas hacia adelante. En cortes axiales y coronales, la derecha del paciente corresponde al lado izquierdo de la pantalla." }
+                ]
+            },
+            {
+                id: "sem1_3",
+                titulo: "Lámina 2: Las 5 Densidades Radiográficas Básicas en Imagen Clínica",
+                src: "imagenes/sem1_3.png",
+                desc: "Radiografía toracoabdominal demostrando simultáneamente las 5 densidades radiográficas de menor a mayor atenuación.",
+                hotspots: [
+                    { num: 1, x: 31, y: 31, nombre: "1. Densidad Aire — Parénquima Pulmonar Derecho (Radiolúcido)", detalle: "Mínima absorción de rayos X (-1000 UH en TC). Se observa negro (radiolúcido) en los campos pulmonares, tráquea y cámara gástrica." },
+                    { num: 2, x: 16, y: 54, nombre: "2. Densidad Grasa — Planos Adiposos Subcutáneos", detalle: "Atenuación intermedia-baja (-50 a -100 UH en TC). Se visualiza gris oscuro delimitando los planos musculares y la línea preperitoneal." },
+                    { num: 3, x: 33, y: 65, nombre: "3. Densidad Agua / Tejidos Blandos — Parénquima Hepático", detalle: "Atenuación intermedia (0 a +60 UH en TC). Incluye órganos sólidos (hígado, corazón, riñones), músculos y líquidos corporales; se observa gris claro." },
+                    { num: 4, x: 50, y: 44, nombre: "4. Densidad Calcio / Hueso — Cuerpos Vertebrales y Costillas", detalle: "Alta absorción de rayos X (+400 a +1000 UH en TC) debido al calcio hidroxiapatítico. Se visualiza blanco (radiopaco) delimitando cortical y trabeculado." },
+                    { num: 5, x: 37, y: 67, nombre: "5. Densidad Metal — Clip Quirúrgico Metálico", detalle: "Absorción prácticamente total del haz de rayos X (> +2000 UH en TC). Se observa de color blanco absoluto brillante." },
+                    { num: 6, x: 65, y: 62, nombre: "Cámara Gástrica (Nivel Hidro-Aéreo)", detalle: "Demuestra en un mismo órgano el contraste natural entre la densidad Aire superior (negra) y la densidad Agua/contenido gástrico inferior (gris)." }
+                ]
+            }
+        ],
+        2: [
+            {
+                id: "sem2_1",
+                titulo: "Lámina 1: Cráneo 3D (Neurocráneo vs. Viscerocráneo)",
+                src: "imagenes/sem2_1.png",
+                desc: "Vista anterolateral (tres cuartos) diferenciando el neurocráneo (azul) y el viscerocráneo (verde/ámbar).",
+                hotspots: [
+                    { num: 1, x: 35, y: 26, nombre: "Hueso Frontal (Neurocráneo)", detalle: "Forma la frente y el techo de las órbitas. En su interior aloja los senos frontales. Se articula posteriormente con los parietales mediante la sutura coronal." },
+                    { num: 2, x: 58, y: 24, nombre: "Hueso Parietal Izquierdo (Neurocráneo)", detalle: "Hueso par que forma la mayor parte de la bóveda craneal lateral y superior. Delimitado adelante por la sutura coronal y abajo por la sutura escamosa." },
+                    { num: 3, x: 64, y: 52, nombre: "Escama del Hueso Temporal (Neurocráneo)", detalle: "Porción plana lateral del temporal. Inferior a ella se observa el conducto auditivo externo y la apófisis mastoides neumatizada." },
+                    { num: 4, x: 43, y: 44, nombre: "Ala Mayor del Esfenoides (Pared Lateral Orbitaria)", detalle: "Contribuye a formar la pared lateral de la órbita y la fosa craneal media. Separada del ala menor por la fisura orbitaria superior." },
+                    { num: 5, x: 25, y: 42, nombre: "Huesos Nasales (Viscerocráneo)", detalle: "Dos pequeñas láminas óseas rectangulares que forman el puente de la nariz y articulan superiormente con el hueso frontal." },
+                    { num: 6, x: 50, y: 54, nombre: "Hueso Cigomático / Malar (Viscerocráneo)", detalle: "Forma la prominencia de la mejilla, el borde inferolateral de la órbita y se une hacia atrás con la apófisis cigomática del temporal formando el arco cigomático." },
+                    { num: 7, x: 33, y: 56, nombre: "Maxilar Superior y Foramen Infraorbitario", detalle: "Sostiene la arcada dentaria superior y aloja el seno maxilar. Debajo del reborde orbitario inferior se observa el foramen infraorbitario (nervio V2)." },
+                    { num: 8, x: 38, y: 82, nombre: "Mandíbula y Foramen Mentoniano (Viscerocráneo)", detalle: "Único hueso móvil del macizo facial. En la cara anterolateral del cuerpo mandibular se identifica el foramen mentoniano (nervio mentoniano, rama de V3)." }
+                ]
+            },
+            {
+                id: "sem2_2",
+                titulo: "Lámina 2: Proyección Radiográfica de Waters",
+                src: "imagenes/sem2_2.png",
+                desc: "Proyección occipitomentoniana de elección para evaluar senos maxilares, órbitas y arcos cigomáticos.",
+                hotspots: [
+                    { num: 1, x: 45, y: 17, nombre: "Senos Frontales", detalle: "Cavidades neumáticas radiolúcidas situadas en el espesor del hueso frontal por encima de la raíz nasal y bordes supraorbitarios." },
+                    { num: 2, x: 36, y: 31, nombre: "Órbita Derecha (Reborde y Cavidad Orbitaria)", detalle: "Convención radiológica: el lado izquierdo de la imagen corresponde al lado derecho del paciente. Se evalúa la integridad del reborde y piso orbitario." },
+                    { num: 3, x: 50, y: 36, nombre: "Tabique Nasal y Celdillas Etmoidales", detalle: "Estructura vertical en la línea media formada por la lámina perpendicular del etmoides y el vómer, flanqueada por cornetes inferiores." },
+                    { num: 4, x: 64, y: 51, nombre: "Seno Maxilar Izquierdo (Antro de Highmore)", detalle: "Cavidad piramidal radiolúcida (llena de aire) debajo de la órbita. En proyección de Waters queda libre de superposición de los peñascos." },
+                    { num: 5, x: 74, y: 57, nombre: "Arco Cigomático Izquierdo", detalle: "Puente óseo lateral formado por la unión del hueso cigomático y el temporal. Proyección ideal para descartar fracturas con hundimiento." },
+                    { num: 6, x: 25, y: 74, nombre: "Celdillas Mastoideas y Peñasco Temporal", detalle: "En la proyección de Waters adecuada, los peñascos temporales se proyectan por debajo del piso de los senos maxilares." },
+                    { num: 7, x: 50, y: 85, nombre: "Sínfisis Mandibular y Arcadas Dentarias", detalle: "Porción anterior inferior de la mandíbula proyectada en la base de la imagen junto con las piezas dentales maxilares y mandibulares." }
+                ]
+            },
+            {
+                id: "sem2_3",
+                titulo: "Lámina 3: Corte Axial de TC de Base de Cráneo (Ventana Ósea)",
+                src: "imagenes/sem2_3.png",
+                desc: "Tomografía computarizada axial en ventana ósea mostrando senos paranasales, esfenoides y peñascos temporales.",
+                hotspots: [
+                    { num: 1, x: 47, y: 18, nombre: "Celdillas Etmoidales y Tabique Nasal", detalle: "Laberinto etmoidal radiolúcido (aire, -1000 UH) separado en la línea media por la lámina perpendicular del etmoides." },
+                    { num: 2, x: 45, y: 33, nombre: "Seno Esfenoidal Derecho", detalle: "Cavidad neumática en el cuerpo del hueso esfenoides, dividida por un tabique interesfenoidal frecuentemente asimétrico." },
+                    { num: 3, x: 38, y: 46, nombre: "Foramen Oval Derecho (Ala Mayor Esfenoides)", detalle: "Orificio ovalado en la base del ala mayor del esfenoides por donde emerge el nervio mandibular (V3) hacia el espacio masticador." },
+                    { num: 4, x: 50, y: 53, nombre: "Clivus (Cuerpo Esfenoidal + Porción Basilar Occipital)", detalle: "Estructura ósea esponjosa central posterior al seno esfenoidal y anterior a la fosa craneal posterior (protuberancia y arteria basilar)." },
+                    { num: 5, x: 66, y: 63, nombre: "Cóclea / Laberinto Óseo (Peñasco Izquierdo)", detalle: "Estructura espiral del oído interno inmersa en la cápsula ótica (el hueso más denso del cuerpo humano) dentro del peñasco temporal." },
+                    { num: 6, x: 73, y: 67, nombre: "Celdillas Mastoideas Izquierdas", detalle: "Cavidades aéreas trabeculadas en la apófisis mastoides del hueso temporal; en condiciones normales se observan completamente negras (aire)." },
+                    { num: 7, x: 50, y: 89, nombre: "Escama del Hueso Occipital (Protuberancia Interna)", detalle: "Pared posterior de la fosa craneal posterior que aloja los hemisferios cerebelosos y los senos venosos transversos." }
+                ]
+            }
+        ],
+        3: [
+            {
+                id: "sem3_1",
+                titulo: "Lámina 1: Glándulas Salivales Mayores y Conductos (3D)",
+                src: "imagenes/sem3_1.png",
+                desc: "Vista lateral y corte sagital paramediano mostrando las glándulas parótida, submandibular y sublingual.",
+                hotspots: [
+                    { num: 1, x: 25, y: 34, nombre: "Glándula Parótida (Naranja)", detalle: "La mayor de las glándulas salivales, situada en la celda parotídea anterior al conducto auditivo externo y superficial al músculo masetero. Secreción predominantemente serosa." },
+                    { num: 2, x: 41, y: 36, nombre: "Conducto Parotídeo (de Stenon)", detalle: "Emerge del borde anterior de la parótida, cruza horizontalmente sobre el músculo masetero y perfora el buccinador para desembocar frente al 2.º molar superior." },
+                    { num: 3, x: 38, y: 39, nombre: "Músculo Masetero", detalle: "Músculo masticador potente que desciende desde el arco cigomático hasta la cara lateral de la rama mandibular." },
+                    { num: 4, x: 60, y: 49, nombre: "Lengua y Cavidad Bucal Propiamente Dicha", detalle: "Órgano muscular que ocupa la mayor parte de la cavidad oral, limitado superiormente por el paladar duro y blando." },
+                    { num: 5, x: 67, y: 58, nombre: "Glándula Sublingual (Verde)", detalle: "La más pequeña de las glándulas salivales mayores, ubicada directamente bajo la mucosa del piso anterior de la boca (espacio sublingual), superior al músculo milohioideo." },
+                    { num: 6, x: 48, y: 74, nombre: "Glándula Submandibular (Azul)", detalle: "Alojada en el triángulo submandibular por debajo del músculo milohioideo. Su conducto excretor (de Wharton) rodea el borde posterior del milohioideo para desembocar en la carúncula sublingual." },
+                    { num: 7, x: 64, y: 73, nombre: "Músculo Milohioideo", detalle: "Forma el diafragma muscular del piso de la boca, extendiéndose desde la línea milohioidea de la mandíbula hasta el hueso hioides." }
+                ]
+            },
+            {
+                id: "sem3_2",
+                titulo: "Lámina 2: Corte Axial de TC — Región Parotídea y Oral",
+                src: "imagenes/sem3_2.png",
+                desc: "Tomografía computarizada axial con contraste mostrando músculos masticadores, glándulas parótidas y espacios cervicales.",
+                hotspots: [
+                    { num: 1, x: 50, y: 12, nombre: "Arcada Dentaria Maxilar", detalle: "Las coronas dentales presentan densidad calcio/esmalte altamente hiperdensa (+2000 UH), pudiendo generar artefactos por endurecimiento del haz." },
+                    { num: 2, x: 50, y: 33, nombre: "Cuerpo de la Lengua y Tabique Lingual", detalle: "Músculos intrínsecos de la lengua divididos en la línea media por el tabique fibroso lingual ligeramente hipodenso." },
+                    { num: 3, x: 30, y: 31, nombre: "Músculo Masetero Derecho", detalle: "Ubicado lateralmente a la rama ascendente de la mandíbula dentro del espacio masticador." },
+                    { num: 4, x: 32, y: 40, nombre: "Rama Ascendente de la Mandíbula (Derecha)", detalle: "Hueso cortical hiperdenso que separa el músculo masetero (lateral) del músculo pterigoideo medial (medial)." },
+                    { num: 5, x: 37, y: 42, nombre: "Músculo Pterigoideo Medial Derecho", detalle: "Situado en la cara interna de la rama mandibular formando el componente medial del espacio masticador." },
+                    { num: 6, x: 75, y: 51, nombre: "Glándula Parótida Izquierda", detalle: "Estructura lobulada en el espacio parotídeo posterior al masetero y lateral al espacio carotídeo. Presenta atenuación intermedia por su contenido graso." },
+                    { num: 7, x: 63, y: 63, nombre: "Arteria Carótida Interna y Vena Yugular Interna", detalle: "Vasos cervicales opacificados con contraste intravenoso dentro del espacio carotídeo (la yugular es posterolateral y de mayor calibre)." },
+                    { num: 8, x: 50, y: 65, nombre: "Luz de la Orofaringe", detalle: "Columna aérea radiolúcida (-1000 UH) anterior a la musculatura prevertebral y cuerpos vertebrales cervicales." }
+                ]
+            },
+            {
+                id: "sem3_3",
+                titulo: "Lámina 3: Corte Coronal — Piso de la Boca y Milohioideo",
+                src: "imagenes/sem3_3.png",
+                desc: "Corte coronal de alta resolución destacando la división anatómica entre espacio sublingual y submandibular.",
+                hotspots: [
+                    { num: 1, x: 50, y: 36, nombre: "Lengua y Tabique Lingual Medio", detalle: "Masa muscular central de la cavidad oral dividida simétricamente por el tabique lingual vertical." },
+                    { num: 2, x: 29, y: 44, nombre: "Cuerpo de la Mandíbula y Pieza Molar", detalle: "Corte coronal del hueso mandibular mostrando la cortical externa/interna, el hueso esponjoso medular y las raíces dentales en su alvéolo." },
+                    { num: 3, x: 41, y: 55, nombre: "Glándula Sublingual Derecha (Espacio Sublingual)", detalle: "Ubicada por encima del músculo milohioideo y lateral a los músculos geniogloso y geniohioideo." },
+                    { num: 4, x: 50, y: 64, nombre: "Músculo Milohioideo (Cabestrillo en U)", detalle: "Banda muscular transversal que suspende el piso de la boca y separa el espacio sublingual (superior) del espacio submandibular (inferior)." },
+                    { num: 5, x: 63, y: 67, nombre: "Glándula Submandibular Izquierda (Espacio Submandibular)", detalle: "Localizada inferolateral al músculo milohioideo y medial al borde inferior del cuerpo mandibular." },
+                    { num: 6, x: 44, y: 74, nombre: "Vientre Anterior del Músculo Digástrico", detalle: "Se observa en corte transversal inferior al músculo milohioideo, flanqueando la línea media del triángulo submentoniano." },
+                    { num: 7, x: 14, y: 36, nombre: "Glándula Parótida Derecha (Superficial al Masetero)", detalle: "Porción superficial de la parótida situada lateralmente al músculo masetero y al tejido subcutáneo facial." }
+                ]
+            }
+        ],
+        4: [
+            {
+                id: "sem4_1",
+                titulo: "Lámina 1: Anatomía 3D de la Órbita y Músculos Extraoculares",
+                src: "imagenes/sem4_1.png",
+                desc: "Vista anterolateral derecha con resección de la pared lateral orbitaria exponiendo el cono muscular y nervio óptico.",
+                hotspots: [
+                    { num: 1, x: 75, y: 53, nombre: "Globo Ocular y Córnea", detalle: "Esfera óptica anterior recubierta por la esclerótica blanca y la córnea transparente anterior." },
+                    { num: 2, x: 30, y: 24, nombre: "Glándula Lagrimal (Fosa Lagrimal Superolateral)", detalle: "Ubicada en el ángulo superolateral anterior de la órbita (espacio extraconal), produciendo la película lagrimal." },
+                    { num: 3, x: 47, y: 15, nombre: "Músculo Recto Superior y Elevador del Párpado", detalle: "Discurren bajo el techo orbitario (hueso frontal) hacia la porción superior del globo ocular." },
+                    { num: 4, x: 72, y: 18, nombre: "Tróclea y Tendón del Músculo Oblicuo Superior", detalle: "Polea fibrocartilaginosa en el ángulo superomedial de la órbita donde el tendón del oblicuo superior cambia de dirección hacia el globo." },
+                    { num: 5, x: 56, y: 49, nombre: "Músculo Recto Lateral (Seccionado/Reclinado)", detalle: "Inervado por el VI par craneal (abducens); abduce el globo ocular y delimita lateralmente el espacio intraconal." },
+                    { num: 6, x: 44, y: 42, nombre: "Nervio Óptico (II Par) en Espacio Intraconal", detalle: "Discurre por el centro del cono muscular rodeado por grasa intraconal y meninges desde el polo posterior del ojo hasta el conducto óptico." },
+                    { num: 7, x: 44, y: 62, nombre: "Músculo Recto Inferior", detalle: "Desciende por encima del piso orbitario (techo del seno maxilar), frecuentemente comprometido en fracturas blow-out." }
+                ]
+            },
+            {
+                id: "sem4_2",
+                titulo: "Lámina 2: Corte Axial de RM T1 de Órbitas",
+                src: "imagenes/sem4_2.png",
+                desc: "Resonancia magnética axial T1 mostrando el trayecto longitudinal de ambos nervios ópticos y compartimentos.",
+                hotspots: [
+                    { num: 1, x: 30, y: 15, nombre: "Cristalino y Cámara Anterior (Ojo Derecho)", detalle: "Lente biconvexa avascular detrás del iris, separando el humor acuoso anterior del humor vítreo posterior." },
+                    { num: 2, x: 29, y: 23, nombre: "Cámara Vítrea (Humor Vítreo)", detalle: "Ocupa los cuatro quintos posteriores del globo ocular; hipointensa (oscura) en RM T1 e hiperintensa en T2." },
+                    { num: 3, x: 38, y: 31, nombre: "Músculo Recto Medial Derecho", detalle: "Discurre paralelo a la lámina papirácea del etmoides; es el músculo extraocular más cercano a los senos paranasales." },
+                    { num: 4, x: 23, y: 33, nombre: "Músculo Recto Lateral Derecho", detalle: "Discurre junto a la pared lateral orbitaria formada por el cigomático y el ala mayor del esfenoides." },
+                    { num: 5, x: 32, y: 42, nombre: "Nervio Óptico Derecho (Trayecto Intraconal)", detalle: "Banda lineal gris rodeada de grasa intraconal hiperintensa (blanca en T1) dirigéndose posteromedialmente hacia el vértice orbitario." },
+                    { num: 6, x: 50, y: 34, nombre: "Celdillas Etmoidales y Lámina Papirácea", detalle: "Separadas de la órbita únicamente por la delgada lámina papirácea del hueso etmoides." },
+                    { num: 7, x: 50, y: 66, nombre: "Seno Esfenoidal y Vértice Orbitario", detalle: "Cavidad neumática central posterior a las celdillas etmoidales y medial a los conductos ópticos y senos cavernosos." }
+                ]
+            },
+            {
+                id: "sem4_3",
+                titulo: "Lámina 3: Comparativa Coronal (TC Ósea vs. RM T1) de Órbitas",
+                src: "imagenes/sem4_3.png",
+                desc: "Cortes coronales retrobulbares comparando paredes óseas en TC (izquierda) y partes blandas en RM T1 (derecha).",
+                hotspots: [
+                    { num: 1, x: 13, y: 27, nombre: "Techo Orbitario (Hueso Frontal — TC)", detalle: "Lámina ósea hiperdensa que separa la cavidad orbitaria de la fosa craneal anterior (lóbulos frontales)." },
+                    { num: 2, x: 13, y: 33, nombre: "Músculo Recto Superior (TC)", detalle: "Localizado en la posición de las 12 en punto bajo el techo orbitario junto con el elevador del párpado superior." },
+                    { num: 3, x: 13, y: 42, nombre: "Nervio Óptico Central (TC)", detalle: "Sección circular en el centro del cono muscular rodeada por grasa intraconal hipodensa." },
+                    { num: 4, x: 19, y: 42, nombre: "Músculo Recto Medial y Lámina Papirácea (TC)", detalle: "El recto medial (a las 3 en punto en órbita derecha) adyacente a la delgada pared medial etmoidal." },
+                    { num: 5, x: 13, y: 50, nombre: "Músculo Recto Inferior y Piso Orbitario (TC)", detalle: "El recto inferior (a las 6 en punto) descansa sobre el piso orbitario que forma el techo del seno maxilar." },
+                    { num: 6, x: 63, y: 42, nombre: "Nervio Óptico y Vaina Meníngea (RM T1)", detalle: "En RM coronal se distingue el nervio óptico central rodeado por un halo fino de LCR y grasa intraconal hiperintensa." },
+                    { num: 7, x: 56, y: 42, nombre: "Músculo Recto Lateral (RM T1)", detalle: "Banda muscular hipointensa lateral al nervio óptico dentro del cono muscular." }
+                ]
+            }
+        ],
+        5: [
+            {
+                id: "sem5_1",
+                titulo: "Lámina 1: Anatomía 3D del Oído Externo, Medio e Interno",
+                src: "imagenes/sem5_1.png",
+                desc: "Corte coronal del hueso temporal derecho mostrando la cadena osicular, laberinto óseo y nervios VII/VIII.",
+                hotspots: [
+                    { num: 1, x: 32, y: 48, nombre: "Conducto Auditivo Externo (Oído Externo)", detalle: "Canal osteocartilaginoso que conduce las ondas sonoras desde la concha auricular hasta la membrana timpánica." },
+                    { num: 2, x: 49, y: 46, nombre: "Membrana Timpánica (Tímpano)", detalle: "Tabique fibroso semitransparente oblicuo que separa el conducto auditivo externo de la cavidad timpánica del oído medio." },
+                    { num: 3, x: 52, y: 36, nombre: "Martillo (Malleus) — Cabeza y Manubrio", detalle: "Primer huesecillo del oído medio; su manubrio se adhiere a la membrana timpánica y su cabeza articula con el yunque en el epitímpano." },
+                    { num: 4, x: 57, y: 38, nombre: "Yunque (Incus) y Estribo (Stapes)", detalle: "El yunque transmite la vibración desde el martillo hacia el estribo, cuya platina encaja en la ventana oval del vestíbulo." },
+                    { num: 5, x: 70, y: 24, nombre: "Conductos Semicirculares (Oído Interno)", detalle: "Tres canales ortogonales (superior, posterior y lateral) responsables del equilibrio angular y aceleración rotacional." },
+                    { num: 6, x: 79, y: 44, nombre: "Cóclea (Caracol Óseo — Oído Interno)", detalle: "Conducto espiral de dos vueltas y media que aloja el órgano de Corti encargado de la audición." },
+                    { num: 7, x: 91, y: 34, nombre: "Conducto Auditivo Interno (Nervios VII y VIII)", detalle: "Canal óseo en la cara posterior del peñasco por donde emergen los nervios facial (VII) y vestibulococlear (VIII)." },
+                    { num: 8, x: 74, y: 66, nombre: "Trompa Auditiva (de Eustaquio)", detalle: "Conducto osteocartilaginoso que comunica la pared anterior de la caja timpánica con la nasofaringe para equilibrar presiones." }
+                ]
+            },
+            {
+                id: "sem5_2",
+                titulo: "Lámina 2: TCAR Axial de Peñasco — Epitímpano y Mastoides",
+                src: "imagenes/sem5_2.png",
+                desc: "Tomografía computarizada de alta resolución en ventana ósea mostrando la articulación incudomaleolar.",
+                hotspots: [
+                    { num: 1, x: 31, y: 63, nombre: "Celdillas Mastoideas Neumatizadas", detalle: "Cavidades aéreas normales (negras, -1000 UH) dentro de la apófisis mastoides del hueso temporal." },
+                    { num: 2, x: 45, y: 30, nombre: "Cabeza del Martillo (Bola del «Cono de Helado»)", detalle: "Porción redondeada anterior del martillo alojada en el epitímpano (ático)." },
+                    { num: 3, x: 48, y: 37, nombre: "Cuerpo y Rama Corta del Yunque (Cono)", detalle: "Articulado posteriormente con la cabeza del martillo formando el signo radiológico del «cono de helado» en cortes axiales." },
+                    { num: 4, x: 58, y: 37, nombre: "Conducto Semicircular Lateral", detalle: "Asa ósea semicircular en la cápsula ótica adyacente al epitímpano medial." },
+                    { num: 5, x: 67, y: 46, nombre: "Vestíbulo del Oído Interno", detalle: "Cavidad ovoidea central del laberinto óseo situada entre la cóclea (anterior) y los conductos semicirculares (posterior)." }
+                ]
+            },
+            {
+                id: "sem5_3",
+                titulo: "Lámina 3: TCAR Axial de Peñasco — Cóclea y CAI",
+                src: "imagenes/sem5_3.png",
+                desc: "Tomografía de alta resolución en ventana ósea mostrando las vueltas de la cóclea y el conducto auditivo interno.",
+                hotspots: [
+                    { num: 1, x: 25, y: 42, nombre: "Conducto Auditivo Externo", detalle: "Canal aéreo que conduce hacia la membrana timpánica y la caja timpánica." },
+                    { num: 2, x: 43, y: 35, nombre: "Caja Timpánica y Cadena Osicular", detalle: "Espacio aéreo del oído medio limitado medialmente por el promontorio coclear." },
+                    { num: 3, x: 60, y: 35, nombre: "Cóclea (Vueltas Basal, Media y Apical)", detalle: "Estructura espiral característica rodeada por la cápsula ótica hiperdensa." },
+                    { num: 4, x: 73, y: 36, nombre: "Conducto Auditivo Interno (CAI)", detalle: "Canal óseo medial al laberinto que contiene los nervios facial (VII) y vestibulococlear (VIII)." },
+                    { num: 5, x: 62, y: 58, nombre: "Conducto Carotídeo (Porción Petrosa)", detalle: "Canal vascular anterior e inferior a la cóclea por donde discurre la arteria carótida interna intrapetrosa." }
+                ]
+            }
+        ],
+        6: [
+            {
+                id: "sem6_1",
+                titulo: "Lámina 1: Corte Sagital Paramediano 3D de Faringe",
+                src: "imagenes/sem6_1.png",
+                desc: "Divisiones anatómicas de la faringe (nasofaringe, orofaringe, hipofaringe) y reparos mucosos.",
+                hotspots: [
+                    { num: 1, x: 31, y: 21, nombre: "Cornetes Nasales (Superior, Medio e Inferior)", detalle: "Estructuras óseas recubiertas de mucosa en la pared lateral de la cavidad nasal que delimitan los meatos nasales." },
+                    { num: 2, x: 51, y: 23, nombre: "Orificio Faríngeo de la Trompa Auditiva y Torus Tubarius", detalle: "Abertura de la trompa de Eustaquio en la pared lateral de la nasofaringe rodeada por el rodete tubárico cartilaginoso." },
+                    { num: 3, x: 49, y: 38, nombre: "Paladar Blando y Úvula", detalle: "Tabique musculomembranoso móvil que separa la nasofaringe (superior) de la orofaringe (inferior)." },
+                    { num: 4, x: 55, y: 45, nombre: "Orofaringe y Amígdala Palatina", detalle: "Porción media de la faringe extendida desde el paladar blando hasta el hueso hioides / borde superior de la epiglotis." },
+                    { num: 5, x: 52, y: 63, nombre: "Epiglotis y Vestíbulo Laríngeo", detalle: "Cartílago elástico en forma de hoja que cierra la entrada de la laringe durante la deglución." },
+                    { num: 6, x: 43, y: 67, nombre: "Hueso Hioides", detalle: "Hueso impar en forma de herradura situado a nivel de C3 que marca la transición entre orofaringe e hipofaringe." },
+                    { num: 7, x: 61, y: 74, nombre: "Hipofaringe (Laringofaringe)", detalle: "Segmento inferior de la faringe posterior a la laringe, extendido desde el hioides hasta el borde inferior del cartílago cricoides (C6)." }
+                ]
+            },
+            {
+                id: "sem6_2",
+                titulo: "Lámina 2: Corte Axial de RM T1 a Nivel de Nasofaringe",
+                src: "imagenes/sem6_2.png",
+                desc: "Resonancia magnética axial T1 mostrando la nasofaringe y los espacios cervicales profundos suprahioideos.",
+                hotspots: [
+                    { num: 1, x: 32, y: 22, nombre: "Seno Maxilar Derecho", detalle: "Cavidad neumática hipointensa (negra) anterior al espacio masticador y la fosa pterigopalatina." },
+                    { num: 2, x: 50, y: 49, nombre: "Luz de la Nasofaringe", detalle: "Columna aérea central oscura posterior a las coanas nasales." },
+                    { num: 3, x: 42, y: 49, nombre: "Rodete Tubárico (Torus Tubarius) Derecho", detalle: "Prominencia cartilaginosa en la pared lateral de la nasofaringe anterior a la fosita de Rosenmüller." },
+                    { num: 4, x: 38, y: 55, nombre: "Receso Faríngeo (Fosita de Rosenmüller)", detalle: "Hendidura mucosa posterolateral al rodete tubárico; sitio anatómico más frecuente de origen del carcinoma nasofaríngeo." },
+                    { num: 5, x: 32, y: 61, nombre: "Espacio Parafaríngeo Derecho (Grasa Hiperintensa)", detalle: "Compartimento triangular relleno de grasa brillante en T1 que actúa como referencia clave para localizar masas cervicales." },
+                    { num: 6, x: 25, y: 67, nombre: "Espacio Carotídeo Derecho", detalle: "Posterolateral al espacio parafaríngeo, conteniendo la arteria carótida interna y la vena yugular interna (vacíos de señal negros)." },
+                    { num: 7, x: 50, y: 65, nombre: "Músculos Prevertebrales (Espacio Perivertebral)", detalle: "Músculos largo de la cabeza y largo del cuello situados por detrás del espacio retrofaríngeo y delante de C1." }
+                ]
+            },
+            {
+                id: "sem6_3",
+                titulo: "Lámina 3: Corte Axial de TC Cervical Contrastada (Orofaringe)",
+                src: "imagenes/sem6_3.png",
+                desc: "Tomografía computarizada con contraste a nivel de orofaringe y ángulo mandibular.",
+                hotspots: [
+                    { num: 1, x: 50, y: 34, nombre: "Base de la Lengua", detalle: "Tercios posteriores de la lengua formando la pared anterior de la orofaringe." },
+                    { num: 2, x: 50, y: 55, nombre: "Luz de la Orofaringe", detalle: "Columna aérea radiolúcida central posterior a la base de la lengua." },
+                    { num: 3, x: 33, y: 37, nombre: "Glándula Submandibular Derecha", detalle: "Ubicada medial al cuerpo/ángulo mandibular en el espacio submandibular." },
+                    { num: 4, x: 31, y: 56, nombre: "Arteria Carótida Interna Derecha", detalle: "Vaso circular intensamente opacificado con contraste en el sector medial del espacio carotídeo." },
+                    { num: 5, x: 30, y: 64, nombre: "Vena Yugular Interna Derecha", detalle: "Vaso ovalado de mayor calibre situado posterolateralmente a la arteria carótida interna." },
+                    { num: 6, x: 21, y: 62, nombre: "Músculo Esternocleidomastoideo Derecho", detalle: "Músculo superficial grueso que cubre lateralmente el espacio carotídeo." }
+                ]
+            }
+        ],
+        7: [
+            {
+                id: "sem7_1",
+                titulo: "Lámina 1: Anatomía Vascular 3D del Cuello",
+                src: "imagenes/sem7_1.png",
+                desc: "Vista anterolateral derecha exponiendo el eje carotídeo, la vena yugular interna y la arteria vertebral.",
+                hotspots: [
+                    { num: 1, x: 55, y: 83, nombre: "Tronco Braquiocefálico", detalle: "Primera rama del cayado aórtico; se divide detrás de la articulación esternoclavicular derecha en subclavia derecha y carótida común derecha." },
+                    { num: 2, x: 54, y: 54, nombre: "Arteria Carótida Común Derecha", detalle: "Asciende por el cuello dentro de la vaina carotídea medial a la vena yugular interna sin emitir ramas colaterales." },
+                    { num: 3, x: 54, y: 33, nombre: "Bifurcación Carotídea (Nivel C3-C4)", detalle: "División de la carótida común a la altura del borde superior del cartílago tiroides en carótida externa e interna." },
+                    { num: 4, x: 59, y: 27, nombre: "Arteria Carótida Externa (Anteromedial, con Ramas)", detalle: "Emite las ramas cervicales y faciales (tiroidea superior, lingual, facial, occipital, maxilar y temporal superficial)." },
+                    { num: 5, x: 52, y: 20, nombre: "Arteria Carótida Interna (Posterolateral, sin Ramas)", detalle: "Asciende directamente hacia la base del cráneo (conducto carotídeo) sin dar ramas en el cuello." },
+                    { num: 6, x: 49, y: 46, nombre: "Vena Yugular Interna Derecha", detalle: "Principal colector venoso del encéfalo y cuello; desciende lateralmente a la arteria carótida para unirse a la vena subclavia." },
+                    { num: 7, x: 43, y: 42, nombre: "Arteria Vertebral en Agujeros Transversos", detalle: "Primera rama de la arteria subclavia; asciende protegida por los forámenes transversos de C6 a C1." }
+                ]
+            },
+            {
+                id: "sem7_2",
+                titulo: "Lámina 2: Angio-TC MIP Coronal de Troncos Supraaórticos",
+                src: "imagenes/sem7_2.png",
+                desc: "Reconstrucción coronal MIP mostrando el trayecto bilateral de carótidas y arterias vertebrales.",
+                hotspots: [
+                    { num: 1, x: 51, y: 90, nombre: "Cayado Aórtico", detalle: "Arco vascular torácico del cual emergen el tronco braquiocefálico, la carótida común izquierda y la subclavia izquierda." },
+                    { num: 2, x: 43, y: 72, nombre: "Arteria Carótida Común Derecha", detalle: "Asciende paralelamente a la tráquea hacia la bifurcación carotídea." },
+                    { num: 3, x: 59, y: 52, nombre: "Bifurcación Carotídea Izquierda", detalle: "Separación en carótida interna (lateral/posterior hacia el cráneo) y carótida externa (medial/anterior)." },
+                    { num: 4, x: 45, y: 48, nombre: "Arteria Vertebral Derecha", detalle: "Discurre medialmente a la carótida a través de los agujeros transversos cervicales." },
+                    { num: 5, x: 50, y: 18, nombre: "Confluencia Vertebrobasilar (Arteria Basilar)", detalle: "Ambas arterias vertebrales atraviesan el agujero magno y se unen delante del puente formando la arteria basilar." }
+                ]
+            },
+            {
+                id: "sem7_3",
+                titulo: "Lámina 3: Corte Axial de TC Cervical Contrastada (Nivel C5)",
+                src: "imagenes/sem7_3.png",
+                desc: "Tomografía axial con contraste mostrando la disposición de la vaina carotídea y glándula tiroides.",
+                hotspots: [
+                    { num: 1, x: 50, y: 34, nombre: "Luz Traqueal / Subglótica", detalle: "Columna aérea radiolúcida central rodeada anterolateralmente por ambos lóbulos de la glándula tiroides." },
+                    { num: 2, x: 43, y: 34, nombre: "Lóbulo Tiroideo Derecho", detalle: "Parénquima glandular hiperdenso (por su contenido natural de yodo y rica vascularización) flanqueando la tráquea." },
+                    { num: 3, x: 37, y: 40, nombre: "Arteria Carótida Común Derecha", detalle: "Vaso redondeado intensamente brillante en el compartimento medial de la vaina carotídea." },
+                    { num: 4, x: 30, y: 42, nombre: "Vena Yugular Interna Derecha", detalle: "Vaso ovalado de mayor calibre situado lateralmente a la arteria carótida común." },
+                    { num: 5, x: 21, y: 34, nombre: "Músculo Esternocleidomastoideo Derecho", detalle: "Músculo oblicuo lateral que recubre el paquete vasculonervioso del cuello." },
+                    { num: 6, x: 35, y: 57, nombre: "Arteria Vertebral Derecha en Foramen Transverso", detalle: "Punto brillante redondeado dentro del agujero transverso de la vértebra cervical." }
+                ]
+            }
+        ],
+        8: [
+            {
+                id: "sem8_1",
+                titulo: "Lámina 1: Corte Axial de RM T1 Cerebral (Ganglios Basales y Tálamo)",
+                src: "imagenes/sem8_1.png",
+                desc: "Resonancia magnética axial T1 a nivel de los agujeros de Monro mostrando sustancia gris profunda y ventrículos.",
+                hotspots: [
+                    { num: 1, x: 50, y: 24, nombre: "Rodilla del Cuerpo Calloso", detalle: "Comisura interhemisférica anterior de sustancia blanca que conecta ambos lóbulos frontales." },
+                    { num: 2, x: 46, y: 31, nombre: "Asta Frontal del Ventrículo Lateral Derecho", detalle: "Cavidad ventricular anterior con líquido cefalorraquídeo hipointenso (negro en T1)." },
+                    { num: 3, x: 43, y: 36, nombre: "Cabeza del Núcleo Caudado Derecho", detalle: "Masa de sustancia gris que protruye en la pared lateral del asta frontal del ventrículo lateral." },
+                    { num: 4, x: 39, y: 44, nombre: "Núcleo Lenticular (Putamen y Globo Pálido)", detalle: "Núcleo de sustancia gris en forma de lente biconvexa situado lateralmente a la cápsula interna." },
+                    { num: 5, x: 43, y: 43, nombre: "Cápsula Interna (Brazo Anterior, Rodilla y Brazo Posterior)", detalle: "Tracto de sustancia blanca en forma de V abierta lateralmente que separa el caudado/tálamo del núcleo lenticular." },
+                    { num: 6, x: 46, y: 50, nombre: "Tálamo Derecho y Tercer Ventrículo", detalle: "Núcleo ovoideo paramediano de sustancia gris que forma la pared lateral del tercer ventrículo en la línea media." },
+                    { num: 7, x: 50, y: 63, nombre: "Esplenio del Cuerpo Calloso", detalle: "Extremo posterior grueso del cuerpo calloso situado por delante de la cisterna cuadrigémina." }
+                ]
+            },
+            {
+                id: "sem8_2",
+                titulo: "Lámina 2: Corte Axial de TC Cerebral Simple (Mesencéfalo y Cerebelo)",
+                src: "imagenes/sem8_2.png",
+                desc: "Tomografía axial simple a nivel de la fosa craneal posterior y cisternas perimesencefálicas.",
+                hotspots: [
+                    { num: 1, x: 33, y: 42, nombre: "Lóbulo Temporal Derecho", detalle: "Alojado en la fosa craneal media por detrás del ala mayor del esfenoides y delante del peñasco temporal." },
+                    { num: 2, x: 50, y: 48, nombre: "Mesencéfalo (Pedúnculos Cerebrales)", detalle: "Porción superior del tronco encefálico con forma característica de «cabeza de Mickey Mouse» rodeada de LCR." },
+                    { num: 3, x: 43, y: 47, nombre: "Cisternas Basales Perimesencefálicas (Ambiens / Crural)", detalle: "Espacios subaracnoideos hipodensos (negros) alrededor del mesencéfalo; su borramiento es signo precoz de edema cerebral." },
+                    { num: 4, x: 50, y: 71, nombre: "Vermis Cerebeloso", detalle: "Estructura estrecha en la línea media que une ambos hemisferios cerebelosos." },
+                    { num: 5, x: 39, y: 73, nombre: "Hemisferio Cerebeloso Derecho", detalle: "Ocupa la fosa craneal posterior por debajo de la tienda del cerebelo (tentorio)." }
+                ]
+            },
+            {
+                id: "sem8_3",
+                titulo: "Lámina 3: Corte Sagital Medio de RM T1 Cerebral",
+                src: "imagenes/sem8_3.png",
+                desc: "Resonancia magnética sagital media estricta mostrando cuerpo calloso, sistema ventricular y tronco encefálico.",
+                hotspots: [
+                    { num: 1, x: 48, y: 27, nombre: "Cuerpo Calloso (Rodilla, Cuerpo y Esplenio)", detalle: "Principal haz de fibras comisurales hiperintenso en T1 que forma el techo de los ventrículos laterales." },
+                    { num: 2, x: 41, y: 52, nombre: "Glándula Hipófisis en la Silla Turca", detalle: "Alojada en la fosa hipofisaria del esfenoides por encima del seno esfenoidal neumático." },
+                    { num: 3, x: 51, y: 43, nombre: "Mesencéfalo y Acueducto Cerebral (de Silvio)", detalle: "Segmento superior del tronco encefálico atravesado posteriormente por el acueducto de Silvio." },
+                    { num: 4, x: 52, y: 54, nombre: "Protuberancia (Puente de Varolio)", detalle: "Prominencia ventral redondeada del tronco encefálico situada detrás del clivus y la arteria basilar." },
+                    { num: 5, x: 58, y: 51, nombre: "Cuarto Ventrículo", detalle: "Cavidad triangular llena de LCR (hipointensa en T1) entre la protuberancia/bulbo anteriormente y el cerebelo posteriormente." },
+                    { num: 6, x: 67, y: 54, nombre: "Cerebelo (Árbol de la Vida)", detalle: "Muestra el patrón característico de arborización de la sustancia blanca (arbor vitae) y folias cerebelosas." },
+                    { num: 7, x: 55, y: 69, nombre: "Bulbo Raquídeo (Médula Oblongada)", detalle: "Porción inferior del tronco encefálico que se continúa con la médula espinal cervical a nivel del agujero magno." }
+                ]
+            }
+        ],
+        9: [
+            {
+                id: "sem9_1",
+                titulo: "Lámina 1: Osteología 3D — Atlas (C1), Axis (C2) y Vértebra Típica",
+                src: "imagenes/sem9_1.png",
+                desc: "Comparación morfológica de las tres configuraciones vertebrales de la columna cervical.",
+                hotspots: [
+                    { num: 1, x: 19, y: 31, nombre: "Arco Anterior del Atlas (C1)", detalle: "C1 carece de cuerpo vertebral; presenta un arco anterior corto con una carilla articular posterior para la odontoides." },
+                    { num: 2, x: 10, y: 45, nombre: "Masa Lateral y Agujero Transverso de C1", detalle: "Sostiene el peso de los cóndilos occipitales; el agujero transverso da paso a la arteria vertebral." },
+                    { num: 3, x: 51, y: 29, nombre: "Apófisis Odontoides (Diente del Axis — C2)", detalle: "Pivote óseo vertical que emerge del cuerpo de C2 y permite la rotación cefálica." },
+                    { num: 4, x: 51, y: 49, nombre: "Cuerpo y Carillas Articulares Superiores del Axis (C2)", detalle: "Reciben las masas laterales del Atlas formando las articulaciones atlantoaxiales laterales." },
+                    { num: 5, x: 83, y: 32, nombre: "Cuerpo Vertebral Cervical Típico (C4)", detalle: "Pequeño y ovalado transversalmente, con apófisis unciformes en sus bordes laterales." },
+                    { num: 6, x: 83, y: 67, nombre: "Apófisis Espinosa Bífida (Vértebra Típica)", detalle: "Característica de las vértebras cervicales C3 a C6 para inserción del ligamento nucal." }
+                ]
+            },
+            {
+                id: "sem9_2",
+                titulo: "Lámina 2: Radiografía Lateral Estricta de Columna Cervical",
+                src: "imagenes/sem9_2.png",
+                desc: "Proyección lateral neutra evaluando alineación vertebral, espacio atlantoodontoideo y apófisis espinosas.",
+                hotspots: [
+                    { num: 1, x: 50, y: 19, nombre: "Arco Anterior del Atlas (C1)", detalle: "Estructura semilunar anterior a la apófisis odontoides; el intervalo atlantoodontoideo debe medir < 3 mm." },
+                    { num: 2, x: 40, y: 21, nombre: "Arco Posterior del Atlas (C1)", detalle: "Delgado anillo óseo posterior debajo de la escama occipital." },
+                    { num: 3, x: 48, y: 28, nombre: "Cuerpo y Apófisis Odontoides del Axis (C2)", detalle: "La odontoides asciende verticalmente detrás del arco anterior de C1." },
+                    { num: 4, x: 48, y: 49, nombre: "Cuerpo Vertebral de C4 y Espacio Discal", detalle: "Los bordes anteriores y posteriores de los cuerpos vertebrales deben trazar curvas lordóticas suaves y continuas." },
+                    { num: 5, x: 61, y: 50, nombre: "Hueso Hioides", detalle: "Proyectado anteriormente a nivel del cuerpo vertebral de C3." },
+                    { num: 6, x: 30, y: 78, nombre: "Apófisis Espinosa Prominente de C7", detalle: "Apófisis espinosa larga y no bífida que sirve de referencia anatómica palpable en la base del cuello." }
+                ]
+            },
+            {
+                id: "sem9_3",
+                titulo: "Lámina 3: Proyección AP Transoral (Boca Abierta) C1–C2",
+                src: "imagenes/sem9_3.png",
+                desc: "Proyección anteroposterior dirigida a través de la cavidad bucal para evaluar la articulación atlantoaxial.",
+                hotspots: [
+                    { num: 1, x: 50, y: 38, nombre: "Apófisis Odontoides del Axis (C2)", detalle: "Debe proyectarse perfectamente centrada entre ambas masas laterales de C1 sin superposición dental." },
+                    { num: 2, x: 37, y: 45, nombre: "Masa Lateral Derecha del Atlas (C1)", detalle: "Equidistante de la apófisis odontoides; la asimetría persistente sugiere subluxación rotatoria." },
+                    { num: 3, x: 63, y: 45, nombre: "Masa Lateral Izquierda del Atlas (C1)", detalle: "Sus bordes laterales deben alinearse verticalmente con los bordes laterales del cuerpo de C2." },
+                    { num: 4, x: 38, y: 55, nombre: "Articulación Atlantoaxial Lateral Derecha", detalle: "Espacio articular horizontal radiolúcido entre la masa lateral de C1 y la carilla superior de C2." },
+                    { num: 5, x: 50, y: 63, nombre: "Cuerpo del Axis (C2)", detalle: "Base ósea central inferior a la apófisis odontoides." }
+                ]
+            }
+        ],
+        10: [
+            {
+                id: "sem10_1",
+                titulo: "Lámina 1: Osteología 3D de Vértebra Torácica y Articulación Costal",
+                src: "imagenes/sem10_1.png",
+                desc: "Vistas posterolateral (izquierda) y superior (derecha) mostrando la doble articulación costovertebral y costotransversa.",
+                hotspots: [
+                    { num: 1, x: 39, y: 39, nombre: "Hemicarilla (Fosita) Costal Superior del Cuerpo", detalle: "Superficie articular en el borde posterolateral del cuerpo torácico para la cabeza de la costilla." },
+                    { num: 2, x: 24, y: 68, nombre: "Apófisis Espinosa Torácica (Larga e Inclinada)", detalle: "Se proyecta oblicuamente hacia abajo superponiéndose sobre la lámina de la vértebra inferior." },
+                    { num: 3, x: 74, y: 61, nombre: "Cuerpo Vertebral Torácico (Forma de Corazón)", detalle: "Presenta diámetros anteroposterior y transversal casi iguales, aumentando de tamaño de T1 a T12." },
+                    { num: 4, x: 74, y: 43, nombre: "Foramen Vertebral Circular", detalle: "Más pequeño y redondeado que en las regiones cervical y lumbar." },
+                    { num: 5, x: 64, y: 51, nombre: "Articulación Costovertebral (Cabeza Costal)", detalle: "Unión sinovial entre la cabeza de la costilla y las hemicarillas de los cuerpos vertebrales." },
+                    { num: 6, x: 62, y: 43, nombre: "Articulación Costotransversa (Tubérculo Costal)", detalle: "Unión sinovial entre el tubérculo de la costilla y la fosita costal de la apófisis transversa." }
+                ]
+            },
+            {
+                id: "sem10_2",
+                titulo: "Lámina 2: Radiografía AP de Columna Dorsal",
+                src: "imagenes/sem10_2.png",
+                desc: "Proyección anteroposterior torácica mostrando cuerpos vertebrales, pedículos, espinosas y articulaciones costales.",
+                hotspots: [
+                    { num: 1, x: 50, y: 31, nombre: "Cuerpo Vertebral Dorsal (T5)", detalle: "Márgenes laterales cóncavos y plataformas vertebrales paralelas." },
+                    { num: 2, x: 47, y: 31, nombre: "Pedículo Derecho (Signo del Ojo de Búho)", detalle: "Proyectado como un óvalo cortical dentro del margen lateral del cuerpo vertebral." },
+                    { num: 3, x: 50, y: 35, nombre: "Apófisis Espinosa (Proyección Frontal en Gota)", detalle: "Se proyecta en la línea media hacia abajo debido a su marcada inclinación caudal." },
+                    { num: 4, x: 43, y: 31, nombre: "Apófisis Transversa y Articulación Costotransversa", detalle: "Proyectada lateralmente articulando con el tubérculo costal." },
+                    { num: 5, x: 35, y: 44, nombre: "Arco Costal Posterior Derecho", detalle: "Emerge lateralmente desde la unión costovertebral describiendo su curvatura torácica." }
+                ]
+            },
+            {
+                id: "sem10_3",
+                titulo: "Lámina 3: Corte Axial de TC de Tórax en Ventana Ósea",
+                src: "imagenes/sem10_3.png",
+                desc: "Tomografía axial dorsal mostrando el anillo óseo torácico completo y las articulaciones costales.",
+                hotspots: [
+                    { num: 1, x: 50, y: 51, nombre: "Cuerpo Vertebral Torácico", detalle: "Corte transversal mostrando cortical periférica y hueso esponjoso trabecular central." },
+                    { num: 2, x: 50, y: 63, nombre: "Conducto Vertebral (Canal Medular)", detalle: "Anillo óseo circular delimitado por el cuerpo, pedículos y láminas que protege la médula espinal dorsal." },
+                    { num: 3, x: 43, y: 56, nombre: "Articulación Costovertebral Derecha", detalle: "Cabeza de la costilla articulando con la cara posterolateral del cuerpo vertebral." },
+                    { num: 4, x: 39, y: 61, nombre: "Articulación Costotransversa Derecha", detalle: "Tubérculo costal articulando con la cara anterior de la apófisis transversa." },
+                    { num: 5, x: 50, y: 15, nombre: "Cuerpo del Esternón", detalle: "Hueso plano anterior que cierra el anillo osteocartilaginoso de la caja torácica." },
+                    { num: 6, x: 10, y: 62, nombre: "Escápula Derecha (Cuerpo y Espina)", detalle: "Proyectada posterolateralmente fuera de la parrilla costal." }
+                ]
+            }
+        ],
+        11: [
+            {
+                id: "sem11_1",
+                titulo: "Lámina 1: Osteología 3D — Vértebra Lumbar Típica (L3) y Sacro-Cóccix",
+                src: "imagenes/sem11_1.png",
+                desc: "Vista superior de vértebra lumbar (izquierda) y vista pélvica anterior del sacro y cóccix (derecha).",
+                hotspots: [
+                    { num: 1, x: 29, y: 27, nombre: "Cuerpo Vertebral Lumbar (Grande y Reniforme)", detalle: "Voluminoso y ancho transversalmente para soportar la carga axial del tronco." },
+                    { num: 2, x: 12, y: 49, nombre: "Apófisis Costiforme (Transversa Lumbar)", detalle: "Prolongación lateral larga y delgada homóloga a una costilla rudimentaria." },
+                    { num: 3, x: 29, y: 50, nombre: "Foramen Vertebral Triangular", detalle: "De forma triangular amplia, aloja las raíces nerviosas de la cauda equina." },
+                    { num: 4, x: 29, y: 74, nombre: "Apófisis Espinosa Lumbar (Cuadrangular y Horizontal)", detalle: "Lámina ósea gruesa y horizontal dirigida directamente hacia atrás." },
+                    { num: 5, x: 75, y: 21, nombre: "Promontorio Sacro (Borde Anterior de S1)", detalle: "Reparo obstétrico y radiológico fundamental en el estrecho superior de la pelvis." },
+                    { num: 6, x: 68, y: 42, nombre: "Agujeros Sacros Anteriores (Pélvicos)", detalle: "Cuatro pares de orificios por donde emergen los ramos anteriores de los nervios espinales sacros." },
+                    { num: 7, x: 75, y: 81, nombre: "Cóccix (Articulación Sacrococcígea)", detalle: "Segmento terminal triangular formado por la fusión de 3 a 5 vértebras rudimentarias." }
+                ]
+            },
+            {
+                id: "sem11_2",
+                titulo: "Lámina 2: Radiografía Oblicua Lumbar — Signo del «Perrito Escocés»",
+                src: "imagenes/sem11_2.png",
+                desc: "Proyección oblicua a 45° desplegando los elementos posteriores lumbares y la pars interarticularis.",
+                hotspots: [
+                    { num: 1, x: 43, y: 44, nombre: "Hocico del Perrito — Apófisis Transversa", detalle: "Proyectada anteriormente desde la unión pediculolaminar." },
+                    { num: 2, x: 46, y: 44, nombre: "Ojo del Perrito — Pedículo (Visto de Frente)", detalle: "Anillo cortical ovalado en la base del arco posterior." },
+                    { num: 3, x: 45, y: 38, nombre: "Oreja del Perrito — Apófisis Articular Superior", detalle: "Proyección ascendente que articula con la faceta inferior de la vértebra suprayacente." },
+                    { num: 4, x: 44, y: 48, nombre: "Cuello del Perrito — Pars Interarticularis", detalle: "Istmo óseo entre las facetas superior e inferior; su fractura («collar en el cuello del perrito») define la espondilólisis." },
+                    { num: 5, x: 44, y: 54, nombre: "Pata Delantera — Apófisis Articular Inferior", detalle: "Desciende para articular con la faceta superior de la vértebra inferior." },
+                    { num: 6, x: 54, y: 46, nombre: "Cuerpo Vertebral Lumbar (L3)", detalle: "Cilindro óseo anterior separado por espacios discales uniformes." }
+                ]
+            },
+            {
+                id: "sem11_3",
+                titulo: "Lámina 3: Corte Sagital Medio de RM T2 Lumbosacra",
+                src: "imagenes/sem11_3.png",
+                desc: "Resonancia magnética sagital T2 mostrando discos intervertebrales, cono medular y cola de caballo.",
+                hotspots: [
+                    { num: 1, x: 55, y: 14, nombre: "Cono Medular (Nivel L1–L2)", detalle: "Extremo distal afilado de la médula espinal en el adulto." },
+                    { num: 2, x: 49, y: 37, nombre: "Disco Intervertebral L3–L4 (Núcleo Pulposo Hiperintenso)", detalle: "En secuencia T2 el núcleo pulposo sano brilla por su alto contenido hídrico, rodeado por el anillo fibroso oscuro." },
+                    { num: 3, x: 54, y: 45, nombre: "Cola de Caballo (Cauda Equina) en el Saco Tecal", detalle: "Haz de raíces nerviosas lumbosacras sumergidas en el líquido cefalorraquídeo brillante (hiperintenso en T2)." },
+                    { num: 4, x: 51, y: 63, nombre: "Promontorio y Disco Lumbosacro (L5–S1)", detalle: "Articulación de transición entre la lordosis lumbar móvil y el sacro fijo." },
+                    { num: 5, x: 60, y: 48, nombre: "Apófisis Espinosa Lumbar (L4)", detalle: "Proyección ósea posterior separada por los ligamentos interespinosos y supraespinoso." }
+                ]
+            }
+        ],
+        12: [
+            {
+                id: "sem12_1",
+                titulo: "Lámina 1: Osteología 3D de la Caja Torácica y Cintura Escapular",
+                src: "imagenes/sem12_1.png",
+                desc: "Vista anterior diferenciando esternón, clavículas, costillas verdaderas, falsas, flotantes y cartílagos costales.",
+                hotspots: [
+                    { num: 1, x: 50, y: 21, nombre: "Manubrio del Esternón y Escotadura Yugular", detalle: "Porción superior ancha del esternón que articula con las clavículas y los primeros cartílagos costales." },
+                    { num: 2, x: 50, y: 29, nombre: "Ángulo Esternal (de Louis) — Sínfisis Manubrioesternal", detalle: "Reparo anatómico a nivel de T4–T5 que marca la articulación del 2.º cartílago costal." },
+                    { num: 3, x: 50, y: 44, nombre: "Cuerpo del Esternón y Apófisis Xifoides", detalle: "Porción media alargada del esternón que recibe los cartílagos costales 2.º a 7.º, terminando en el xifoides." },
+                    { num: 4, x: 35, y: 15, nombre: "Clavícula Derecha", detalle: "Hueso largo en forma de S itálica que conecta el manubrio esternal con el acromion escapular." },
+                    { num: 5, x: 38, y: 37, nombre: "Costillas Verdaderas (1.ª a 7.ª) y Cartílagos Costales", detalle: "Se unen directamente al esternón mediante sus propios cartílagos costales hialinos." },
+                    { num: 6, x: 36, y: 66, nombre: "Costillas Falsas (8.ª a 10.ª) — Reborde Costal", detalle: "Sus cartílagos se fusionan con el cartílago de la costilla suprayacente formando el arco costal." },
+                    { num: 7, x: 37, y: 84, nombre: "Costillas Flotantes (11.ª y 12.ª)", detalle: "Terminan libremente en la musculatura posterior del abdomen sin articularse anteriormente." }
+                ]
+            },
+            {
+                id: "sem12_2",
+                titulo: "Lámina 2: Radiografía Posteroanterior (PA) de Tórax",
+                src: "imagenes/sem12_2.png",
+                desc: "Proyección PA estándar evaluando criterios técnicos de calidad y diferenciación de arcos costales.",
+                hotspots: [
+                    { num: 1, x: 44, y: 14, nombre: "Extremo Medial de Clavícula Derecha (Criterio de Centrado)", detalle: "Debe encontrarse equidistante de la línea media de las apófisis espinosas para descartar rotación." },
+                    { num: 2, x: 31, y: 34, nombre: "Arco Costal Posterior Derecho (Horizontal)", detalle: "Los arcos posteriores son más horizontales y nítidos; deben contarse 9–10 sobre el diafragma en buena inspiración." },
+                    { num: 3, x: 35, y: 44, nombre: "Arco Costal Anterior Derecho (Oblicuo)", detalle: "Desciende oblicuamente hacia adelante y adentro, interrumpiéndose al unirse al cartílago costal radiolúcido." },
+                    { num: 4, x: 20, y: 32, nombre: "Escápula Derecha (Fuera de Campos Pulmonares)", detalle: "La rotación anterior de los hombros desplaza las escápulas fuera del parénquima pulmonar." },
+                    { num: 5, x: 33, y: 74, nombre: "Hemidiafragma Derecho y Seno Costofrénico Lateral", detalle: "La cúpula derecha suele situarse 1–2 cm más alta que la izquierda debido al hígado subyacente." },
+                    { num: 6, x: 67, y: 80, nombre: "Cámara Gástrica Subdiafragmática Izquierda", detalle: "Colección aérea fisiológica en el fundus gástrico debajo del hemidiafragma izquierdo." }
+                ]
+            },
+            {
+                id: "sem12_3",
+                titulo: "Lámina 3: Radiografía Lateral Estricta de Tórax",
+                src: "imagenes/sem12_3.png",
+                desc: "Proyección lateral mostrando el perfil esternal, espacio retroesternal y columna dorsal.",
+                hotspots: [
+                    { num: 1, x: 62, y: 36, nombre: "Esternón de Perfil (Manubrio y Cuerpo)", detalle: "Forma el límite óseo anterior de la caja torácica." },
+                    { num: 2, x: 56, y: 34, nombre: "Espacio Claro Retroesternal", detalle: "Región radiolúcida triangular entre la cara posterior del esternón y la aorta ascendente/ventrículo derecho." },
+                    { num: 3, x: 36, y: 45, nombre: "Cuerpo Vertebral Dorsal (Signo de la Columna)", detalle: "Los cuerpos vertebrales deben verse progresivamente más radiolúcidos (oscuros) hacia abajo." },
+                    { num: 4, x: 26, y: 46, nombre: "Arcos Costales Posteriores Superpuestos", detalle: "Se proyectan ligeramente por detrás del borde posterior de los cuerpos vertebrales dorsales." },
+                    { num: 5, x: 38, y: 76, nombre: "Seno Costofrénico Posterior", detalle: "Ángulo agudo profundo en la base posterior del tórax; es el primer sitio donde se acumula derrame pleural mínimo." }
+                ]
+            }
+        ],
+        13: [
+            {
+                id: "sem13_1",
+                titulo: "Lámina 1: Disección 3D por Capas de la Pared Abdominal",
+                src: "imagenes/sem13_1.png",
+                desc: "Planos musculares y fasciales de superficial a profundo en la pared anterolateral del abdomen.",
+                hotspots: [
+                    { num: 1, x: 50, y: 35, nombre: "Línea Alba", detalle: "Rafe tendinoso medio formado por el entrecruzamiento de las aponeurosis de los músculos anchos del abdomen." },
+                    { num: 2, x: 44, y: 35, nombre: "Músculo Recto del Abdomen e Intersecciones Tendinosas", detalle: "Músculo vertical par envuelto por la vaina del recto, dividido transversalmente por 3–4 intersecciones tendinosas." },
+                    { num: 3, x: 26, y: 20, nombre: "Músculo Oblicuo Externo (Capa Superficial)", detalle: "Sus fibras descienden oblicuamente hacia abajo y adentro («como metiendo las manos en los bolsillos»)." },
+                    { num: 4, x: 29, y: 34, nombre: "Músculo Oblicuo Interno (Capa Media)", detalle: "Sus fibras ascienden oblicuamente hacia arriba y adentro, perpendiculares al oblicuo externo." },
+                    { num: 5, x: 29, y: 52, nombre: "Músculo Transverso del Abdomen (Capa Profunda)", detalle: "Sus fibras discurren horizontalmente hacia la línea media, descansando sobre la fascia transversalis." },
+                    { num: 6, x: 64, y: 38, nombre: "Hoja Posterior de la Vaina del Recto y Línea Arqueada", detalle: "Por debajo del ombligo (línea arqueada de Douglas), todas las aponeurosis pasan por delante del recto." }
+                ]
+            },
+            {
+                id: "sem13_2",
+                titulo: "Lámina 2: Corte Axial de TC Abdominal Supraumbilical",
+                src: "imagenes/sem13_2.png",
+                desc: "Tomografía axial a nivel L2–L3 mostrando las capas musculares anterolaterales y posteriores.",
+                hotspots: [
+                    { num: 1, x: 50, y: 9, nombre: "Línea Alba y Vaina del Recto", detalle: "Unión fascial en la línea media anterior separando ambos músculos rectos del abdomen." },
+                    { num: 2, x: 43, y: 9, nombre: "Músculo Recto del Abdomen Derecho", detalle: "Contenido dentro de su compartimento fascial en la pared abdominal anterior." },
+                    { num: 3, x: 11, y: 40, nombre: "Tres Capas Laterales (Oblicuo Externo, Interno y Transverso)", detalle: "Láminas musculares concéntricas separadas por delgados planos grasos hipodensos." },
+                    { num: 4, x: 40, y: 59, nombre: "Músculo Psoas Mayor Derecho", detalle: "Músculo fusiforme par ubicado inmediatamente lateral al cuerpo vertebral lumbar." },
+                    { num: 5, x: 31, y: 69, nombre: "Músculo Cuadrado Lumbar Derecho", detalle: "Situado lateral al psoas mayor y posterior al espacio pararrenal." },
+                    { num: 6, x: 41, y: 77, nombre: "Músculos Erectores de la Columna (Masa Común)", detalle: "Grupo muscular posterior alojado en los canales vertebrales a ambos lados de la apófisis espinosa." }
+                ]
+            },
+            {
+                id: "sem13_3",
+                titulo: "Lámina 3: Corte Axial de TC Abdominal Infraumbilical (L4–L5)",
+                src: "imagenes/sem13_3.png",
+                desc: "Tomografía axial por debajo de la línea arqueada mostrando vasos epigástricos inferiores y pelvis mayor.",
+                hotspots: [
+                    { num: 1, x: 43, y: 9, nombre: "Músculo Recto del Abdomen (Sin Hoja Posterior)", detalle: "Por debajo de la línea arqueada, la cara posterior del recto contacta directamente con la fascia transversalis." },
+                    { num: 2, x: 43, y: 14, nombre: "Vasos Epigástricos Inferiores Derechos", detalle: "Ubicados inmediatamente detrás del músculo recto del abdomen; referencia anatómica para diferenciar hernias inguinales directas e indirectas." },
+                    { num: 3, x: 37, y: 54, nombre: "Músculo Psoas Mayor Derecho", detalle: "Aumenta su diámetro transversal al descender hacia el ligamento inguinal para unirse al músculo ilíaco." },
+                    { num: 4, x: 20, y: 53, nombre: "Músculo Ilíaco y Ala Ilíaca Derecha", detalle: "Tapiza la fosa ilíaca interna medialmente al hueso coxal." }
+                ]
+            }
+        ],
+        14: [
+            {
+                id: "sem14_1",
+                titulo: "Lámina 1: Osteología 3D de la Pelvis — Ilion, Isquion y Pubis",
+                src: "imagenes/sem14_1.png",
+                desc: "Vista anterosuperior diferenciando los tres componentes embrionarios del hueso coxal y sus articulaciones.",
+                hotspots: [
+                    { num: 1, x: 21, y: 31, nombre: "Hueso Ilion (Azul Cian)", detalle: "Porción superior ancha del coxal que forma el ala ilíaca, la cresta ilíaca y el techo del acetábulo." },
+                    { num: 2, x: 34, y: 63, nombre: "Hueso Pubis (Ámbar)", detalle: "Porción anteromedial formada por cuerpo, rama superior y rama inferior que delimitan anteriormente el agujero obturador." },
+                    { num: 3, x: 26, y: 81, nombre: "Hueso Isquion (Verde Turquesa)", detalle: "Porción posteroinferior que sostiene el peso en sedestación mediante la tuberosidad isquiática." },
+                    { num: 4, x: 50, y: 73, nombre: "Sínfisis del Pubis", detalle: "Articulación cartilaginosa secundaria anterior que une ambos cuerpos púbicos mediante un disco fibrocartilaginoso." },
+                    { num: 5, x: 35, y: 26, nombre: "Articulación Sacroilíaca Derecha", detalle: "Articulación sinovial/sindesmosis que transmite el peso del esqueleto axial hacia los huesos coxales." },
+                    { num: 6, x: 80, y: 57, nombre: "Acetábulo (Convergencia Trirradiada)", detalle: "Cavidad hemisférica lateral formada por la fusión de ilion (40%), isquion (40%) y pubis (20%)." }
+                ]
+            },
+            {
+                id: "sem14_2",
+                titulo: "Lámina 2: Radiografía AP de Pelvis — Líneas y Referencias",
+                src: "imagenes/sem14_2.png",
+                desc: "Proyección anteroposterior estándar evaluando líneas acetabulares, arco de Shenton y articulaciones.",
+                hotspots: [
+                    { num: 1, x: 36, y: 28, nombre: "Articulación Sacroilíaca Derecha", detalle: "Espacio articular simétrico sin esclerosis ni ensanchamiento anormal." },
+                    { num: 2, x: 34, y: 48, nombre: "Línea Iliopectínea (Columna Anterior)", detalle: "Línea cortical continua que delimita el estrecho superior de la pelvis y la columna anterior del acetábulo." },
+                    { num: 3, x: 34, y: 58, nombre: "Línea Ilioisquiática y Lágrima Acetabular", detalle: "La línea ilioisquiática evalúa la integridad de la columna posterior; la lágrima representa la pared medial del acetábulo." },
+                    { num: 4, x: 25, y: 53, nombre: "Cabeza Femoral y Espacio Articular Coxofemoral", detalle: "Cabeza esférica congruente con un espacio articular uniforme de 3–5 mm." },
+                    { num: 5, x: 32, y: 63, nombre: "Arco o Línea de Shenton", detalle: "Curva continua entre el borde inferior del cuello femoral y el borde superior del agujero obturador." },
+                    { num: 6, x: 50, y: 69, nombre: "Sínfisis del Pubis y Agujeros Obturadores", detalle: "La sínfisis debe estar alineada con el sacro-cóccix en la línea media, con un ancho < 5 mm." }
+                ]
+            },
+            {
+                id: "sem14_3",
+                titulo: "Lámina 3: Corte Axial de TC de Pelvis en Ventana Ósea",
+                src: "imagenes/sem14_3.png",
+                desc: "Tomografía axial a nivel acetabular mostrando columnas anterior/posterior, cabeza femoral y sacro.",
+                hotspots: [
+                    { num: 1, x: 23, y: 47, nombre: "Cabeza Femoral Derecha", detalle: "Esfera ósea trabecular congruente dentro de la cavidad acetabular." },
+                    { num: 2, x: 29, y: 36, nombre: "Columna Anterior (Iliopúbica) del Acetábulo", detalle: "Pared ósea anterior que sostiene la cabeza femoral anteriormente." },
+                    { num: 3, x: 32, y: 55, nombre: "Columna Posterior (Ilioisquiática) del Acetábulo", detalle: "Pilar óseo grueso posterior del acetábulo." },
+                    { num: 4, x: 34, y: 46, nombre: "Lámina Cuadrilátera Medial", detalle: "Pared ósea delgada que separa la cavidad acetabular de la pelvis menor." },
+                    { num: 5, x: 50, y: 74, nombre: "Sacro Inferior y Cóccix", detalle: "Cierran posteriormente el anillo pélvico óseo." }
+                ]
+            }
+        ],
+        15: [
+            {
+                id: "sem15_1",
+                titulo: "Lámina 1: Radiografía AP de Hombro Derecho (Rotación Externa)",
+                src: "imagenes/sem15_1.png",
+                desc: "Proyección anteroposterior evaluando la cintura escapular, espacio subacromial y articulación glenohumeral.",
+                hotspots: [
+                    { num: 1, x: 54, y: 18, nombre: "Clavícula Derecha", detalle: "Conecta el esternón medialmente con el acromion en la articulación acromioclavicular." },
+                    { num: 2, x: 31, y: 16, nombre: "Acromion y Espacio Subacromial", detalle: "Prolongación lateral de la espina escapular; el espacio entre acromion y cabeza humeral mide 7–11 mm." },
+                    { num: 3, x: 44, y: 24, nombre: "Apófisis Coracoides", detalle: "Proyección ósea anterior de la escápula vista de frente por debajo del tercio lateral de la clavícula." },
+                    { num: 4, x: 36, y: 38, nombre: "Cavidad Glenoidea y Espacio Glenohumeral", detalle: "Superficie articular piriforme de la escápula congruente con la cabeza humeral." },
+                    { num: 5, x: 22, y: 34, nombre: "Tubérculo Mayor (Troquíter) de Perfil", detalle: "En rotación externa el troquíter se proyecta lateralmente de perfil en el borde superolateral del húmero." },
+                    { num: 6, x: 28, y: 38, nombre: "Cabeza Humeral y Cuello Anatómico", detalle: "Superficie articular hemisférica orientada medial y superiormente." }
+                ]
+            },
+            {
+                id: "sem15_2",
+                titulo: "Lámina 2: Radiografía AP y Lateral Estricta de Codo Derecho",
+                src: "imagenes/sem15_2.png",
+                desc: "Proyecciones ortogonales del codo evaluando superficies articulares y la línea radiocapitelar.",
+                hotspots: [
+                    { num: 1, x: 33, y: 38, nombre: "Epicóndilo Medial (Epitróclea — AP)", detalle: "Prominencia ósea medial del húmero distal donde se originan los músculos flexores-pronadores." },
+                    { num: 2, x: 16, y: 38, nombre: "Epicóndilo Lateral (AP)", detalle: "Prominencia lateral del húmero distal superior al cóndilo humeral." },
+                    { num: 3, x: 20, y: 45, nombre: "Cóndilo Humeral (Capitellum) y Cabeza Radial (AP)", detalle: "La cabeza radial cilíndrica articula proximalmente con el cóndilo humeral." },
+                    { num: 4, x: 28, y: 46, nombre: "Tróclea Humeral y Olécranon/Coronoides (AP)", detalle: "Articulación humerocubital en bisagra que proporciona estabilidad primaria al codo." },
+                    { num: 5, x: 57, y: 63, nombre: "Olécranon del Cúbito (Proyección Lateral)", detalle: "Prominencia ósea posterior del cúbito proximal en flexión de 90°." },
+                    { num: 6, x: 69, y: 54, nombre: "Alineación Radiocapitelar (Proyección Lateral)", detalle: "El eje longitudinal del cuello y cabeza radial debe apuntar directamente al centro del cóndilo humeral." }
+                ]
+            },
+            {
+                id: "sem15_3",
+                titulo: "Lámina 3: Radiografía PA de Muñeca, Carpo y Mano Derecha",
+                src: "imagenes/sem15_3.png",
+                desc: "Proyección posteroanterior estándar mostrando epífisis distales del antebrazo, los 8 huesos del carpo y dedos.",
+                hotspots: [
+                    { num: 1, x: 46, y: 82, nombre: "Epífisis Distal del Radio y Apófisis Estiloides Radial", detalle: "Articula directamente con el escafoides y el semilunar; su estiloides desciende más distalmente que la cubital." },
+                    { num: 2, x: 56, y: 83, nombre: "Epífisis Distal del Cúbito y Apófisis Estiloides Cubital", detalle: "Separada del piramidal por el complejo del fibrocartílago triangular." },
+                    { num: 3, x: 45, y: 72, nombre: "Escafoides (Fila Proximal, Lateral)", detalle: "Hueso carpiano en forma de bote; es el que se fractura con mayor frecuencia tras caída sobre mano extendida." },
+                    { num: 4, x: 51, y: 74, nombre: "Semilunar (Fila Proximal, Central)", detalle: "Articula proximalmente con el radio y distalmente con la cabeza del hueso grande." },
+                    { num: 5, x: 56, y: 72, nombre: "Piramidal y Pisiforme Superpuesto (Fila Proximal, Medial)", detalle: "El pisiforme es un hueso sesamoideo dentro del tendón flexor cubital del carpo proyectado sobre el piramidal." },
+                    { num: 6, x: 43, y: 67, nombre: "Trapecio y Trapezoide (Fila Distal, Lateral)", detalle: "El trapecio articula con la base del 1.er metacarpiano (articulación trapeciometacarpiana en silla de montar)." },
+                    { num: 7, x: 50, y: 65, nombre: "Hueso Grande (Capitato) y Hueso Ganchoso (Fila Distal)", detalle: "El hueso grande es el más voluminoso del carpo; el ganchoso muestra el anillo cortical de su apófisis unciforme." },
+                    { num: 8, x: 44, y: 50, nombre: "Segundo Metacarpiano y Sesamoideo del Pulgar", detalle: "Los 5 metacarpianos numerados de lateral (1.º) a medial (5.º) articulan distalmente con las falanges." }
+                ]
+            }
+        ],
+        16: [
+            {
+                id: "sem16_1",
+                titulo: "Lámina 1: Cadera Derecha — Proyecciones Radiográficas AP y Axial",
+                src: "imagenes/sem16_1.png",
+                desc: "Proyección AP (izquierda) y axial tipo rana (derecha) de la articulación coxofemoral y fémur proximal.",
+                hotspots: [
+                    { num: 1, x: 27, y: 27, nombre: "Techo y Ceja Acetabular (AP)", detalle: "Superficie de carga superior del acetábulo que cubre la cabeza femoral." },
+                    { num: 2, x: 27, y: 36, nombre: "Cabeza Femoral y Espacio Articular Coxofemoral (AP)", detalle: "Esfera ósea congruente dentro del acetábulo." },
+                    { num: 3, x: 21, y: 44, nombre: "Cuello Femoral (Ángulo Cervicodiafisario 125°–135°)", detalle: "Conecta la cabeza femoral con la región intertrocantérica de la diáfisis." },
+                    { num: 4, x: 13, y: 43, nombre: "Trocánter Mayor (Lateral)", detalle: "Prominencia ósea lateral para inserción de los músculos glúteos medio y menor." },
+                    { num: 5, x: 23, y: 59, nombre: "Trocánter Menor (Posteromedial)", detalle: "Prominencia cónica medial donde se inserta el tendón del músculo iliopsoas." },
+                    { num: 6, x: 83, y: 49, nombre: "Cabeza Femoral y Fóvea Capitis (Proyección Axial)", detalle: "La proyección axial despliega el perfil anterior y posterior del cuello y cabeza femoral." }
+                ]
+            },
+            {
+                id: "sem16_2",
+                titulo: "Lámina 2: Rodilla Derecha — Radiografía Lateral y RM Sagital",
+                src: "imagenes/sem16_2.png",
+                desc: "Correlación entre radiografía lateral ósea (izquierda) y resonancia magnética sagital (derecha) de rodilla.",
+                hotspots: [
+                    { num: 1, x: 11, y: 27, nombre: "Rótula / Patela (Rx Lateral)", detalle: "El mayor hueso sesamoideo del cuerpo humano, situado en el compartimento femororrotuliano." },
+                    { num: 2, x: 24, y: 31, nombre: "Cóndilos Femorales Superpuestos (Rx Lateral)", detalle: "Extremo distal del fémur articulando con las mesetas tibiales." },
+                    { num: 3, x: 24, y: 51, nombre: "Mesetas Tibiales y Eminencia Intercondílea", detalle: "Superficie articular superior de la tibia; anteriormente se observa la tuberosidad anterior de la tibia." },
+                    { num: 4, x: 34, y: 63, nombre: "Cabeza del Peroné (Posterior)", detalle: "Articula posterolateralmente con el cóndilo lateral de la tibia." },
+                    { num: 5, x: 76, y: 44, nombre: "Ligamento Cruzado Anterior — LCA (RM Sagital)", detalle: "Banda fibrosa oblicua que asciende desde la espina tibial anterior hacia la cara medial del cóndilo femoral lateral." },
+                    { num: 6, x: 83, y: 47, nombre: "Ligamento Cruzado Posterior — LCP (RM Sagital)", detalle: "Cordón grueso, curvo e hipointenso (negro) que conecta el área intercondílea posterior tibial con el cóndilo medial." },
+                    { num: 7, x: 63, y: 47, nombre: "Grasa Infrarrotuliana de Hoffa y Tendón Rotuliano (RM)", detalle: "Almohadilla adiposa brillante situada detrás del tendón rotuliano y debajo de la rótula." }
+                ]
+            },
+            {
+                id: "sem16_3",
+                titulo: "Lámina 3: Tobillo (Mortaja) y Pie (Dorsoplantar)",
+                src: "imagenes/sem16_3.png",
+                desc: "Proyección de mortaja tibioperoneoastragalina (izquierda) y radiografía AP dorsoplantar del pie (derecha).",
+                hotspots: [
+                    { num: 1, x: 26, y: 43, nombre: "Pilón Tibial y Maléolo Medial (Tobillo)", detalle: "El techo tibial y el maléolo medial forman el soporte superior y medial de la mortaja." },
+                    { num: 2, x: 14, y: 51, nombre: "Maléolo Lateral del Peroné", detalle: "Desciende más distal y posteriormente que el maléolo medial, estabilizando lateralmente el tobillo." },
+                    { num: 3, x: 25, y: 53, nombre: "Cúpula del Astrágalo y Mortaja Tibioastragalina", detalle: "Espacio articular uniforme despejado gracias a la rotación interna de 15°–20°." },
+                    { num: 4, x: 73, y: 74, nombre: "Astrágalo y Calcáneo (Retropié — Pie AP)", detalle: "Huesos posteriores del tarso encargados de recibir y distribuir el peso corporal." },
+                    { num: 5, x: 78, y: 61, nombre: "Hueso Navicular (Escafoides Tarsiano) y Tres Cuñas", detalle: "Mediopié medial: el navicular articula distalmente con las cuñas medial, intermedia y lateral." },
+                    { num: 6, x: 68, y: 62, nombre: "Hueso Cuboides y Base del 5.º Metatarsiano", detalle: "Mediopié lateral; en la base lateral del 5.º metatarsiano se identifica su apófisis estiloides." },
+                    { num: 7, x: 83, y: 37, nombre: "Primer Metatarsiano y Falanges del Hallux", detalle: "Antepié medial con los huesos sesamoideos proyectados bajo la cabeza del 1.er metatarsiano." }
+                ]
+            }
+        ]
+    };
+
+    let activeAtlasSem = 1;
+    let activePlateIdx = 0;
+    let atlasMode = 'explore';
+    let currentChallengeSpot = null;
+
+    function renderAtlasSidebar() {
+        const list = document.getElementById('atlasWeekList');
+        list.innerHTML = '<h4 style="color: var(--primary); margin-bottom: 0.7rem; font-size: 0.9rem;">Simuladores (16 Semanas)</h4>';
+        courseData.forEach(w => {
+            const plates = atlasPlates[w.sem] || [];
+            const btn = document.createElement('button');
+            btn.className = `week-selector-item ${w.sem === activeAtlasSem ? 'active' : ''}`;
+            btn.onclick = () => selectAtlasWeek(w.sem);
+            btn.innerHTML = `
+                <span><strong>Sem ${w.sem}:</strong> ${w.tema.substring(0, 23)}${w.tema.length > 23 ? '...' : ''}</span>
+                <span class="badge-done">${plates.length}</span>
+            `;
+            list.appendChild(btn);
         });
-        document.getElementById('quizScoreBadge').textContent = `Aciertos: ${correctCount} / ${w.quiz.length}`;
     }
 
-    function loadSimulator(type, btn) {
-        if (btn) {
-            document.querySelectorAll('#simuladores .filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    function selectAtlasWeek(sem) {
+        activeAtlasSem = sem;
+        activePlateIdx = 0;
+        renderAtlasSidebar();
+        renderAtlasPlate();
+    }
+
+    function selectPlateIndex(idx) {
+        activePlateIdx = idx;
+        renderAtlasPlate();
+    }
+
+    function setAtlasMode(mode) {
+        atlasMode = mode;
+        document.getElementById('modeExploreBtn').classList.toggle('active', mode === 'explore');
+        document.getElementById('modeChallengeBtn').classList.toggle('active', mode === 'challenge');
+        renderAtlasPlate();
+    }
+
+    function renderAtlasPlate() {
+        const w = courseData.find(item => item.sem === activeAtlasSem);
+        if (!w) return;
+
+        document.getElementById('atlasUnitLabel').textContent = `UNIDAD ${w.unidad} • SEMANA ${w.sem}`;
+        document.getElementById('atlasTitle').textContent = `Semana ${w.sem}: ${w.tema}`;
+
+        const plates = atlasPlates[w.sem] || [];
+        const plateTabs = document.getElementById('plateTabsContainer');
+        plateTabs.innerHTML = '';
+        if (plates.length > 1) {
+            plates.forEach((p, idx) => {
+                const b = document.createElement('button');
+                b.className = `filter-btn ${idx === activePlateIdx ? 'active' : ''}`;
+                b.textContent = p.titulo;
+                b.onclick = () => selectPlateIndex(idx);
+                plateTabs.appendChild(b);
+            });
         }
-        const stage = document.getElementById('svgStage');
-        document.getElementById('inspTitle').textContent = "Selecciona una estructura";
-        document.getElementById('inspDesc').textContent = "Haz clic sobre cualquier región del esquema para inspeccionar su densidad y referencias.";
 
-        if (type === 'densidades') {
-            stage.innerHTML = `
-                <h4 style="color: var(--primary); margin-bottom: 1rem;">Esquema Interactivo: Las 5 Densidades Radiográficas y Escala Hounsfield</h4>
-                <svg viewBox="0 0 600 260" width="100%" style="max-width: 600px;">
-                    <rect x="20" y="30" width="100" height="170" rx="8" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
-                          onclick="inspectPart('1. Densidad Aire (-1000 UH)', 'Color: Negro (Radiolúcido). Absorbe mínima radiación. Ejemplos: pulmones, tráquea, senos paranasales y gas intestinal.')"/>
-                    <text x="70" y="120" fill="#94a3b8" font-size="13" text-anchor="middle" pointer-events="none">AIRE</text>
-                    <text x="70" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">-1000 UH</text>
+        const currentPlate = plates[activePlateIdx] || plates[0];
+        const stage = document.getElementById('atlasStage');
+        const challengeBox = document.getElementById('challengePromptBox');
+        const quickList = document.getElementById('inspListQuick');
 
-                    <rect x="135" y="30" width="100" height="170" rx="8" fill="#27303f" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
-                          onclick="inspectPart('2. Densidad Grasa (-50 a -100 UH)', 'Color: Gris oscuro. Permite delimitar planos musculares y órganos abdominales. Ejemplos: tejido celular subcutáneo y grasa perirrenal.')"/>
-                    <text x="185" y="120" fill="#e2e8f0" font-size="13" text-anchor="middle" pointer-events="none">GRASA</text>
-                    <text x="185" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">-70 UH</text>
+        document.getElementById('inspTag').textContent = currentPlate.titulo.toUpperCase();
+        document.getElementById('inspTitle').textContent = currentPlate.hotspots.length > 0 ? "Selecciona un marcador numerado" : currentPlate.titulo;
+        document.getElementById('inspDesc').textContent = currentPlate.desc;
 
-                    <rect x="250" y="30" width="100" height="170" rx="8" fill="#64748b" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
-                          onclick="inspectPart('3. Densidad Agua / Tejidos Blandos (0 a +60 UH)', 'Color: Gris intermedio. Incluye músculos, vísceras sólidas (hígado, bazo), vasos sanguíneos y líquido cefalorraquídeo.')"/>
-                    <text x="300" y="120" fill="#ffffff" font-size="13" text-anchor="middle" pointer-events="none">AGUA</text>
-                    <text x="300" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">0 a +50 UH</text>
+        if (atlasMode === 'challenge' && currentPlate.hotspots.length > 0) {
+            currentChallengeSpot = currentPlate.hotspots[Math.floor(Math.random() * currentPlate.hotspots.length)];
+            challengeBox.style.display = 'block';
+            document.getElementById('challengeTargetText').textContent = `Localiza en la imagen: "${currentChallengeSpot.nombre}"`;
+            quickList.innerHTML = '<em>Modo Desafío activo: haz clic directamente en el marcador correcto sobre la imagen.</em>';
+        } else {
+            currentChallengeSpot = null;
+            challengeBox.style.display = 'none';
+            if (currentPlate.hotspots.length > 0) {
+                quickList.innerHTML = '<strong>Estructuras en esta lámina:</strong><br>' +
+                    currentPlate.hotspots.map(h => `<span style="display:inline-block; margin: 4px 8px 0 0; color: var(--primary); cursor:pointer;" onclick="triggerHotspot(${h.num})">[${h.num}] ${h.nombre}</span>`).join('');
+            } else {
+                quickList.innerHTML = '<em>Lámina de referencia general sin marcadores puntuales.</em>';
+            }
+        }
 
-                    <rect x="365" y="30" width="100" height="170" rx="8" fill="#cbd5e1" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
-                          onclick="inspectPart('4. Densidad Calcio / Hueso (+400 a +1000 UH)', 'Color: Blanco (Radiopaco). Alta atenuación del haz por su contenido mineral. Ejemplos: esqueleto, calcificaciones y cartílagos calcificados.')"/>
-                    <text x="415" y="120" fill="#0f172a" font-weight="bold" font-size="13" text-anchor="middle" pointer-events="none">CALCIO</text>
-                    <text x="415" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">+700 UH</text>
+        const pinsHtml = currentPlate.hotspots.map(h => `
+            <button class="hotspot-pin" id="pin-${h.num}" style="left: ${h.x}%; top: ${h.y}%;"
+                    onclick="triggerHotspot(${h.num})" title="Estructura ${h.num}">
+                ${atlasMode === 'challenge' ? '?' : h.num}
+            </button>
+        `).join('');
 
-                    <rect x="480" y="30" width="100" height="170" rx="8" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
-                          onclick="inspectPart('5. Densidad Metal (> +2000 UH)', 'Color: Blanco brillante absoluto. Atenuación total del haz. Ejemplos: prótesis ortopédicas, material de osteosíntesis, medios de contraste yodados/baritados.')"/>
-                    <text x="530" y="120" fill="#0f172a" font-weight="bold" font-size="13" text-anchor="middle" pointer-events="none">METAL</text>
-                    <text x="530" y="222" fill="#38bdf8" font-size="11" text-anchor="middle">> +2000 UH</text>
-                </svg>
-            `;
-        } else if (type === 'snc') {
-            stage.innerHTML = `
-                <h4 style="color: var(--primary); margin-bottom: 1rem;">Corte Axial Esquemático: Encéfalo a nivel de Ganglios Basales (Sem 8)</h4>
-                <svg viewBox="0 0 420 420" width="100%" style="max-width: 390px;">
-                    <ellipse cx="210" cy="210" rx="175" ry="195" fill="#1e293b" stroke="#f8fafc" stroke-width="8" class="svg-hotspot"
-                             onclick="inspectPart('Calota Craneal (Tabla Interna y Externa)', 'En TC se observa hiperdensa (+1000 UH). En RM cortical aparece hipointensa (negra) en todas las secuencias.')"/>
-                    <ellipse cx="210" cy="210" rx="163" ry="183" fill="#475569" class="svg-hotspot"
-                             onclick="inspectPart('Parénquima Cerebral (Sustancia Gris y Blanca)', 'La corteza cerebral (sustancia gris) es ligeramente más densa en TC que la sustancia blanca subcortical.')"/>
-                    <line x1="210" y1="28" x2="210" y2="115" stroke="#e2e8f0" stroke-width="4" class="svg-hotspot"
-                          onclick="inspectPart('Hoz del Cerebro (Línea Media)', 'Repliegue dural interhemisférico. Referencia fundamental para verificar ausencia de desviación de línea media.')"/>
-                    <line x1="210" y1="305" x2="210" y2="392" stroke="#e2e8f0" stroke-width="4"/>
-                    <path d="M 205 115 Q 175 115 168 150 Q 190 165 205 160 Z" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
-                          onclick="inspectPart('Asta Frontal del Ventrículo Lateral Derecho', 'Contiene LCR (hipodenso en TC: 0-15 UH; hipointenso en RM T1, hiperintenso en T2).')"/>
-                    <path d="M 215 115 Q 245 115 252 150 Q 230 165 215 160 Z" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
-                          onclick="inspectPart('Asta Frontal del Ventrículo Lateral Izquierdo', 'Recuerda la convención radiológica: el lado derecho de la imagen corresponde al hemisferio izquierdo del paciente.')"/>
-                    <rect x="206" y="185" width="8" height="42" rx="3" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
-                          onclick="inspectPart('Tercer Ventrículo', 'Cavidad estrecha de línea media situada entre ambos tálamos. Se comunica anteriormente con los ventrículos laterales por los agujeros de Monro.')"/>
-                    <ellipse cx="188" cy="212" rx="14" ry="24" fill="#64748b" stroke="#2dd4bf" stroke-width="1.5" class="svg-hotspot"
-                             onclick="inspectPart('Tálamo Derecho', 'Núcleo gris profundo ovalado situado inmediatamente lateral al tercer ventrículo y medial al brazo posterior de la cápsula interna.')"/>
-                    <ellipse cx="232" cy="212" rx="14" ry="24" fill="#64748b" stroke="#2dd4bf" stroke-width="1.5" class="svg-hotspot"
-                             onclick="inspectPart('Tálamo Izquierdo', 'Centro de relevo sensitivo y motor. Su relación medial con el III ventrículo es clave en neuroimagen.')"/>
-                    <polygon points="168,175 142,198 166,225" fill="#94a3b8" stroke="#fbbf24" stroke-width="1.5" class="svg-hotspot"
-                             onclick="inspectPart('Núcleo Lenticular (Putamen + Globo Pálido)', 'Estructura triangular lateral a la cápsula interna. En TC normal se distingue ligeramente más hiperdenso que la cápsula interna.')"/>
-                    <polygon points="252,175 278,198 254,225" fill="#94a3b8" stroke="#fbbf24" stroke-width="1.5" class="svg-hotspot"
-                             onclick="inspectPart('Núcleo Lenticular Izquierdo', 'Separado medialmente del caudado y del tálamo por los brazos anterior y posterior de la cápsula interna.')"/>
-                    <path d="M 192 265 L 162 315 L 182 322 Z" fill="#090d16" stroke="#38bdf8" stroke-width="1.5" class="svg-hotspot"
-                          onclick="inspectPart('Atrio / Asta Occipital Ventricular', 'Porción posterior de los ventrículos laterales; suele alojar los glomus coroideos (frecuentemente calcificados en adultos).')"/>
-                    <path d="M 228 265 L 258 315 L 238 322 Z" fill="#090d16" stroke="#38bdf8" stroke-width="1.5"/>
-                </svg>
-            `;
-        } else if (type === 'cervical') {
-            stage.innerHTML = `
-                <h4 style="color: var(--primary); margin-bottom: 1rem;">Comparación Vectorial: Atlas (C1) vs. Axis (C2) (Sem 9)</h4>
-                <svg viewBox="0 0 560 260" width="100%" style="max-width: 560px;">
-                    <text x="140" y="25" fill="#2dd4bf" font-weight="bold" font-size="14" text-anchor="middle">ATLAS (C1) - Vista Superior</text>
-                    <path d="M 90 95 Q 140 65 190 95 L 210 130 L 190 165 Q 140 195 90 165 L 70 130 Z" fill="none" stroke="#cbd5e1" stroke-width="12" class="svg-hotspot"
-                          onclick="inspectPart('Anillo del Atlas (Arcos Anterior y Posterior)', 'C1 carece de cuerpo vertebral y de apófisis espinosa. Su arco anterior articula con la apófisis odontoides de C2.')"/>
-                    <ellipse cx="95" cy="125" rx="18" ry="26" fill="#475569" stroke="#38bdf8" stroke-width="2" class="svg-hotspot"
-                             onclick="inspectPart('Masa Lateral Derecha del Atlas', 'Soporta el cóndilo occipital superiormente y articula con C2 inferiormente. En Rx transoral deben verse equidistantes de la odontoides.')"/>
-                    <ellipse cx="185" cy="125" rx="18" ry="26" fill="#475569" stroke="#38bdf8" stroke-width="2" class="svg-hotspot"
-                             onclick="inspectPart('Masa Lateral Izquierda del Atlas', 'La asimetría entre masas laterales y la odontoides en Rx transoral sugiere rotación o fractura de Jefferson.')"/>
-                    <text x="140" y="225" fill="#94a3b8" font-size="11" text-anchor="middle">Sin cuerpo ni apófisis espinosa</text>
+        stage.innerHTML = `
+            <div class="image-hotspot-wrapper">
+                <img src="${currentPlate.src}" alt="${currentPlate.titulo}"
+                     onerror="this.parentElement.innerHTML='<div style=\'padding:2rem;text-align:center;color:var(--text-muted);\'><p style=\'color:var(--primary);font-weight:600;\'>Archivo ${currentPlate.src} no encontrado</p><p style=\'font-size:0.85rem;margin-top:0.4rem;\'>Verifica que ${currentPlate.src} esté dentro de la carpeta imagenes/ en tu repositorio.</p></div>'">
+                ${pinsHtml}
+            </div>
+        `;
+    }
 
-                    <text x="410" y="25" fill="#38bdf8" font-weight="bold" font-size="14" text-anchor="middle">AXIS (C2) - Vista Anterior</text>
-                    <rect x="396" y="55" width="28" height="45" rx="12" fill="#e2e8f0" stroke="#fbbf24" stroke-width="2" class="svg-hotspot"
-                          onclick="inspectPart('Apófisis Odontoides (Diente del Axis)', 'Proyección ósea vertical que actúa como pivote para la rotación de C1. Se evalúa en Rx transoral y cortes coronales/sagitales de TC.')"/>
-                    <rect x="372" y="100" width="76" height="52" rx="8" fill="#94a3b8" stroke="#38bdf8" stroke-width="2" class="svg-hotspot"
-                          onclick="inspectPart('Cuerpo del Axis (C2)', 'Presenta carillas articulares superiores laterales a la odontoides para articular con las masas laterales del atlas.')"/>
-                    <polygon points="372,115 330,130 372,140" fill="#64748b" stroke="#cbd5e1" stroke-width="1.5"/>
-                    <polygon points="448,115 490,130 448,140" fill="#64748b" stroke="#cbd5e1" stroke-width="1.5"/>
-                    <text x="410" y="225" fill="#94a3b8" font-size="11" text-anchor="middle">Pivote rotacional (Odontoides)</text>
-                </svg>
-            `;
-        } else if (type === 'visor_real') {
-            stage.innerHTML = `
-                <h4 style="color: var(--primary); margin-bottom: 0.6rem;">Visor Preparado para Imágenes Clínicas Reales (PNG / JPG)</h4>
-                <p class="card-detail" style="text-align: center; max-width: 520px; margin-bottom: 1rem;">
-                    Para mantener la página rápida en GitHub Pages y proteger la confidencialidad del paciente, exporta tus estudios DICOM anonimizados a <strong>PNG/JPG</strong> y colócalos en la carpeta <code>imagenes/</code>.
-                </p>
-                <div style="background: #0f172a; border: 1px dashed var(--primary); border-radius: 10px; padding: 1.5rem; text-align: center; width: 100%; max-width: 520px;">
-                    <p style="color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;">Flujo recomendado (igual que en Atlas Forense):</p>
-                    <ol style="text-align: left; font-size: 0.88rem; color: var(--text-muted); margin-left: 1.2rem;">
-                        <li>Abre tu estudio en tu visor DICOM y oculta los metadatos del paciente.</li>
-                        <li>Ajusta la ventana (ósea, partes blandas o parénquima) y guarda el corte clave como <code>caso_sem8.png</code>.</li>
-                        <li>Sube la imagen a GitHub y activa los marcadores de coordenadas sobre ella.</li>
-                    </ol>
-                </div>
-            `;
-            inspectPart('Modo Imágenes Reales (Sin DICOM pesado)', 'El navegador web no carga archivos .dcm directamente por su peso (50-300 MB) y metadatos privados. Usar cortes clave exportados a PNG/JPG garantiza carga instantánea desde cualquier celular o computadora.');
+    function triggerHotspot(num) {
+        const plates = atlasPlates[activeAtlasSem] || [];
+        const currentPlate = plates[activePlateIdx];
+        if (!currentPlate) return;
+        const spot = currentPlate.hotspots.find(h => h.num === num);
+        if (!spot) return;
+
+        document.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
+        const activePin = document.getElementById(`pin-${num}`);
+        if (activePin) activePin.classList.add('active');
+
+        if (atlasMode === 'challenge' && currentChallengeSpot) {
+            if (spot.num === currentChallengeSpot.num) {
+                if (activePin) {
+                    activePin.classList.add('quiz-correct');
+                    activePin.textContent = '✓';
+                }
+                document.getElementById('inspTag').textContent = "¡CORRECTO!";
+                document.getElementById('inspTitle').textContent = spot.nombre;
+                document.getElementById('inspDesc').textContent = spot.detalle;
+                setTimeout(() => {
+                    if (atlasMode === 'challenge') renderAtlasPlate();
+                }, 2200);
+            } else {
+                document.getElementById('inspTag').textContent = "INTENTA DE NUEVO";
+                document.getElementById('inspTitle').textContent = `Ese punto corresponde a: ${spot.nombre}`;
+                document.getElementById('inspDesc').textContent = `Sigue buscando: ${currentChallengeSpot.nombre}.`;
+            }
+        } else {
+            document.getElementById('inspTag').textContent = `MARCADOR #${spot.num}`;
+            document.getElementById('inspTitle').textContent = spot.nombre;
+            document.getElementById('inspDesc').textContent = spot.detalle;
         }
     }
 
-    function inspectPart(title, desc) {
-        document.getElementById('inspTitle').textContent = title;
-        document.getElementById('inspDesc').textContent = desc;
-    }
-
+    // TABS, MODAL & CALC
     function switchTab(tabId, btn) {
         document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1803,11 +2839,88 @@
         document.getElementById('paeResult').textContent = `Equivalente: ${eq} / 1.00 punto`;
     }
 
+    // Init
     updateGlobalProgress();
     renderWeeks();
     renderStudySidebar();
     renderStudyContent();
-    loadSimulator('densidades');
+    selectAtlasWeek(1);
+
+    // --- MÓDULO DE ACCESIBILIDAD ---
+    let currentFontPercent = parseInt(localStorage.getItem('uce_a11y_font') || '100', 10);
+
+    function toggleA11yPanel() {
+        const panel = document.getElementById('a11yPanel');
+        const btn = document.getElementById('a11yBtn');
+        const isOpen = panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+    }
+
+    function setTheme(theme) {
+        document.body.classList.remove('theme-light', 'theme-contrast');
+        document.querySelectorAll('#a11yPanel .a11y-group:first-of-type .a11y-opt-btn').forEach(b => b.classList.remove('active'));
+        if (theme === 'light') {
+            document.body.classList.add('theme-light');
+            document.getElementById('theme-light-btn').classList.add('active');
+        } else if (theme === 'contrast') {
+            document.body.classList.add('theme-contrast');
+            document.getElementById('theme-contrast-btn').classList.add('active');
+        } else {
+            document.getElementById('theme-dark-btn').classList.add('active');
+        }
+        localStorage.setItem('uce_a11y_theme', theme);
+    }
+
+    function changeFontSize(delta) {
+        currentFontPercent = Math.min(140, Math.max(85, currentFontPercent + delta));
+        document.documentElement.style.fontSize = currentFontPercent + '%';
+        localStorage.setItem('uce_a11y_font', currentFontPercent);
+    }
+
+    function resetFontSize() {
+        currentFontPercent = 100;
+        document.documentElement.style.fontSize = '100%';
+        localStorage.setItem('uce_a11y_font', '100');
+    }
+
+    function toggleDyslexic() {
+        const active = document.body.classList.toggle('dyslexic-font');
+        document.getElementById('dyslexicBtn').classList.toggle('active', active);
+        localStorage.setItem('uce_a11y_dyslexic', active);
+    }
+
+    function toggleMotion() {
+        const active = document.body.classList.toggle('reduce-motion');
+        document.getElementById('motionBtn').classList.toggle('active', active);
+        localStorage.setItem('uce_a11y_motion', active);
+    }
+
+    function resetAllA11y() {
+        setTheme('dark');
+        resetFontSize();
+        document.body.classList.remove('dyslexic-font', 'reduce-motion');
+        document.getElementById('dyslexicBtn').classList.remove('active');
+        document.getElementById('motionBtn').classList.remove('active');
+        localStorage.removeItem('uce_a11y_dyslexic');
+        localStorage.removeItem('uce_a11y_motion');
+    }
+
+    function initA11y() {
+        const savedTheme = localStorage.getItem('uce_a11y_theme') || 'dark';
+        setTheme(savedTheme);
+        document.documentElement.style.fontSize = currentFontPercent + '%';
+        if (localStorage.getItem('uce_a11y_dyslexic') === 'true') {
+            document.body.classList.add('dyslexic-font');
+            document.getElementById('dyslexicBtn').classList.add('active');
+        }
+        if (localStorage.getItem('uce_a11y_motion') === 'true') {
+            document.body.classList.add('reduce-motion');
+            document.getElementById('motionBtn').classList.add('active');
+        }
+    }
+
+    initA11y();
+
 </script>
 </body>
 </html>
