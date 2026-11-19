@@ -884,28 +884,47 @@
         .hotspot-pin {
             position: absolute;
             transform: translate(-50%, -50%);
-            width: 28px;
-            height: 28px;
+            width: 17px;
+            height: 17px;
             border-radius: 50%;
-            background: rgba(2, 132, 199, 0.9);
+            background: rgba(2, 132, 199, 0.68);
             color: #fff;
-            border: 2px solid #ffffff;
-            font-size: 0.78rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.9);
+            font-size: 0.62rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.85);
-            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.85);
+            transition: transform 0.18s, background 0.18s, opacity 0.18s;
             z-index: 10;
+            padding: 0;
+            line-height: 1;
         }
         .hotspot-pin:hover, .hotspot-pin.active {
-            transform: translate(-50%, -50%) scale(1.22);
+            transform: translate(-50%, -50%) scale(1.28);
             background: #2dd4bf;
             color: #0b1120;
             border-color: #fbbf24;
-            z-index: 20;
+            box-shadow: 0 0 10px rgba(45, 212, 191, 0.95);
+            z-index: 25;
+        }
+        .image-hotspot-wrapper.pins-hidden .hotspot-pin {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .image-hotspot-wrapper.solo-pin-mode .hotspot-pin:not(.active) {
+            opacity: 0.22;
+        }
+        .image-hotspot-wrapper.solo-pin-mode .hotspot-pin:not(.active):hover {
+            opacity: 1;
+        }
+        .insp-nav-row {
+            display: flex;
+            gap: 0.45rem;
+            margin-top: 0.85rem;
+            flex-wrap: wrap;
         }
         .hotspot-pin.quiz-target {
             background: #fbbf24;
@@ -1096,6 +1115,7 @@
                         <div class="mode-switch-bar" style="margin: 0;">
                             <button class="filter-btn active" id="modeExploreBtn" onclick="setAtlasMode('explore')">Modo Exploración</button>
                             <button class="filter-btn" id="modeChallengeBtn" onclick="setAtlasMode('challenge')">Modo Desafío (Localizar)</button>
+                            <button class="filter-btn" id="togglePinsBtn" onclick="togglePinsVisibility()" title="Oculta los números para ver la imagen limpia">Ocultar Puntos</button>
                         </div>
                     </div>
 
@@ -1111,9 +1131,14 @@
 
                         <div class="inspector-card">
                             <span class="unit-tag" id="inspTag">ESTRUCTURA ANATÓMICA</span>
-                            <h3 style="color: #fff; margin: 0.4rem 0 0.8rem 0;" id="inspTitle">Haz clic en un marcador</h3>
-                            <p class="card-detail" id="inspDesc">Selecciona cualquiera de los puntos numerados sobre la imagen para visualizar su identificación anatómica exacta y su correlación radiológica.</p>
-                            <div id="inspListQuick" style="margin-top: 1.2rem; padding-top: 0.9rem; border-top: 1px solid var(--border); font-size: 0.83rem; color: var(--text-muted);"></div>
+                            <h3 style="color: var(--text-main); margin: 0.4rem 0 0.8rem 0;" id="inspTitle">Haz clic en un marcador</h3>
+                            <p class="card-detail" id="inspDesc">Selecciona cualquiera de los puntos numerados sobre la imagen (o usa los botones Anterior / Siguiente) para inspeccionar cada estructura sin obstrucciones.</p>
+                            <div class="insp-nav-row" id="inspNavControls">
+                                <button class="filter-btn" onclick="stepHotspot(-1)">&larr; Anterior</button>
+                                <button class="filter-btn" onclick="stepHotspot(1)">Siguiente &rarr;</button>
+                                <button class="filter-btn" id="soloPinBtn" onclick="toggleSoloPinMode()" title="Atenúa los demás puntos para despejar la imagen">Aislar Activo</button>
+                            </div>
+                            <div id="inspListQuick" style="margin-top: 1.1rem; padding-top: 0.9rem; border-top: 1px solid var(--border); font-size: 0.83rem; color: var(--text-muted);"></div>
                         </div>
                     </div>
                 </div>
@@ -2654,8 +2679,11 @@
 
     let activeAtlasSem = 1;
     let activePlateIdx = 0;
+    let activeSpotNum = null;
     let atlasMode = 'explore';
     let currentChallengeSpot = null;
+    let pinsHidden = false;
+    let soloPinMode = false;
 
     function renderAtlasSidebar() {
         const list = document.getElementById('atlasWeekList');
@@ -2676,13 +2704,49 @@
     function selectAtlasWeek(sem) {
         activeAtlasSem = sem;
         activePlateIdx = 0;
+        activeSpotNum = null;
         renderAtlasSidebar();
         renderAtlasPlate();
     }
 
     function selectPlateIndex(idx) {
         activePlateIdx = idx;
+        activeSpotNum = null;
         renderAtlasPlate();
+    }
+
+    function togglePinsVisibility() {
+        pinsHidden = !pinsHidden;
+        const btn = document.getElementById('togglePinsBtn');
+        const wrap = document.querySelector('.image-hotspot-wrapper');
+        if (btn) {
+            btn.classList.toggle('active', pinsHidden);
+            btn.textContent = pinsHidden ? 'Mostrar Puntos' : 'Ocultar Puntos';
+        }
+        if (wrap) wrap.classList.toggle('pins-hidden', pinsHidden);
+    }
+
+    function toggleSoloPinMode() {
+        soloPinMode = !soloPinMode;
+        const btn = document.getElementById('soloPinBtn');
+        const wrap = document.querySelector('.image-hotspot-wrapper');
+        if (btn) btn.classList.toggle('active', soloPinMode);
+        if (wrap) wrap.classList.toggle('solo-pin-mode', soloPinMode);
+    }
+
+    function stepHotspot(delta) {
+        const plates = atlasPlates[activeAtlasSem] || [];
+        const currentPlate = plates[activePlateIdx];
+        if (!currentPlate || !currentPlate.hotspots.length) return;
+        if (pinsHidden) togglePinsVisibility();
+        const spots = currentPlate.hotspots;
+        let idx = spots.findIndex(h => h.num === activeSpotNum);
+        if (idx === -1) {
+            idx = delta > 0 ? 0 : spots.length - 1;
+        } else {
+            idx = (idx + delta + spots.length) % spots.length;
+        }
+        triggerHotspot(spots[idx].num);
     }
 
     function setAtlasMode(mode) {
@@ -2744,12 +2808,17 @@
             </button>
         `).join('');
 
+        const wrapClasses = ['image-hotspot-wrapper'];
+        if (pinsHidden) wrapClasses.push('pins-hidden');
+        if (soloPinMode) wrapClasses.push('solo-pin-mode');
+
         stage.innerHTML = `
-            <div class="image-hotspot-wrapper">
-                <img src="${currentPlate.src}" alt="${currentPlate.titulo}"
+            <div class="${wrapClasses.join(' ')}">
+                <img src="${currentPlate.src}" alt="${currentPlate.titulo}" onclick="togglePinsVisibility()" style="cursor: pointer;" title="Haz clic sobre la imagen para ocultar o mostrar los marcadores"
                      onerror="this.parentElement.innerHTML='<div style=\'padding:2rem;text-align:center;color:var(--text-muted);\'><p style=\'color:var(--primary);font-weight:600;\'>Archivo ${currentPlate.src} no encontrado</p><p style=\'font-size:0.85rem;margin-top:0.4rem;\'>Verifica que ${currentPlate.src} esté dentro de la carpeta imagenes/ en tu repositorio.</p></div>'">
                 ${pinsHtml}
             </div>
+            <p style="font-size: 0.76rem; color: var(--text-muted); margin-top: 0.55rem;">Tip: Haz clic sobre la imagen (o usa "Ocultar Puntos") para inspeccionar la estructura limpia sin marcadores.</p>
         `;
     }
 
@@ -2759,6 +2828,7 @@
         if (!currentPlate) return;
         const spot = currentPlate.hotspots.find(h => h.num === num);
         if (!spot) return;
+        activeSpotNum = num;
 
         document.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
         const activePin = document.getElementById(`pin-${num}`);
